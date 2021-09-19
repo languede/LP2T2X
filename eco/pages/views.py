@@ -18,3 +18,7 @@ def checkout_view(request, *args, **kwargs):
 
 def about_us_view(request, *args, **kwargs):
     return render(request, "about_us.html", {})
+
+
+def login_view(request, *args, **kwargs):
+    return render(request, "login.html", {})
