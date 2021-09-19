@@ -9,7 +9,7 @@ def home_view(request, *args, **kwargs):  # *args, **kwargs
 
 
 def product_detail_view(request, *args, **kwargs):
-    return render(request, "details.html", {})
+    return render(request, "product/detail.html", {})
 
 
 def checkout_view(request, *args, **kwargs):
