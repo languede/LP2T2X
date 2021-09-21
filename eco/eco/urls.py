@@ -17,14 +17,24 @@ from django.contrib import admin
 from django.urls import path
 from pages.views import *
 from products.views import *
+from checkout.views import *
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('', home_view, name='home'),
-    path('home', home_view, name='home'),
-    path('login', login_view, name='login'),
-    path('about_us', about_us_view, name='about_us'),
+    path('home/', home_view, name='home'),
+    path('login/', login_view, name='login'),
+    path('create/', product_create_view, name='create'),
+    path('about_us/', about_us_view, name='about_us'),
     path('details/', product_detail_view, name='details'),
     path('checkout/', checkout_view, name='checkout'),
     path('product/', product_detail_view, name='product'),
+    # checkout page
+    path('payment_method/', payment_method_view, name='payment'),
+    path('shopping_cart/', shopping_cart_view, name='shopping'),
+    path('start_page/', start_page_view, name='start'),
+    # admin
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
