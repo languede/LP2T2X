@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ object.title }}</h1>
+    <p>
+        {% if object.description %}
+            this "{{ object.description }}"
+        {% else %}
+            Description Coming Soon
+        {% endif %}
+    </p>
+    {{ object.price }} $
+    <br><br>
+    <img src="{{ object.image.url }}" alt="img"/>
+{% endblock %}
