@@ -1,17 +1,16 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
         {% block head %}
-            <meta charset="UTF-8">
-            <title>Starting Page</title>
-            <link rel="stylesheet" type="text/css" href="{% static '/css/start_page.css' %}"/>
+            <meta charset="utf-8">
+            <title></title>
+            <link rel="stylesheet" type="text/css" href="../../static/css/two.css"/>
         {% endblock %}
 	</head>
 	<body>
 		<div class="box">
 			<div class="user">
-				<img src="/media/images/logo.png" alt="logo">
+				<img src="../../media/images/start5.png" >
 				<div>
 					<p>ECO REWARDS</p>
 					<div>
@@ -22,14 +21,13 @@
 				</div>
 			</div>
 			<p class="b">Enter your Eco-Accournt OR press Start</p>
-{#			<div class="form">#}
-                 <form action="/shopping_cart/" method="POST" enctype= multipart/form-data>{% csrf_token %}
-                    <label>+61
-                        <input type="tel" placeholder="Please enter your phone number">
-                    </label>
-                    <input type="submit" value="START"/>
-                 </form>
-{#			</div>#}
+			<div class="form">
+				<div>
+					<span>+61</span>
+					<input type="text" placeholder="Please enter your phone number">
+				</div>
+			</div>
+			<button>START</button>
 		</div>
 	</body>
 </html>
