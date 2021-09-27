@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="../../static/css/three.css" />
+		<link rel="stylesheet" type="text/css" href="{% static 'checkout/three.style' %}" />
 	</head>
 	<body>
 		<div class="box">
@@ -12,25 +13,25 @@
 			<p class="x">Or, select an option below.</p>
 			<ul class="b">
 				<li>
-					<img src="../../media/images/y1.png" >
+					<img src="../../media/checkout/y1.png" alt=""/>
 					<p>CARD</p>
 				</li>
 				<li onclick="tc()">
-					<img src="../../media/images/y2.png" >
+					<img src="../../media/checkout/y2.png" alt=""/>
 					<p>CASH</p>
 				</li>
 				<li>
-					<img src="../../media/images/y3.png" >
+					<img src="../../media/checkout/y3.png" alt=""/>
 					<p>OTHERS</p>
 				</li>
 				<li>
-					<img src="../../media/images/y1.png" >
+					<img src="../../media/checkout/y1.png" alt=""/>
 					<p>BACK</p>
 				</li>
 			</ul>
 			<div class="tc">
 				<div>
-					<img src="../../media/images/dui.png" >
+					<img src="../../media/checkout/dui.png" alt=""/>
 					<p>Payment Successfully !</p>
 				</div>
 			</div>

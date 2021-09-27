@@ -3,16 +3,16 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-def home(request):
-    return HttpResponse("hello home")
+def reward_home(request):
+    return render(request, "authentication/index.html")
 
 
 def signup(request):
-    return render(request, "authentication/signup.html")
+    return render(request, "authentication/login-signup.html")
 
 
-def signin(request):
-    return render(request, "authentication/signin.html")
+# def signin(request):
+#     return render(request, "authentication/signin.html")
 
 
 def signout(request):

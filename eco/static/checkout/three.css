@@ -59,7 +59,7 @@ button {
 	width: 970px;
 	height: 550px;
 	background-color: #fff;
-	background: url(../../media/images/BG2.png) no-repeat;
+	background: url(../images/BG2.png) no-repeat;
 	background-size: auto 100%;
 	position: relative;
 }

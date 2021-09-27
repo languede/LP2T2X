@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="../../static/css/one.css"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'checkout/two_item.style' %}"/>
 	</head>
 	<body>
 		<div class="box">
 			<div class="one">
 				<div class="user">
-					<img src="../../media/images/logo.png" >
+					<img src="../../media/checkout/logo.png" >
 					<p>ECO REWARDS</p>
 				</div>
 				<div class="title">
@@ -30,13 +31,13 @@
 			<div class="two">
 				<div class="h">
 					<p>Your Cart</p>
-					<img src="../../media/images/cart1.jpg" >
+					<img src="../../media/checkout/cart1.jpg" >
 				</div>
 				<div class="c">
 					<ul>
 						<li>
 							<div>
-								<img src="../../media/images/one.jpg" >
+								<img src="../../media/checkout/one.jpg" >
 								<div>
 									<p>White sugar</p>
 									<div class="form2">
@@ -46,11 +47,11 @@
 									</div>
 								</div>
 							</div>
-							<div style="align-items: center;">$7.00<img src="../../media/images/Eco%20icon.png" width="30" style="margin-left: 10px;"></div>
+							<div style="align-items: center;">$7.00<img src="../../media/checkout/Eco%20icon.png" width="30" style="margin-left: 10px;"></div>
 						</li>
 						<li>
 							<div>
-								<img src="../../media/images/two.jpg" >
+								<img src="../../media/checkout/two.jpg" >
 								<div>
 									<p>White sugar</p>
 									<div class="form2">
@@ -60,7 +61,7 @@
 									</div>
 								</div>
 							</div>
-							<div style="align-items: center;">$7.00<img src="../../media/images/Eco%20icon.png" width="30" style="margin-left: 10px;"></div>
+							<div style="align-items: center;">$7.00<img src="../../media/checkout/Eco%20icon.png" width="30" style="margin-left: 10px;"></div>
 						</li>
 					</ul>
 				</div>

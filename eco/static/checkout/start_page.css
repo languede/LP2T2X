@@ -15,14 +15,10 @@ body {
 
 input,
 textarea {
-	border-radius: 25px;
-    border: 1px solid #0A6259;
-	display: flex;
+	padding: 0;
+	margin: 0;
 	background: none;
-	height: 70px;
-	width: 450px;
-	box-sizing: border-box;
-	padding: 20px;
+	outline: none;
 }
 
 h1,
@@ -58,11 +54,13 @@ button {
 	margin: 0;
 }
 .box{
-	margin: calc(50vh - 275px) auto auto;
-	width: 100%;
+	margin: auto;
+	margin-top: calc(50vh - 275px);
+	width: 970px;
 	height: 550px;
-	background: url(/media/images/BG2.png) no-repeat;
-	background-size: 100% 100%;
+	background-color: #fff;
+	background: url(/media/checkout/BG2.png) no-repeat;
+	background-size: auto 100%;
 }
 .box>.user{
 	width: 100%;
@@ -96,7 +94,7 @@ button {
 	margin-top: 20px;
 }
 .box>.form>div{
-	border: 0 solid #0A6259;
+	border: 1px solid #0A6259;
 	border-radius: 30px;
 	display: flex;
 	height: 70px;
