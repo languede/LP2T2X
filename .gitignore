@@ -2,3 +2,4 @@
 eco/eco/__pycache__/urls.cpython-39.pyc
 eco/pages/__pycache__/views.cpython-39.pyc
 eco/products/__pycache__/views.cpython-39.pyc
+*.pyc
