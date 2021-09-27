@@ -15,10 +15,14 @@ body {
 
 input,
 textarea {
-	padding: 0;
-	margin: 0;
+	border-radius: 25px;
+    border: 1px solid #0A6259;
+	display: flex;
 	background: none;
-	outline: none;
+	height: 70px;
+	width: 450px;
+	box-sizing: border-box;
+	padding: 20px;
 }
 
 h1,
@@ -54,13 +58,11 @@ button {
 	margin: 0;
 }
 .box{
-	margin: auto;
-	margin-top: calc(50vh - 275px);
-	width: 970px;
+	margin: calc(50vh - 275px) auto auto;
+	width: 100%;
 	height: 550px;
-	background-color: #fff;
-	background: url(../../media/images/BG2.png) no-repeat;
-	background-size: auto 100%;
+	background: url(/media/images/BG2.png) no-repeat;
+	background-size: 100% 100%;
 }
 .box>.user{
 	width: 100%;
@@ -94,7 +96,7 @@ button {
 	margin-top: 20px;
 }
 .box>.form>div{
-	border: 1px solid #0A6259;
+	border: 0 solid #0A6259;
 	border-radius: 30px;
 	display: flex;
 	height: 70px;

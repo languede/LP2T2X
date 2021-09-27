@@ -33,9 +33,10 @@ urlpatterns = [
     path('checkout/', checkout_view, name='checkout'),
     path('product/', product_detail_view, name='product'),
     # checkout page
-    path('payment_method/', payment_method_view, name='payment'),
-    path('shopping_cart/', shopping_cart_view, name='shopping'),
-    path('start_page/', start_page_view, name='start'),
+    path('payment_method/', payment_method_view, name='payment_method'),
+    path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
+    path('start_page/', start_page_view, name='start_page'),
     # admin
     path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+              static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
