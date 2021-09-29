@@ -10,6 +10,7 @@ def reward_home(request):
 
 
 def login_signup(request):
+    context = {}
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['confirm_password']
