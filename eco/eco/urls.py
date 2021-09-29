@@ -20,13 +20,13 @@ from products.views import *
 from checkout.views import *
 from django.conf.urls.static import static
 from django.conf import settings
-
+from reward.views import login_signup_view
 
 urlpatterns = [
     path('', home_view, name='home'),
     path('', include('reward.urls')),
     path('home/', home_view, name='home'),
-    path('login/', login_view, name='login'),
+    path('login/', login_signup_view, name='login-signup'),
     path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
     path('details/', product_detail_view, name='details'),
