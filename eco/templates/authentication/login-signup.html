@@ -10,32 +10,44 @@
 
 <body>
 
-    <header>
-        <a href="index.html" class="logo"><img src="/media/reward/star/star5.png" width="100" height="100" alt=""></a>
-    </header>
+<header>
+    <a href="index.html" class="logo"><img src="/media/reward/star/star5.png" width="100" height="100" alt=""></a>
+</header>
 
-    <div class="container">
-       <div class="forms-container">
-           <div class="login-signup">
-               <form action="#" class="sign-in-form">
-                   <h2 class="title">Sign in to Eco Rewards</h2>
-                   <div class="input-field"><input type="text" placeholder="Phone Number"></div>
-                   <div class="input-field"><input type="password" placeholder="Password"></div>
-                   <input type="submit" class="btn" value="SIGN IN"/>
-               </form>
+<div class="container">
+    <div class="forms-container">
+        <div class="login-signup">
+            <form action="#" class="sign-in-form"> {% csrf_token %}
+                <h2 class="title">Sign in to Eco Rewards</h2>
+                <div class="input-field"><label>
+                    <input type="text" placeholder="Phone Number" required>
+                </label></div>
+                <div class="input-field"><label>
+                    <input type="password" placeholder="Password" required>
+                </label></div>
+                <input type="submit" class="btn" value="SIGN IN"/>
+            </form>
 
-                <form action="#" class="sign-up-form">
-                    <h2 class="title">Create Account</h2>
-                    <div class="input-field"><input type="text" placeholder="Name" required></div>
-                    <div class="input-field"><input type="tel" placeholder="Phone Number" required></div>
-                    <div class="input-field"><input type="password" placeholder="Password" required></div>
-                    <div class="input-field"><input type="password" placeholder="Confirm Password" required></div>
-                    <input type="submit" class="btn" value="SIGN UP"/>
-                </form>
-           </div>
-       </div>
+            <form action="{% url 'login-signup' %}" class="sign-up-form"> {% csrf_token %}
+                <h2 class="title">Create Account</h2>
+                <div class="input-field"><label>
+                    <input type="text" name="username" placeholder="Name" required>
+                </label></div>
+                <div class="input-field"><label>
+                    <input type="tel" name="phone_number" placeholder="Phone Number" required>
+                </label></div>
+                <div class="input-field"><label>
+                    <input type="password" name="password" placeholder="Password" required>
+                </label></div>
+                <div class="input-field"><label>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                </label></div>
+                <input type="submit" class="btn" value="SIGN UP"/>
+            </form>
+        </div>
+    </div>
 
-       <div class="panels-container">
+    <div class="panels-container">
         <div class="panel left-panel">
             <div class="content">
                 <h2>Welcome Back!</h2>
@@ -51,11 +63,11 @@
             </div>
         </div>
 
-       </div>
-
     </div>
 
-    <script src="/static/js/login-signup.js"></script>
+</div>
+
+<script src="/static/js/login-signup.js"></script>
 </body>
 
 </html>

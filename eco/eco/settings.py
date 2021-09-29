@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'pages',
     'products',
     'checkout',
+    'reward',
+    'phonenumber_field',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +88,7 @@ DATABASES = {
     }
 }
 
-
+AUTH_USER_MODEL = 'authentication.User'  # new
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -133,3 +136,9 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# django-phonenumber-field
+# https://github.com/stefanfoulis/django-phonenumber-field
+
+PHONENUMBER_DEFAULT_REGION = "AU"
+PHONENUMBER_DB_FORMAT = "NATIONAL"

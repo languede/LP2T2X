@@ -24,7 +24,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', home_view, name='home'),
-    path('', include('authentication.urls')),
+    path('', include('reward.urls')),
     path('home/', home_view, name='home'),
     path('login/', login_view, name='login'),
     path('create/', product_create_view, name='create'),
