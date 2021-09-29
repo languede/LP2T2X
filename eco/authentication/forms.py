@@ -7,10 +7,10 @@ from .models import User
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'phone_number', 'password', 'image')
+        fields = "__all__"
 
 
-class CustomUserChangeForm(UserChangeForm):
-    class Meta:
-        model = User
-        fields = ('username', 'phone_number', 'password', 'image')
+# class CustomUserChangeForm(UserChangeForm):
+#     class Meta:
+#         model = User
+#         fields = ('username', 'phone_number', 'password', 'image')

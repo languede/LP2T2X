@@ -10,6 +10,7 @@ class User(AbstractUser):
     # password = models.CharField(max_length=50)
     image = models.ImageField(blank=True)
     phone_number = PhoneNumberField(unique=True)
+    green_point = models.IntegerField(blank=True, default=0)
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['username']
