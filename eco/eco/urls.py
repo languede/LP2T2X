@@ -24,6 +24,7 @@ from reward.views import login_signup_view
 
 urlpatterns = [
     path('', home_view, name='home'),
+    # path('user_profile/', user_profile_view, name='start_page'),
     path('', include('reward.urls')),
     path('home/', home_view, name='home'),
     path('login/', login_signup_view, name='login-signup'),

@@ -20,10 +20,6 @@ def about_us_view(request, *args, **kwargs):
     return render(request, "about_us.html", {})
 
 
-def login_view(request, *args, **kwargs):
-    return render(request, "login.html", {})
-
-
 def start_page_view(request, *args, **kwargs):
     return render(request, "start_page.html", {})
 

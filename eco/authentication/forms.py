@@ -1,6 +1,6 @@
 # reward/forms.py
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from .models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -31,19 +31,20 @@ class RegistrationForm(UserCreationForm):
             forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirmation'})
 
 
-class LoginForm(UserCreationForm):
+class LoginForm(AuthenticationForm):
     # phone_number = PhoneNumberField(help_text='Required. add a valid phone number')
     class Meta:
         model = User
         fields = ('phone_number', 'password')
         widgets = {
-            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone number'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password'].widget = \
             forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
+
 # class CustomUserChangeForm(UserChangeForm):
 #     class Meta:
 #         model = User

@@ -17,23 +17,18 @@
 <div class="container">
     <div class="forms-container">
         <div class="login-signup">
-            <form action="#" method="POST" class="sign-in-form"> {% csrf_token %}
+            {# Login form #}
+            <form action="" method="POST" class="sign-in-form"> {% csrf_token %}
                 <h2 class="title">Sign in to Eco Rewards</h2>
-                {% for field in form %}
+                {% for field in login_form %}
                     <div class="input-field">
                     {{ field }}
                     {{ field.label_tag }}
                     </div>
                 {% endfor %}
-{#                <div class="input-field"><label>#}
-{#                    <input type="text" placeholder="Phone Number" required>#}
-{#                </label></div>#}
-{#                <div class="input-field"><label>#}
-{#                    <input type="password" placeholder="Password" required>#}
-{#                </label></div>#}
-                <input type="submit" class="btn" value="SIGN IN"/>
+                <button type='submit' class='btn' name='submit' value='sign_in'></button>
             </form>
-
+            {# Registration form #}
             <form action="{% url 'login-signup' %}" method="POST" class="sign-up-form"> {% csrf_token %}
                 <h2 class="title">Create Account</h2>
                 {% for field in registration_form %}
@@ -47,19 +42,7 @@
                         </p>
                     {%  endfor %}
                 {% endfor %}
-{#                <div class="input-field"><label>#}
-{#                    <input type="text" name="username" placeholder="Name" required>#}
-{#                </label></div>#}
-{#                <div class="input-field"><label>#}
-{#                    <input type="tel" name="phone_number" placeholder="Phone Number" required>#}
-{#                </label></div>#}
-{#                <div class="input-field"><label>#}
-{#                    <input type="password" name="password" placeholder="Password" required>#}
-{#                </label></div>#}
-{#                <div class="input-field"><label>#}
-{#                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>#}
-{#                </label></div>#}
-                <input type="submit" class="btn" value="SIGN UP"/>
+               <button type='submit' class='btn' name='submit' value='sign_up'></button>
             </form>
         </div>
     </div>

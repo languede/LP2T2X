@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Welcome! {{ object.username }} </h1>
+    <h3>Your Phone: {{ object.phone_number }}</h3>
+    <h3>Green Points: {{ object.green_point }} </h3>
+    <br><br>
+    <p>
+        Last Login Time: {{ object.last_login }}
+    </p>
+{% endblock %}
