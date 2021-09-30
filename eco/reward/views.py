@@ -34,7 +34,6 @@ def login_signup_view(request):
             user = authenticate(request, phone_number=phone_number, password=raw_password)
             if user is not None:
                 login(request, user)
-                temp = User.objects
                 obj = User.objects.get(phone_number=user.phone_number)
                 context = {
                     'object': obj
