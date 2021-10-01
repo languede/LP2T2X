@@ -91,6 +91,3 @@ def user_profile_view(request):
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
     return render(request, 'rewards/user_profile.html', {})
-
-# def user_profile_view(request, *args, **kwargs):
-#     return render(request, "rewards/user_profile.html", {})
