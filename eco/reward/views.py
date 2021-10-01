@@ -5,11 +5,22 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from authentication.forms import RegistrationForm, LoginForm
 from authentication.models import User
-# Create your views here.
 
 
+# homepage
 def reward_home_view(request):
     return render(request, "rewards/index.html")
+
+
+"""
+---------------------
+login_signup_view: 
+---------------------
+description:
+    login and signup page
+    if POST & sign up button has been clicked: save form into database and redirect to profile page.
+    if GET: Rendering webpage with LoginForm and RegistrationForm
+"""
 
 
 def login_signup_view(request):
@@ -31,16 +42,29 @@ def login_signup_view(request):
     return render(request, "rewards/login-signup.html", context)
 
 
+"""
+---------------------
+sign_out: 
+---------------------
+description:
+    sign user out
+    there should be a button to allowed sign out actions
+"""
+
+
 def sign_out(request):
     pass
 
 
-# def user_profile_view(request):
-#     obj = User.objects.get(phone_number=request.POST.get("username"))
-#     context = {
-#         'object': obj
-#     }
-#     return render(request, "rewards/user_profile.html", context)
+"""
+---------------------
+user_profile_view: 
+---------------------
+description:
+    user profile page
+    if POST & submit request equal to add_points: update user's current green point in database
+    if POST & submit request equal to sign_in: sign user in, authenticate form and refresh profile page
+"""
 
 
 def user_profile_view(request):
@@ -67,6 +91,6 @@ def user_profile_view(request):
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
     return render(request, 'rewards/user_profile.html', {})
-    # return render(request, "rewards/user_profile.html", context)
+
 # def user_profile_view(request, *args, **kwargs):
 #     return render(request, "rewards/user_profile.html", {})

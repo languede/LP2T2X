@@ -5,9 +5,16 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
-# Create your views here.
-# def start_page_view(request):
-#     return render(request, "start_page.html", {})
+"""
+---------------------
+start_page_view: 
+---------------------
+description:
+    start page on self-checkout machine
+    if POST & submit request equal to START button: sign user in, authenticate entered value, redirect to shopping_cart
+    if authentication fails: display error messages
+    if GET: rendering page
+"""
 
 
 def start_page_view(request):
@@ -15,15 +22,6 @@ def start_page_view(request):
     start_form = StartForm()
     context['start_form'] = start_form
     if request.method == "POST":
-        # if request.POST.get('submit') == 'sign_up':
-        #     register_form = RegistrationForm(request.POST, request.FILES)
-        #     if register_form.is_valid():
-        #         register_form.save()
-        #         user = register_form.cleaned_data.get('username')
-        #         messages.success(request, 'Account was created for' + user)
-        #         return redirect("login-signup")
-        #     else:
-        #         context['registration_form'] = register_form
         if request.POST.get('submit') == 'START':
             phone_number = request.POST.get('username')
             user = authenticate(request, phone_number=phone_number)
