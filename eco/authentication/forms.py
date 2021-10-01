@@ -82,8 +82,6 @@ class LoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['Phone number'].widget = \
-            forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'})
         self.fields['password'].widget = \
             forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
 

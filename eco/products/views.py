@@ -4,7 +4,7 @@ from .forms import *
 
 # Create your views here.
 def product_detail_view(request):
-    obj = Product.objects.get(id=8)
+    obj = Product.objects.get(tile)
     context = {
         'object': obj
     }

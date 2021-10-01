@@ -29,7 +29,7 @@ urlpatterns = [
     path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
     path('details/', product_detail_view, name='details'),
-    path('product/', product_detail_view, name='product'),
+    path('product/', product_create_view, name='product'),
     # checkout page
     path('payment_method/', payment_method_view, name='payment_method'),
     path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
