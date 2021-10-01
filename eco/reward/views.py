@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 # from django.contrib.auth.models import User
 from django.contrib import messages
@@ -38,19 +38,27 @@ def login_signup_view(request):
                 context = {
                     'object': obj
                 }
-                return render(request, "rewards/user_profile.html", context)
+                return user_profile_view(request, context)
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
     return render(request, "rewards/login-signup.html", context)
-
-
-def signup(request):
-    return render(request, "rewards/login-signup.html")
 
 
 def sign_out(request):
     pass
 
 
+def user_profile_view(request, user):
+    return render(request, "rewards/user_profile.html", user)
+
+
+def add_green_points_view(request, id):
+    context = {}
+    if request.method == "POST":
+        user = User.objects.get(phone_number=id)
+        user.green_point += 10
+        user.save()
+    return redirect('profile')
+    # return render(request, "rewards/user_profile.html", context)
 # def user_profile_view(request, *args, **kwargs):
 #     return render(request, "rewards/user_profile.html", {})

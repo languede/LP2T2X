@@ -12,10 +12,11 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         *UserAdmin.fieldsets,
         (
-            'Phone Number',
+            'Addition features',
             {
                 'fields': (
                     'phone_number',
+                    'green_point',
                     'image',
                 )
             }

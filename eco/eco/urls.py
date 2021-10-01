@@ -31,12 +31,12 @@ urlpatterns = [
     path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
     path('details/', product_detail_view, name='details'),
-    path('checkout/', checkout_view, name='checkout'),
+    # path('checkout/', checkout_view, name='checkout'),
     path('product/', product_detail_view, name='product'),
     # checkout page
     path('payment_method/', payment_method_view, name='payment_method'),
     path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
-    path('start_page/', start_page_view, name='start_page'),
+    path('checkout/', start_page_view, name='start_page'),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \

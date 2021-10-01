@@ -7,4 +7,8 @@
     <p>
         Last Login Time: {{ object.last_login }}
     </p>
+    <br>
+    <form method="POST" action="{% url 'green_points' object.phone_number %}"> {% csrf_token %}
+        <button name="add">+Green</button>
+    </form>
 {% endblock %}

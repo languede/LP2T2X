@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'reward',
     'phonenumber_field',
     'authentication',
+    'simple_history',
 ]
 
 MIDDLEWARE = [
