@@ -18,7 +18,7 @@
     <div class="forms-container">
         <div class="login-signup">
             {# Login form #}
-            <form action="" method="POST" class="sign-in-form"> {% csrf_token %}
+            <form action="{% url 'profile' %}" method="POST" class="sign-in-form"> {% csrf_token %}
                 <h2 class="title">Sign in to Eco Rewards</h2>
                 {% for field in login_form %}
                     <div class="input-field">

@@ -20,23 +20,25 @@ from products.views import *
 from checkout.views import *
 from django.conf.urls.static import static
 from django.conf import settings
-from reward.views import login_signup_view
+from reward.views import reward_home_view, login_signup_view, user_profile_view
 
 urlpatterns = [
     path('', home_view, name='home'),
-    # path('user_profile/', user_profile_view, name='start_page'),
-    path('', include('reward.urls')),
     path('home/', home_view, name='home'),
     path('login/', login_signup_view, name='login-signup'),
     path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
     path('details/', product_detail_view, name='details'),
-    # path('checkout/', checkout_view, name='checkout'),
     path('product/', product_detail_view, name='product'),
     # checkout page
     path('payment_method/', payment_method_view, name='payment_method'),
     path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
     path('checkout/', start_page_view, name='start_page'),
+    #  reward system
+    path('index/', reward_home_view, name="reward_home"),
+    path('login-signup/', login_signup_view, name="login-signup"),
+    # path('', add_green_points_view, name="green_points"),
+    path('profile/', user_profile_view, name="profile"),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \

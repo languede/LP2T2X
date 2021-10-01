@@ -28,6 +28,31 @@ def login_signup_view(request):
                 return redirect("login-signup")
             else:
                 context['registration_form'] = register_form
+    return render(request, "rewards/login-signup.html", context)
+
+
+def sign_out(request):
+    pass
+
+
+# def user_profile_view(request):
+#     obj = User.objects.get(phone_number=request.POST.get("username"))
+#     context = {
+#         'object': obj
+#     }
+#     return render(request, "rewards/user_profile.html", context)
+
+
+def user_profile_view(request):
+    if request.method == "POST":
+        if request.POST.get('submit') == 'add_points':
+            user = User.objects.get(phone_number=request.POST.get("user_id"))
+            user.green_point += 10
+            user.save()
+            context = {
+                'object': user
+            }
+            return render(request, 'rewards/user_profile.html', context)
         if request.POST.get('submit') == 'sign_in':
             phone_number = request.POST.get('username')
             raw_password = request.POST.get('password')
@@ -38,27 +63,10 @@ def login_signup_view(request):
                 context = {
                     'object': obj
                 }
-                return user_profile_view(request, context)
+                return render(request, "rewards/user_profile.html", context)
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
-    return render(request, "rewards/login-signup.html", context)
-
-
-def sign_out(request):
-    pass
-
-
-def user_profile_view(request, user):
-    return render(request, "rewards/user_profile.html", user)
-
-
-def add_green_points_view(request, id):
-    context = {}
-    if request.method == "POST":
-        user = User.objects.get(phone_number=id)
-        user.green_point += 10
-        user.save()
-    return redirect('profile')
+    return render(request, 'rewards/user_profile.html', {})
     # return render(request, "rewards/user_profile.html", context)
 # def user_profile_view(request, *args, **kwargs):
 #     return render(request, "rewards/user_profile.html", {})
