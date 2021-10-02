@@ -16,13 +16,5 @@ def about_us_view(request, *args, **kwargs):
     return render(request, "about_us.html", {})
 
 
-def start_page_view(request, *args, **kwargs):
-    return render(request, "start_page.html", {})
-
-
-def shopping_cart_view(request, *args, **kwargs):
-    return render(request, "shopping_cart.html", {})
-
-
 def payment_method_view(request, *args, **kwargs):
     return render(request, "payment_method.html", {})

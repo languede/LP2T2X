@@ -25,41 +25,25 @@ def start_page_view(request):
     if request.method == "POST":
         if request.POST.get('submit') == 'START':
             phone_number = request.POST.get('username')
-            user = authenticate(request, phone_number=phone_number)
-            if user is not None:
-                login(request, user)
-                obj = User.objects.get(phone_number=user.phone_number)
+            auth = authenticate(request, phone_number=phone_number)
+            if auth is not None:
+                login(request, auth)
+                user = User.objects.get(phone_number=auth.phone_number)
                 context = {
-                    'object': obj
+                    'object': user
                 }
                 return render(request, "shopping_cart.html", context)
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
     return render(request, "start_page.html", context)
 
-# def product_create_view(request):
-#     my_form = ProductForm(request.POST or None)
-#     if my_form.is_valid():
-#         my_form.save()
-#         context = {
-#             'form': my_form
-#         }
-#     return render(request, "product/product_create.html", context)
 
-# def create_user(request):
-#     userName = request.REQUEST.get('username', None)
-#     userPass = request.REQUEST.get('password', None)
-#     userMail = request.REQUEST.get('email', None)
-#
-#     # TODO: check if already existed
-#     if userName and userPass and userMail:
-#        u,created = User.objects.get_or_create(userName, userMail)
-#        if created:
-#           # user was created
-#           # set the password here
-#        else:
-#           # user was retrieved
-#     else:
-#        # request was empty
-#
-#     return render(request,'home.html')
+def shopping_cart_view(request):
+    """
+    TODO: this page should display user_id or username to indicate that user has logged in
+          otherwise display a option for registration.
+    """
+    context = {}
+    register_form = StartForm()
+    context['register_form'] = register_form
+    return render(request, "shopping_cart.html", context)
