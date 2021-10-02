@@ -23,10 +23,9 @@
                 {% for field in login_form %}
                     <div class="input-field">
                     {{ field }}
-                    {{ field.label_tag }}
                     </div>
                 {% endfor %}
-                <button type='submit' class='btn' name='submit' value='sign_in'></button>
+                <button type='submit' class='btn' name='submit' value='sign_in'>SIGN IN</button>
             </form>
             {# Registration form #}
             <form action="{% url 'login-signup' %}" method="POST" class="sign-up-form"> {% csrf_token %}
@@ -42,7 +41,7 @@
                         </p>
                     {%  endfor %}
                 {% endfor %}
-               <button type='submit' class='btn' name='submit' value='sign_up'></button>
+               <button type='submit' class='btn' name='submit' value='sign_up'>SIGN UP</button>
             </form>
         </div>
     </div>

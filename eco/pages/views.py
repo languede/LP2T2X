@@ -12,10 +12,6 @@ def product_detail_view(request, *args, **kwargs):
     return render(request, "product/product_detail.html", {})
 
 
-def checkout_view(request, *args, **kwargs):
-    return render(request, "checkout.html", {})
-
-
 def about_us_view(request, *args, **kwargs):
     return render(request, "about_us.html", {})
 

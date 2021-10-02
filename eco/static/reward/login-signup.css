@@ -71,6 +71,7 @@ form {
 label {
     opacity: 0;
 }
+
 /*label{*/
 /*    position: absolute;*/
 /*    pointer-events: none;*/
@@ -84,12 +85,12 @@ label {
 /*  opacity: 0;*/
 /*}*/
 
-#id_username, #id_phone_number, #id_password1, #id_password2 {
+#id_username, #id_phone_number, #id_password1, #id_password2, #id_password {
     position: relative;
     left:0;
     right:auto;
     height:50px;
-    font-size:34px;
+    font-size:24px;
 }
 
 .input-field input {

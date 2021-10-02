@@ -23,19 +23,7 @@ from django.conf import settings
 from reward.views import reward_home_view, login_signup_view, user_profile_view
 
 urlpatterns = [
-    # base templates
-    path('', home_view, name='home'),
-    path('home/', home_view, name='home'),
-    path('login/', login_signup_view, name='login-signup'),
-    path('create/', product_create_view, name='create'),
-    path('about_us/', about_us_view, name='about_us'),
-    path('details/', product_detail_view, name='details'),
-    path('product/', product_create_view, name='product'),
-    # checkout page
-    path('', include('checkout.urls')),
-    #  reward system
-    path('', include('reward.urls')),
-    # admin
-    path('admin/', admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
-              static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('payment_method/', payment_method_view, name='payment_method'),
+    path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
+    path('checkout/', start_page_view, name='start_page'),
+]

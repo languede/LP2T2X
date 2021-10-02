@@ -47,15 +47,15 @@ class RegistrationForm(UserCreationForm):
         fields = ('username', 'phone_number', 'password1', 'password2')
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone number'}),
+            'phone_number': forms.NumberInput(attrs={'placeholder': 'Phone number'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password1'].widget = \
-            forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
+            forms.PasswordInput(attrs={'placeholder': 'Password'})
         self.fields['password2'].widget = \
-            forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirmation'})
+            forms.PasswordInput(attrs={'placeholder': 'Password confirmation'})
 
 
 """
@@ -76,14 +76,12 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ('phone_number', 'password')
-        widgets = {
-            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password'].widget = \
-            forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
+            forms.PasswordInput(attrs={'placeholder': 'Password'})
+        self.fields['username'].widget = forms.TextInput(attrs={'placeholder': 'Phone number'})
 
 # class CustomUserChangeForm(UserChangeForm):
 #     class Meta:

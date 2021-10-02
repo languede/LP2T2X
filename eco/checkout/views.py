@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from .forms import *
-from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 """
 ---------------------
@@ -34,7 +35,6 @@ def start_page_view(request):
                 return render(request, "shopping_cart.html", context)
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
-    #  if GET
     return render(request, "start_page.html", context)
 
 # def product_create_view(request):

@@ -23,11 +23,11 @@
 			</div>
 			<p class="b">Enter your Eco-Accournt OR press Start</p>
             <div class="form">
-            <form action="" method="POST" enctype= multipart/form-data> {% csrf_token %}
+            <form action="{% url 'shopping_cart' %}" method="POST" enctype= multipart/form-data> {% csrf_token %}
             {% for field in start_form %}
                 {{ field }}
             {% endfor %}
-             <button type="submit" value="START">START</button>
+             <button name="submit" value="START">START</button>
             </form>
             </div>
 		</div>
