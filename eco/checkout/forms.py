@@ -17,4 +17,4 @@ class StartForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.fields.pop('password')
         self.fields['username'].widget = \
-            forms.TextInput(attrs={'class': 'phone', 'placeholder': 'Enter your Phone number'})
+            forms.TextInput(attrs={'class': 'phone', 'placeholder': 'Enter phone number'})
