@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/three.css" />
+	</head>
+	<body>
+		<div class="box">
+			<p class="t" style="padding-top: 70px;">Swipe Debit/Credit Card or insert</p>
+			<p class="t">Chip Now.</p>
+			<p class="x">Or, select an option below.</p>
+			<ul class="b">
+				<li>
+					<img src="images/y1.png" >
+					<p>CARD</p>
+				</li>
+				<li onclick="tc()">
+					<img src="images/y2.png" >
+					<p>CASH</p>
+				</li>
+				<li>
+					<img src="images/y3.png" >
+					<p>OTHERS</p>
+				</li>
+				<li>
+					<img src="images/y1.png" >
+					<p>BACK</p>
+				</li>
+			</ul>
+			<div class="tc">
+				<div>
+					<img src="images/dui.png" >
+					<p>Payment Successfully !</p>
+				</div>
+			</div>
+		</div>
+		<script>
+			function tc(){
+				document.querySelector('.tc').style.display='block';
+			}
+		</script>
+	</body>
+</html>
