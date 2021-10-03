@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/checkout/one.css"/>
+</head>
+<body>
+<div class="box">
+    <div class="one">
+        <div class="user">
+            <img src="/media/checkout/logo.png" alt="">
+            <p>ECO REWARDS</p>
+        </div>
+        <div class="title">
+            <p>Scanning</p>
+            <p>Items</p>
+        </div>
+        <div class="form">
+            <div class="input">
+                <input type="text" placeholder="Enter item barcode">
+                <button>Add</button>
+            </div>
+            <div class="input">
+                <input type="text" placeholder="Enter item barcode">
+                <button>Login</button>
+            </div>
+        </div>
+        {% if user.username %}
+            <h2>Welcome:)</h2>
+            <h3>{{ user.username }}</h3>
+        {% else %}
+            <form action="{% url 'start_page' %}" method="POST" enctype= multipart/form-data> {% csrf_token %}
+            {% for field in register_form %}
+                {{ field }}
+            {% endfor %}
+                <button name="submit" value="START">START</button>
+            </form>
+        {% endif %}
+
+    </div>
+    <div class="two">
+        <div class="h">
+            <p>Your Cart</p>
+            <img src="/media/checkout/cart2.jpg">
+        </div>
+        <div class="c">
+            <div class="kong">
+                <img src="/media/checkout/y4.png">
+                <p>Oops! Your Cart is empty</p>
+            </div>
+        </div>
+        <div class="f">
+            <div class="l">
+                <p>Total:</p>
+                <p>$ 70.00</p>
+            </div>
+            <div class="r">
+                <button type="button">FINISH</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
