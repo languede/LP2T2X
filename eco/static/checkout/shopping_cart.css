@@ -171,7 +171,7 @@ input{
 	box-sizing: border-box;
 	border-radius: 25px;
 	border: 1px solid #0A6259;
-	margin: 40px 0px 0px 40px;
+	margin: 50px 0px 0px 40px;
 	overflow: hidden;
 	padding-left: 10px;
 	font-size: 20px;
@@ -345,4 +345,35 @@ span:after {
 	font-size: 26px;
 	font-weight: 700;
 	margin-top: 25px;
+}
+article{
+	position:relative;
+	margin: auto auto 50px 0;
+	font-size:20px;
+	top:47px;
+	height:88.5px;
+	background-color:#26433E;
+	color: white;
+}
+#username, #point{
+	position:relative;
+	top:30px;
+	color: white;
+	font-size:24px;
+	line-height:25px;
+
+}
+#username {
+	text-align:initial;
+	margin-bottom:20px;
+	font-size:24pt;
+	right:-20px;
+    top:33px;
+
+}
+#point {
+	margin-bottom:20px;
+	text-align:end;
+	left:-20px;
+	top:-10px;
 }

@@ -21,8 +21,10 @@
         </label>
         <button name="submit" class="barcode" value="START">Add</button>
         {% if user.username %}
-            <h2>Welcome:)</h2>
-            <h3>{{ user.username }}</h3>
+            <article class="welcome">
+                <p id="username">{{ user.username }}</p>
+                <p id="point">My point: {{ user.green_point }}</p>
+            </article>
         {% else %}
             <form action="{% url 'start_page' %}" method="POST" enctype=multipart/form-data> {% csrf_token %}
                 {% for field in register_form %}
