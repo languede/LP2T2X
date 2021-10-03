@@ -1,0 +1,264 @@
+@font-face {
+	/* font-family: wending;
+	src: url("../font/SourceHanSansCN-Normal.ttf"); */
+}
+
+* {
+	/* font-family: wending; */
+	color: #4d4d4d;
+}
+
+body {
+	margin: 0;
+	background-color: #1a1a1f;
+}
+
+input,
+textarea {
+	padding: 0;
+	margin: 0;
+	background: none;
+	outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	padding: 0;
+	margin: 0;
+	font-weight: 500;
+}
+
+ul,
+ol,
+dl,
+li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+p {
+	margin: 0;
+}
+
+button {
+	padding: 0;
+	margin: 0;
+}
+.box{
+	margin: auto;
+	margin-top: calc(50vh - 275px);
+	width: 970px;
+	height: 550px;
+	background-color: #fff;
+	display: flex;
+}
+.box>div{
+	height: 100%;
+}
+.box>.one{
+	width: 400px;
+	background: url(../images/BG1.png) no-repeat;
+	background-size: auto 100%;
+}
+.box>.two{
+	width: 570px;
+	background-color: #26433E;
+}
+.box .user{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+}
+.box .user>img{
+	width: 80px;
+	height: 80px;
+	display: block;
+	margin-right: 10px;
+}
+.box .user>p{
+	font-size: 18px;
+	font-weight: 900;
+	color: #26433E;
+}
+.box .title{
+	margin-top: 40px;
+}
+.box .title>p{
+	font-size: 45px;
+	line-height: 1;
+	text-align: center;
+	color: #0A6259;
+}
+.box .title>p:last-of-type{
+	margin-top: 10px;
+}
+.box .form{
+	margin-top: 50px;
+}
+.box .input{
+	display: flex;
+	width: 316px;
+	height: 58px;
+	box-sizing: border-box;
+	border-radius: 25px;
+	border: 1px solid #0A6259;
+	margin: auto;
+	overflow: hidden;
+}
+.box .input>input{
+	width: 80%;
+	height: 100%;
+	box-sizing: border-box;
+	border: none;
+	background: none;
+	padding-left: 10px;
+	font-size: 20px;
+}
+.box .input>button{
+	width: 20%;
+	height: 100%;
+	box-sizing: border-box;
+	background: #619174;
+	border: none;
+	color: #fff;
+	font-size: 20px;
+}
+.box .input:last-of-type{
+	margin-top: 25px;
+}
+.box>.two>.h{
+	height: 70px;
+	border-top: 1px solid #4C5A58;
+	border-bottom: 1px solid #4C5A58;
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 40px;
+	align-items: center;
+}
+.box>.two>.h>p{
+	color: #fff;
+	font-size: 24px;
+	margin-right: 20px;
+}
+.box>.two>.c{
+	height: 390px;
+	background: url(../images/BG3.png) no-repeat center;
+	background-size: auto 160%;
+	padding: 20px 25px;
+	box-sizing: border-box;
+}
+.box>.two>.c>ul{
+	display: block;
+}
+.box>.two>.c>ul>li{
+	width: 100%;
+	height: 72px;
+	background-color: #fff;
+	box-sizing: border-box;
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+.box>.two>.c>ul>li:last-of-type{
+	margin-bottom: 0;
+}
+.box>.two>.c>ul>li>div:first-of-type{
+	display: flex;
+	height: 90%;
+	align-items: center;
+}
+.box>.two>.c>ul>li>div:last-of-type{
+	height: 90%;
+	font-size: 20px;
+	font-weight: 900;
+	color: #03372A;
+	display: flex;
+	align-items: flex-end;
+}
+.box>.two>.c>ul>li>div:first-of-type>img{
+	height: 60%;
+	margin-right: 35px;
+}
+.box .form2{
+	display: flex;
+	margin-top: 8px;
+}
+.box>.two>.c>ul>li>div:first-of-type>div>p{
+	font-size: 16px;
+	font-weight: 900;
+	color: #03372A;
+}
+.box .form2>button{
+	width: 20px;
+	height: 20px;
+	background-color: #619174;
+	color: #fff;
+	border: none;
+	box-sizing: border-box;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 20px;
+}
+.box .form2>button:first-of-type{
+	border-radius:10px 0 0 10px;
+}
+.box .form2>button:last-of-type{
+	border-radius:0 10px 10px 0;
+}
+.box .form2>p{
+	width: 40px;
+	text-align: center;
+	line-height: 20px;
+	font-weight: 900;
+	color: #03372A;
+}
+.box>.two>.f{
+	height: 88px;
+	box-sizing: border-box;
+	padding: 14px 25px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.box>.two>.f>.l>p{
+	color: #fff;
+	font-weight: 900;
+}
+.box>.two>.f>.l>p:last-of-type{
+	font-size: 26px;
+}
+.box>.two>.f>.r>button{
+	width: 220px;
+	height: 60px;
+	background-color: #fff;
+	color: #26433E;
+	border-radius: 30px;
+	border: none;
+	font-size: 30px;
+	font-weight: 700;
+}
+.box>.two>.c>.kong>img{
+	display: block;
+	margin: auto;
+	margin-top: 60px;
+	width: 140px;
+}
+.box>.two>.c>.kong>p{
+	color: #fff;
+	text-align: center;
+	font-size: 26px;
+	font-weight: 700;
+	margin-top: 25px;
+}
