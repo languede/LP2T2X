@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/static/checkout/shopping_cart.css"/>
@@ -51,20 +50,14 @@
         </div>
         <div class="c">
             <div class="kong">
-                {#            {% if flag %}#}
-
-                {#            {% else %}#}
-                <div id="id_item"></div>
-                {#            {% endif %}#}
+                <div id="id_item" class="shopping-cart"></div>
             </div>
         </div>
         <div class="f">
             <div class="total-price">
                 <p id="id_total">Total:</p>
                 <p id="id_total_price">$ 70.00</p>
-            </div>
-            <div class="r">
-                <button type="button"><span class="finish">FINISH</span></button>
+                <button class="finish-button" type="button"><span class="finish">FINISH</span></button>
             </div>
         </div>
     </div>
@@ -110,15 +103,23 @@
                     temp += "<img alt='item' src=/media/" + response.product[0].image + ">"
                     temp += "<div id='id_item_number' class='input-group inline-group'>";
                     temp += "<div class='input-group-prepend'>"
-                    temp += "<button id='id_minus_button' class='btn btn-outline-secondary btn-minus'><i class='fa fa-minus'></i></button>";
+                    temp +=
+                        "<button id='id_minus_button' class='btn btn-outline-secondary btn-minus'>" +
+                        "<i class='fa fa-minus'></i></button>";
                     temp += "</div>"
-                    temp += "<input id='id_item_count' class='form-control quantity' min='0' name='quantity' value='1' type='number'>";
+                    temp +=
+                        "<input id='id_item_count' class='form-control quantity' " +
+                        "min='0' name='quantity' value='1' type='number'>";
                     temp += "<div class='input-group-append'>";
-                    temp += "<button id='id_plus_button' class='btn btn-outline-secondary btn-plus'><i class='fa fa-plus'></i></button>";
+                    temp +=
+                        "<button id='id_plus_button' class='btn btn-outline-secondary btn-plus'>" +
+                        "<i class='fa fa-plus'></i></button>";
                     temp += "</div></div>"
                     temp += "<li><label id='id_item_name'>" + response.product[0].name + "</label></li>";
                     temp += "<li><span id='id_item_price'>$" + response.product[0].price + "</span></li>";
-                    temp += "<button id='id_delete_button' class='btn btn-outline-secondary delete-button'><i class='fa fa-close'></i></button>"
+                    temp +=
+                        "<button id='id_delete_button' class='btn btn-outline-secondary delete-button'>" +
+                        "<i class='fa fa-close'></i></button>"
                     temp += "</ul>"
                     id_item.append(temp);
                     $('.btn-plus, .btn-minus').on('click', function (e) {
@@ -129,7 +130,6 @@
                         }
                     })
                     $('.delete-button').on('click', function (e) {
-                        console.log(e.target.parentNode)
                         e.target.parentNode.parentNode.remove();
                         if (id_item.children().length === 0) {
                             let temp = ""
@@ -140,7 +140,7 @@
                     })
                 }
             },
-            error: function (response) {
+            error: function () {
                 alert("Please enter a valid barcode")
             }
         });
