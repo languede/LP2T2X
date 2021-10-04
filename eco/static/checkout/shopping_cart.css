@@ -156,7 +156,34 @@ button.phone{
 	left: 270px;
 	top: -78px;
 }
-
+.home_button{
+	width: auto;
+	height: 38px;
+	padding-left:15px;
+	padding-right:15px;
+	box-sizing: border-box;
+	border-radius: 25px;
+	background: #619174;
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	position:relative;
+	top:-110px;
+	right:-150px;
+}
+.home_button:hover{
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+.home_button:active {
+  background-color: #3C7536;
+  transform: translateY(0.2px);
+}
+#id_home{
+	position:relative;
+	top:-50px;
+	right:-115px;
+}
 button:hover {
   background-color: #4CAF50; /* Green */
   color: white;
