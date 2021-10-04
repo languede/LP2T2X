@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.core import serializers
 from .forms import StartForm
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -93,11 +94,25 @@ description:
 """
 
 
-def get_product_view(request):
-    products = Product.objects.all()
-    temp = list(products.values())
-    return JsonResponse({"product": list(products.values())})
+# def get_product_view(request):
+#     products = Product.objects.all()
+#     temp = list(products.values())
+#     return JsonResponse({"product": list(products.values())})
 
+def get_product_view(request):
+    barcode = request.GET.get("barcode")
+    products = Product.objects.get(barcode=barcode)
+    temp = {
+        "name": products.name,
+        "price": products.price,
+        "image": str(products.image),
+        "barcode": products.barcode,
+        "is_eco": products.ecological,
+        "description": products.description,
+        "summary": products.summary,
+    }
+    context = [temp]
+    return JsonResponse({"product": context})
 
 # def get(request):
 #     barcode = request.GET.get("barcode")

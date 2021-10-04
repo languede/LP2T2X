@@ -27,5 +27,5 @@ urlpatterns = [
     path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
     path('checkout/', start_page_view, name='start_page'),
     path('logout', start_page_view, name='logout'),
-    path('get_product', get_product_view, name='get_product'),
+    path('get_product/', get_product_view, name='get_product'),
 ]

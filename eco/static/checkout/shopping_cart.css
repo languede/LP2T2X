@@ -119,7 +119,7 @@ button.phone {
 
 .home_button:active {
     background-color: #3C7536;
-    transform: translateY(0.2px);
+    transform: translateY(0px);
     transition: 0.3s;
 }
 
@@ -137,7 +137,7 @@ button:hover {
 
 button:active {
     background-color: #3C7536;
-    transform: translateY(0.2px);
+    transform: translateY(0px);
     transition: 0.3s;
 }
 
@@ -147,7 +147,7 @@ button:active {
     box-sizing: border-box;
     border-radius: 25px;
     border: 1px solid #0A6259;
-    margin: 20px 0px 0px 40px;
+    margin: 20px 0 0 40px;
     overflow: hidden;
     padding-left: 10px;
     font-size: 20px;
@@ -170,7 +170,7 @@ button:active {
 }
 
 input.phone {
-    margin: 0px 0px 0px 40px;
+    margin: 0 0 0 40px;
 }
 
 .box > .two {
@@ -309,7 +309,7 @@ input.phone {
 .box > .two > .f > .r > button:active {
     background-color: #FECE63;
     color: black;
-    transform: translateY(0.5px);
+    transform: translateY(0px);
 }
 
 .box > .two > .c > .kong > img {
@@ -389,7 +389,7 @@ article {
 }
 #id_minus_button:hover {
     background-color: #4CAF50;
-    transition:0.3px;
+    transition:0.3s;
 }
 #id_plus_button {
     background-color: #619174;
@@ -397,7 +397,7 @@ article {
 }
 #id_plus_button:hover {
     background-color: #4CAF50;
-    transition:0.3px;
+    transition:0.3s;
 }
 ul {
     position: relative;
@@ -483,6 +483,18 @@ ul>img {
 	position:relative;
 	top:5px;
 	font-weight:400;
+}
+#id_cart_image{
+	position:relative;
+	right:-130px;
+	transform: scale(0.75);
+}
+.empty-cart {
+	position:relative;
+	right:-100px;
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size:22pt;
 }
 i {
 	color:#FFFFFF;

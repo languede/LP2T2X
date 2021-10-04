@@ -23,7 +23,7 @@
         <label>
             <input type="text" id="id_barcode" class="barcode" placeholder="Enter item barcode">
         </label>
-        <button name="submit" class="barcode" value="START" onclick="">Add</button>
+        <button name="submit" class="barcode" value="START" onclick="get_item()">Add</button>
         {% if user.username %}
             <article class="welcome">
                 <p id="username">{{ user.username }}</p>
@@ -51,12 +51,11 @@
         </div>
         <div class="c">
             <div class="kong">
-{#            {% if flag %}#}
-{#                <img src="/media/checkout/y4.png" alt="cart2">#}
-{#                <p>Oops! Your Cart is empty</p>#}
-{#            {% else %}#}
-                <menu id="id_item"></menu>
-{#            {% endif %}#}
+                {#            {% if flag %}#}
+
+                {#            {% else %}#}
+                <div id="id_item"></div>
+                {#            {% endif %}#}
             </div>
         </div>
         <div class="f">
@@ -83,31 +82,44 @@
 {#    }#}
 {#</script>#}
 <script>
+    const id_item = $("#id_item")
     $(document).ready(function () {
+        console.log(id_item.children().length);
+        if (id_item.children().length === 0) {
+            let temp = ""
+            temp += "<img id='id_cart_image' src='/media/checkout/y4.png' alt='art2'>";
+            temp += " <p id='id_cart_empty' class='empty-cart'>Oops! Your Cart is empty</p>";
+            id_item.append(temp);
+        }
+    });
+
+    function get_item() {
+        let barcode = $("#id_barcode").val();
         $.ajax({
             type: 'GET',
-            url: "{% url 'get_product' %}",
+            url: "{% url 'get_product' %}?barcode=" + barcode,
+            cache: false,
             success: function (response) {
-                const id_item = $("#id_item")
-                id_item.empty();
+                {#console.log(id_item.children());#}
+                if (id_item.find("#id_cart_image").length > 0) {
+                    id_item.empty();
+                }
                 if (response.product) {
                     let temp = ''
-                    for (let key in response.product) {
-                        temp += "<ul>";
-                        temp += "<img alt='item' src=/media/" + response.product[key].image + ">"
-                        temp += "<div id='id_item_number' class='input-group inline-group'>";
-                        temp += "<div class='input-group-prepend'>"
-                        temp += "<button id='id_minus_button' class='btn btn-outline-secondary btn-minus'><i class='fa fa-minus'></i></button>";
-                        temp += "</div>"
-                        temp += "<input id='id_item_count' class='form-control quantity' min='0' name='quantity' value='0' type='number'>";
-                        temp += "<div class='input-group-append'>";
-                        temp += "<button id='id_plus_button' class='btn btn-outline-secondary btn-plus'><i class='fa fa-plus'></i></button>";
-                        temp += "</div></div>"
-                        temp += "<li><label id='id_item_name'>" + response.product[key].name + "</label></li>";
-                        temp += "<li><span id='id_item_price'>$" + response.product[key].price + "</span></li>";
-                        temp += "<button id='id_delete_button' class='btn btn-outline-secondary btn-plus'><i class='fa fa-close'></i></button>"
-                        temp += "</ul>"
-                    }
+                    temp += "<ul>";
+                    temp += "<img alt='item' src=/media/" + response.product[0].image + ">"
+                    temp += "<div id='id_item_number' class='input-group inline-group'>";
+                    temp += "<div class='input-group-prepend'>"
+                    temp += "<button id='id_minus_button' class='btn btn-outline-secondary btn-minus'><i class='fa fa-minus'></i></button>";
+                    temp += "</div>"
+                    temp += "<input id='id_item_count' class='form-control quantity' min='0' name='quantity' value='1' type='number'>";
+                    temp += "<div class='input-group-append'>";
+                    temp += "<button id='id_plus_button' class='btn btn-outline-secondary btn-plus'><i class='fa fa-plus'></i></button>";
+                    temp += "</div></div>"
+                    temp += "<li><label id='id_item_name'>" + response.product[0].name + "</label></li>";
+                    temp += "<li><span id='id_item_price'>$" + response.product[0].price + "</span></li>";
+                    temp += "<button id='id_delete_button' class='btn btn-outline-secondary delete-button'><i class='fa fa-close'></i></button>"
+                    temp += "</ul>"
                     id_item.append(temp);
                     $('.btn-plus, .btn-minus').on('click', function (e) {
                         const isNegative = $(e.target).closest('.btn-minus').is('.btn-minus');
@@ -116,12 +128,22 @@
                             input[0][isNegative ? 'stepDown' : 'stepUp']()
                         }
                     })
+                    $('.delete-button').on('click', function (e) {
+                        console.log(e.target.parentNode)
+                        e.target.parentNode.parentNode.remove();
+                        if (id_item.children().length === 0) {
+                            let temp = ""
+                            temp += "<img id='id_cart_image' src='/media/checkout/y4.png' alt='art2'>";
+                            temp += " <p id='id_cart_empty' class='empty-cart'>Oops! Your Cart is empty</p>";
+                            id_item.append(temp);
+                        }
+                    })
                 }
             },
             error: function (response) {
                 alert("An Error Occurred")
             }
         });
-    });
+    }
 </script>
 </html>
