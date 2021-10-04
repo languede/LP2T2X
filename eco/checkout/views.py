@@ -24,6 +24,7 @@ def start_page_view(request):
     context = {}
     start_form = StartForm()
     context['start_form'] = start_form
+    context['flag'] = True
     if request.method == "POST":
         if request.POST.get('submit') == 'HOME':
             return logout_view(request)
