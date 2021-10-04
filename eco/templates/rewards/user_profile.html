@@ -1,15 +1,86 @@
-{% extends 'base.html' %}
-{% block content %}
-    <h1>Welcome! {{ object.username }} </h1>
-    <h3>Your Phone: {{ object.phone_number }}</h3>
-    <h3>Green Points: {{ object.green_point }} </h3>
-    <br><br>
-    <p>
-        Last Login Time: {{ object.last_login }}
-    </p>
-    <br>
-    <form method="POST" action="{% url 'profile' %}"> {% csrf_token %}
-        <input id="user" type="hidden" name="user_id" value="{{ object.phone_number }}">
-        <button name="submit" value="add_points">+Green</button>
-    </form>
-{% endblock %}
+<!-- <h1>Welcome! {{ object.username }} </h1>
+<h3>Your Phone: {{ object.phone_number }}</h3>
+<h3>Green Points: {{ object.green_point }} </h3>
+<br><br>
+<p>
+    Last Login Time: {{ object.last_login }}
+</p>
+<br>
+<form method="POST" action="{% url 'profile' %}"> {% csrf_token %}
+    <input id="user" type="hidden" name="user_id" value="{{ object.phone_number }}">
+    <button name="submit" value="add_points">+Green</button>
+</form> -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRewards</title>
+    <link rel="stylesheet" href="/static/reward/profile.css">
+</head>
+
+<body>
+    <header>
+        <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/star/star5.png" width="80" height="80"></a>
+    </header>
+
+    <div class="container">
+        <div class="left-container">
+            <a href="#" class="user-image"><img src="/media/reward/icon/user.png" width="150" height="150"></a>
+            <div class="user-name">{{ object.username }}</div>
+            <nav class="profile-tabs">
+                <a class="tab active" onclick="tabs(0)">Personal Information</a>
+                <a class="tab" onclick="tabs(1)">Shopping History</a>
+                <a class="tab" onclick="tabs(2)">Account Security</a>
+                <a href="#" class="btn-logout">Logout</a>
+            </nav>
+        </div>
+
+        <div class="right-container">
+            <div class="profile tabShow">
+                <form action="#" class="update-form"> {% csrf_token %}
+                    <div class="input-field"><input type="text" placeholder="{{ object.username }}"></div>
+                    <div class="input-field"><input type="text" placeholder="{{ object.phone_number }}"></div>
+                    <div class="input-field"><input type="text" placeholder="Email"></div>
+                    <input type="submit" class="btn" value="Update"/>
+                </form>
+            </div>
+            <div class="history tabShow">
+                <h2>Shopping History</h2>
+            </div>
+            <div class="Security tabShow">
+                <form action="#" class="update-form"> {% csrf_token %}
+                    <div class="input-field"><input type="password" placeholder="Password"></div>
+                    <input type="submit" class="btn" value="Change Password"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/profile-tab.js"></script>
+
+    <script>
+        const tabBtn = document.querySelectorAll(".tab");
+        const tab = document.querySelectorAll(".tabShow");
+        
+        function tabs(panelIndex) {
+            tab.forEach(function(node) {
+                node.style.display = "none";
+            });
+            tab[panelIndex].style.display = "block";
+        }
+        tabs(0);
+    </script>
+    <script>
+        $(".tab").click(function() {
+            $(this).addClass("active").siblings().removeClass("active");
+        })
+    </script>
+
+</body>
+
+
+</html>
