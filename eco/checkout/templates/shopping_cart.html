@@ -3,7 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title></title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/static/checkout/shopping_cart.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <main class="box">
@@ -17,7 +23,7 @@
             <p>Items</p>
         </div>
         <label>
-            <input type="text" class="barcode" placeholder="Enter item barcode">
+            <input type="text" id="id_barcode" class="barcode" placeholder="Enter item barcode">
         </label>
         <button name="submit" class="barcode" value="START">Add</button>
         {% if user.username %}
@@ -25,9 +31,9 @@
                 <p id="username">{{ user.username }}</p>
                 <p id="point">My point: {{ user.green_point }}</p>
             </article>
-{#            <a href="{% url 'logout' %}">LOG OUT</a>#}
             <button id="id_logout" class="home_button" name="submit" value="HOME"
-                    onclick="location.href = {% url "start_page" %}">LOGOUT</button>
+                    onclick="location.href = {% url "start_page" %}">LOG OUT
+            </button>
         {% else %}
             <form action="{% url 'start_page' %}" method="POST" enctype=multipart/form-data> {% csrf_token %}
                 {% for field in register_form %}
@@ -36,27 +42,32 @@
                 <button name="submit" class="phone" value="START">START</button>
             </form>
             <button id="id_home" class="home_button" name="submit" value="HOME"
-                    onclick="location.href = {% url "start_page" %}">BACK TO HOME</button>
+                    onclick="location.href = {% url "start_page" %}">BACK TO HOME
+            </button>
         {% endif %}
     </aside>
     <div class="two">
         <div class="h">
-            <p>Your Cart</p>
-            <img src="/media/checkout/cart2.jpg">
+            <p id="id_your_cart">Your Cart</p>
+            <img src="/media/checkout/cart2.jpg" alt="cart">
         </div>
         <div class="c">
             <div class="kong">
-                <img src="/media/checkout/y4.png">
-                <p>Oops! Your Cart is empty</p>
+                {#                <img src="/media/checkout/y4.png" alt="cart2">#}
+                {#                <p>Oops! Your Cart is empty</p>#}
+                <form>
+                    <menu id="id_item">
+                    </menu>
+                </form>
             </div>
         </div>
         <div class="f">
-            <div class="l">
-                <p>Total:</p>
-                <p>$ 70.00</p>
+            <div class="total-price">
+                <p id = "id_total">Total:</p>
+                <p id = "id_total_price">$ 70.00</p>
             </div>
             <div class="r">
-                <button type="button"><span>FINISH</span></button>
+                <button type="button"><span class="finish">FINISH</span></button>
             </div>
         </div>
     </div>
@@ -71,4 +82,44 @@
 {#        location.href = {% url "start_page" %};#}
 {#    }#}
 {#</script>#}
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'get_product' %}",
+            success: function (response) {
+                const id_item = $("#id_item")
+                id_item.empty();
+                if (response.product) {
+                    let temp = ''
+                    for (let key in response.product) {
+                        temp += "<ul>";
+                        {#let img = document.createElement("img");#}
+                        {#img.alt = response.product[key].title;#}
+                        {#img.src = response.product[key].image.url;#}
+                        {#document.body.appendChild(img);#}
+                        {#let temp_img = "<li><img src=" + {{ response.product.image_url }}+ "alt='img'/></li>";#}
+                        temp += "<img alt='item' src=/media/"+response.product[key].image+">"
+                        temp += "<div id='id_item_number' class='input-group inline-group'>";
+                        temp += "<div class='input-group-prepend'>"
+                        temp += "<button id='id_minus_button' class='btn btn-outline-secondary btn-minus'><i class='fa fa-minus'></i></button>";
+                        temp += "</div>"
+                        temp += "<input id='id_item_count' class='form-control quantity' min='0' name='quantity' value='0' type='number'>";
+                        temp += "<div class='input-group-append'>";
+                        temp += "<button id='id_plus_button' class='btn btn-outline-secondary btn-plus'><i class='fa fa-plus'></i></button>";
+                        temp += "</div></div>"
+                        temp += "<li><label id='id_item_name'>" + response.product[key].name + "</label></li>";
+                        temp += "<li><span id='id_item_price'>$" + response.product[key].price + "</span></li>";
+                        temp += "<button id='id_delete_button' class='btn btn-outline-secondary btn-plus'><i class='fa fa-close'></i></button>"
+                        temp += "</ul>"
+                    }
+                    id_item.append(temp);
+                }
+            },
+            error: function (response) {
+                alert("An Error Occurred")
+            }
+        });
+    });
+</script>
 </html>
