@@ -69,14 +69,14 @@ description:
 
 def user_profile_view(request):
     if request.method == "POST":
-        if request.POST.get('submit') == 'add_points':
-            user = User.objects.get(phone_number=request.POST.get("user_id"))
-            user.green_point += 10
-            user.save()
-            context = {
-                'object': user
-            }
-            return render(request, 'rewards/user_profile.html', context)
+        # if request.POST.get('submit') == 'add_points':
+        #     user = User.objects.get(phone_number=request.POST.get("user_id"))
+        #     user.green_point += 10
+        #     user.save()
+        #     context = {
+        #         'object': user
+        #     }
+        #     return render(request, 'rewards/user_profile.html', context)
         if request.POST.get('submit') == 'sign_in':
             phone_number = request.POST.get('username')
             raw_password = request.POST.get('password')
