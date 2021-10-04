@@ -21,8 +21,13 @@
         </label>
         <button name="submit" class="barcode" value="START">Add</button>
         {% if user.username %}
-            <h2>Welcome:)</h2>
-            <h3>{{ user.username }}</h3>
+            <article class="welcome">
+                <p id="username">{{ user.username }}</p>
+                <p id="point">My point: {{ user.green_point }}</p>
+            </article>
+{#            <a href="{% url 'logout' %}">LOG OUT</a>#}
+            <button id="id_logout" class="home_button" name="submit" value="HOME"
+                    onclick="location.href = {% url "start_page" %}">LOGOUT</button>
         {% else %}
             <form action="{% url 'start_page' %}" method="POST" enctype=multipart/form-data> {% csrf_token %}
                 {% for field in register_form %}
@@ -30,6 +35,8 @@
                 {% endfor %}
                 <button name="submit" class="phone" value="START">START</button>
             </form>
+            <button id="id_home" class="home_button" name="submit" value="HOME"
+                    onclick="location.href = {% url "start_page" %}">BACK TO HOME</button>
         {% endif %}
     </aside>
     <div class="two">
@@ -55,4 +62,13 @@
     </div>
 </main>
 </body>
+{#FIXME: this script does not work after brower finish loaded and rendering webpage#}
+{#<script type="text/javascript">#}
+{#    document.getElementById("id_logout").onclick = function () {#}
+{#        location.href = {% url "start_page" %};#}
+{#    }#}
+{#    document.getElementById("id_home").onclick = function () {#}
+{#        location.href = {% url "start_page" %};#}
+{#    }#}
+{#</script>#}
 </html>
