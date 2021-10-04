@@ -18,8 +18,8 @@ login_signup_view:
 ---------------------
 description:
     login and signup page
-    if POST & sign up button has been clicked: save form into database and redirect to profile page.
-    if GET: Rendering webpage with LoginForm and RegistrationForm
+    if POST & sign up button has been clicked => save form into database and redirect to profile page.
+    if GET => Rendering webpage with LoginForm and RegistrationForm
 """
 
 
@@ -62,8 +62,8 @@ user_profile_view:
 ---------------------
 description:
     user profile page
-    if POST & submit request equal to add_points: update user's current green point in database
-    if POST & submit request equal to sign_in: sign user in, authenticate form and refresh profile page
+    if POST & submit request equal to add_points => update user's current green point in database
+    if POST & submit request equal to sign_in => sign user in, authenticate form and refresh profile page
 """
 
 

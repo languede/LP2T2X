@@ -82,8 +82,3 @@ class LoginForm(AuthenticationForm):
         self.fields['password'].widget = \
             forms.PasswordInput(attrs={'placeholder': 'Password'})
         self.fields['username'].widget = forms.TextInput(attrs={'placeholder': 'Phone number'})
-
-# class CustomUserChangeForm(UserChangeForm):
-#     class Meta:
-#         model = User
-#         fields = ('username', 'phone_number', 'password', 'image')
