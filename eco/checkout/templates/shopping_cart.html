@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/page_reset.css"/>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/static/checkout/shopping_cart.css"/>
@@ -85,7 +86,6 @@
             id_item.append(temp);
         }
     });
-
     function get_item() {
         let barcode = $("#id_barcode").val();
         $.ajax({
@@ -93,7 +93,6 @@
             url: "{% url 'get_product' %}?barcode=" + barcode,
             cache: false,
             success: function (response) {
-                {#console.log(id_item.children());#}
                 if (id_item.find("#id_cart_image").length > 0) {
                     id_item.empty();
                 }
