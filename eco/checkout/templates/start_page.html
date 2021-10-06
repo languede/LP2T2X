@@ -28,9 +28,9 @@
             {% for field in start_form %}
                 {{ field }}
             {% endfor %}
-                <button name="submit" class="phone" value="START">START</button>
+                <button name="submit" class="start" value="START">START</button>
             </form>
-            <button onclick="location.href='{% url 'shopping_cart' %}'" name="submit" value="SKIP">SKIP</button>
+            <button onclick="location.href='{% url 'shopping_cart' %}'" class="skip" name="submit" value="SKIP">SKIP</button>
             </div>
 		</div>
 	</body>
