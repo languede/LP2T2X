@@ -100,8 +100,12 @@ description:
 #     return JsonResponse({"product": list(products.values())})
 
 def get_product_view(request):
-    barcode = request.GET.get("barcode")
-    products = Product.objects.get(barcode=barcode)
+    barcode_html = request.GET.get("barcode")
+    products = Product.objects.get(barcode=barcode_html)
+    flag = 0
+    if products.ecological:
+        flag = 1
+    green = products.price * flag
     temp = {
         "name": products.name,
         "price": products.price,
@@ -110,6 +114,7 @@ def get_product_view(request):
         "is_eco": products.ecological,
         "description": products.description,
         "summary": products.summary,
+        "green": green,
     }
     context = [temp]
     return JsonResponse({"product": context})

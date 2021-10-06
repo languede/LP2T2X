@@ -67,7 +67,7 @@ body {
     margin-top: 10px;
 }
 
-button.barcode {
+button.addButton {
     width: 90px;
     height: 58px;
     box-sizing: border-box;
@@ -81,7 +81,6 @@ button.barcode {
     left: 270px;
     top: -67px;
 }
-
 button.phone {
     width: 90px;
     height: 58px;
@@ -191,6 +190,8 @@ input.phone {
     background-size: auto 160%;
     padding: 20px 25px 20px 0;
     box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .box > .two > .c > ul {
@@ -246,7 +247,9 @@ input.phone {
     justify-content: space-between;
     align-items: center;
 }
-
+.l {
+    margin: 20px;
+}
 .box > .two > .f > .l > p {
     color: #fff;
     font-weight: 900;
@@ -429,7 +432,7 @@ ul > img {
     color: #FFFFFF;
     font-weight: bold;
     font-size: 19pt;
-    top: 25px;
+    top: 35px;
 }
 
 #id_total_price {
@@ -437,7 +440,7 @@ ul > img {
     position: relative;
     font-weight: 500;
     font-size: 18pt;
-    top: 25px;
+    top: 35px;
 }
 
 .finish-button {
@@ -454,7 +457,7 @@ ul > img {
 
 .finish-button {
     position: relative;
-    bottom: 55px;
+    bottom: 45px;
     right: -315px;
 }
 
@@ -515,7 +518,7 @@ ul > img {
 i {
     color: #FFFFFF;
 }
-.shopping-cart{
+.cart-item-list{
     position:relative;
     right:-10px;
     width:540px;
