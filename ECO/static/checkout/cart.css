@@ -15,14 +15,14 @@
    height: 65px;
 }
 .eco-img>img {
-  position:relative;
-  left:20px;
-    display: block;
-    width: 20px;
     height:20px;
-    margin: 5px 20px;
+    margin: 0;
 }
-
+.eco-img {
+    position:absolute;
+    right:100px;
+    width: 20px;
+}
 .p-goods {
     display: block;
     margin: 0px;
@@ -96,15 +96,11 @@
     color: #03372a;
     -webkit-appearance: none;
 }
-/* .p-action {
-    display: flex;
-    align-items: center;
-} */
 
-.p-action>a {
+.p-action {
     float: right;
-    position:relative;
-    left: 30px;
+    position:absolute;
+    right:10px;
     border:tomato;
     height: 80px;
     width: 56px;
