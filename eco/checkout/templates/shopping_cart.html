@@ -29,7 +29,7 @@
         <label>
             <input type="text" id="id_barcode" class="barcode" placeholder="Enter item barcode">
         </label>
-        <button name="submit" class="addButton" value="START">Add</button>
+        <button id="id_add_button" name="submit" class="addButton" value="START">Add</button>
         {% if user.username %}
             <article class="welcome">
                 <p id="username">{{ user.username }}</p>
@@ -98,9 +98,8 @@
                     let temp = "<div id='id_item' class='cart-item-list' <!-- 购物车商品 --> </div>"
                     $(".c").append(temp);
                     addItemToCart(response.product[0].name, response.product[0].barcode, response.product[0].price, response.product[0].image);
-                    console.log($(".cart-item"));
                     getSum();
-                    $(".input").find("input").val("");
+                    document.getElementById('id_barcode').value = ''; // clear input
                 },
                 error: function () {
                     alert("Please enter a valid barcode")
@@ -183,7 +182,7 @@
         // 删除商品
         // $(".p-action a").click(function () {
         $(document).on("click", ".p-action a", function () {
-            $(this).parents(".cart-item").fadeTo("fast", 0.2, function () {
+            $(this).parents(".cart-item").fadeTo("fast", 0, function () {
                 $(this).slideUp("fast", function () {
                     $(this).remove();
                     // console.log($(".cart-item"));
