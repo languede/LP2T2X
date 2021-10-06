@@ -94,9 +94,6 @@
                 url: "{% url 'get_product' %}?barcode=" + barcode,
                 cache: false,
                 success: function (response) {
-                    console.log(response.product[0].image);
-                    console.log(response.product[0].barcode);
-                    console.log(response.product[0].price);
                     $(".kong").hide();
                     let temp = "<div id='id_item' class='cart-item-list' <!-- 购物车商品 --> </div>"
                     $(".c").append(temp);
