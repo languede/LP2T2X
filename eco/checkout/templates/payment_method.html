@@ -4,10 +4,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="{% static 'checkout/three.style' %}" />
+        <link rel="stylesheet" type="text/css" href="/static/page_reset.css" />
+		<link rel="stylesheet" type="text/css" href="/static/checkout/payment_method.css" />
 	</head>
 	<body>
-		<div class="box">
+		<main class="box">
 			<p class="t" style="padding-top: 70px;">Swipe Debit/Credit Card or insert</p>
 			<p class="t">Chip Now.</p>
 			<p class="x">Or, select an option below.</p>
@@ -35,7 +36,7 @@
 					<p>Payment Successfully !</p>
 				</div>
 			</div>
-		</div>
+		</main>
 		<script>
 			function tc(){
 				document.querySelector('.tc').style.display='block';

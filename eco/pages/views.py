@@ -14,7 +14,3 @@ def product_detail_view(request, *args, **kwargs):
 
 def about_us_view(request, *args, **kwargs):
     return render(request, "about_us.html", {})
-
-
-def payment_method_view(request, *args, **kwargs):
-    return render(request, "payment_method.html", {})

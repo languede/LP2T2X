@@ -5,6 +5,7 @@
         {% block head %}
             <meta charset="UTF-8">
             <title>Starting Page</title>
+            <link rel="stylesheet" type="text/css" href="/static/page_reset.css"/>
             <link rel="stylesheet" type="text/css" href="/static/checkout/start_page.css"/>
         {% endblock %}
 	</head>
@@ -22,15 +23,13 @@
 				</div>
 			</div>
 			<p class="b">Enter your Eco-Accournt OR press Start</p>
-            <div class="form">
             <form action="{% url 'start_page' %}" method="POST" enctype= multipart/form-data> {% csrf_token %}
             {% for field in start_form %}
                 {{ field }}
             {% endfor %}
-                <button name="submit" class="phone" value="START">START</button>
+                <button name="submit" class="start" value="START">START</button>
             </form>
-            <button onclick="location.href='{% url 'shopping_cart' %}'" name="submit" value="SKIP">SKIP</button>
-            </div>
+            <button onclick="location.href='{% url 'shopping_cart' %}'" class="skip" name="submit" value="SKIP">SKIP</button>
 		</div>
 	</body>
 </html>
