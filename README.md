@@ -10,7 +10,7 @@ That is:
          2.  bash >   // we are now using bash as our default shell   
          3.  bash > `pip3 install django-phonenumber-field[phonenumberslite]`   
          4.  bash > `pip3 install django-simple-history`  
-         5.  bash > `pip3 install pyzbar opencv-python`
+         5.  bash > `pip3 install pyzbar opencv-python`  
          6.  bash > `exec zsh` // back to zsh shell  
 
 *Because `zsh` does not support  `django-phonenumber-field[phonenumberslite]`*
