@@ -88,15 +88,11 @@ button {
 	text-align: center;
 	font-size: 24px;
 	font-weight: 700;
-	margin-top: 40px;
-}
-.box>.form{
-	margin-top: 20px;
+	margin: 20px 0;
 }
 form{
-	border: 1px solid #0A6259;
-	border-radius: 30px;
-	display: flex;
+	border: 2px solid #0A6259;
+	border-radius: 50px;
 	height: 70px;
 	width: 500px;
 	align-items: center;
@@ -104,63 +100,47 @@ form{
 	padding: 20px;
 	margin: auto;
 }
-form>button{
-	width:200px;
-}
 span{
 	font-size: 18px;
 	margin-right: 20px;
 }
-input.phone{
+input{
 	width: 400px;
 	border: none;
 	background: none;
+	display:block;
 	font-size: 28px;
-}
-button{
 	position:relative;
-	display: block;
-	float:inherit;
-	width: autp;
-	height: 55px;
+	top:-4px;
+}
+.skip{
+	width: 200px;
+	height: 60px;
 	border-radius: 30px;
+	position:relative;
+	float:left;
+	background-color: #FFF;
+	border: 5px solid #0A6259;
+	color: #0A6259;
+	font-size: 26px;
+	font-weight: 700;
+	margin: auto;
+	margin-top: 30px;
+	top:-16px;
+	right:-50px;
+}
+.start{
+	positon:relative;
+	float:left;
+	left:100px;
+	width: 200px;
+	height: 60px;
+	border-radius: 30px;
+	border: none;
+	background-color: #0A6259;
 	color: #fff;
 	font-size: 26px;
 	font-weight: 700;
-	margin: 0px;
-}
-.start{
-	position:absolute;
-	display: block;
-	float:inherit;
-	background-color: #0A6259;
-	border-style:none;
-	width:190px;
-	top:520px;
-	left:370px;
-	margin:0;
-}
-.skip{
-	background-color:white;
-	width:190px;
-    top:15px;
-	right:-500px;
-	color: #0A6259;
-	border-style:solid;
-	border-color:#0A6259;
-	border-width:5px;
-}
-button.phone:hover{
-	background-color:green;
-}
-.skip:hover{
-	border-color:green;
-	color:green;
-}
-button.phone:active{
-	background-color:0A6259;
-}
-.skip:active{
-	border-color:0A6259;
-	color:0A6259;
+	margin: auto;
+	margin-top: 30px;
 }
