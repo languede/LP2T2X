@@ -127,7 +127,11 @@ button.phone {
     top: -75px;
     right: -115px;
 }
-
+#id_logout{
+    position: relative;
+    top: -70px;
+    right: -150px;
+}
 button.phone:hover, button.addButton:hover {
     background-color: #4CAF50; /* Green */
     color: white;
@@ -275,10 +279,10 @@ input.phone {
 
 article {
     position: relative;
-    margin: auto auto 50px 0;
+    margin: 0;
     font-size: 20px;
-    top: 47px;
-    height: 88.5px;
+    top: 40px;
+    height: 90px;
     background-color: #26433E;
     color: white;
 }
