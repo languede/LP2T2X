@@ -108,6 +108,25 @@
     background-color:tomato;
     color: #fff;
     text-align: center;
+
+}
+.p-action:hover{
+  background-color:red;
+}
+.p-action:active{
+  background-color:tomato;
+}
+.p-action>a{
+  text-decoration: none;
+}
+.p-num>a{
+  text-decoration: none;
+}
+.decrement:hover, .increment:hover{
+  background-color:green;
+}
+.decrement:active, .increment:active{
+  background-color:#619174;
 }
 .cart_container {
     position: relative;
@@ -136,7 +155,7 @@
   font-size:38pt;
   font-weight:500;
 }
-/* ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ */
+/* ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â»ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â®ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¨Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 
 /* .cart-floatbar {
     height: 50px;

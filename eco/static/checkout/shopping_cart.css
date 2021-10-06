@@ -128,13 +128,13 @@ button.phone {
     right: -115px;
 }
 
-button.phone:hover, button.barcode:hover {
+button.phone:hover, button.addButton:hover {
     background-color: #4CAF50; /* Green */
     color: white;
     transition: 0.3s;
 }
 
-button.phone:active, button.barcode:active {
+button.phone:active, button.addButton:active {
     background-color: #3C7536;
     transform: translateY(0px);
     transition: 0.3s;
