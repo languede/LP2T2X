@@ -30,21 +30,21 @@
     <div class="container">
         <div class="left-container">
             <a href="#" class="user-image"><img src="/media/reward/icon/user.png" width="150" height="150"></a>
-            <div class="user-name">{{ object.username }}</div>
+            <div class="user-name">{{ user.username }}</div>
             <nav class="profile-tabs">
                 <a class="tab active" onclick="tabs(0)">Personal Information</a>
                 <a class="tab" onclick="tabs(1)">Shopping History</a>
                 <a class="tab" onclick="tabs(2)">Account Security</a>
-                <a href="#" class="btn-logout">Logout</a>
+                <a href="{% url 'logout' %}" class="btn-logout">Logout</a>
             </nav>
         </div>
 
         <div class="right-container">
             <div class="profile tabShow">
                 <form action="#" class="update-form"> {% csrf_token %}
-                    <div class="input-field"><input type="text" placeholder="{{ object.username }}"></div>
-                    <div class="input-field"><input type="text" placeholder="{{ object.phone_number }}"></div>
-                    <div class="input-field"><input type="text" placeholder="Email"></div>
+                    <div class="input-field"><input type="text" placeholder="{{ user.username }}"></div>
+                    <div class="input-field"><input type="text" placeholder="{{ user.phone_number }}"></div>
+                    <div class="input-field"><input type="text" placeholder="{{ user.email }}"></div>
                     <input type="submit" class="btn" value="Update"/>
                 </form>
             </div>
