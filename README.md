@@ -22,3 +22,6 @@ pip install django-phonenumber-field[phonenumberslite]
 
 ### django-simple-history
 pip install django-simple-history
+
+### pyzbar and opencv-python
+pip3 install pyzbar opencv-python
