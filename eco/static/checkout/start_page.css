@@ -54,12 +54,10 @@ button {
 	margin: 0;
 }
 .box{
-	margin: auto;
-	margin-top: calc(50vh - 275px);
+	margin: calc(50vh - 275px) auto auto;
 	width: 970px;
 	height: 550px;
-	background-color: #fff;
-	background: url(/media/checkout/BG2.png) no-repeat;
+	background: #fff url(/media/checkout/BG2.png) no-repeat;
 	background-size: auto 100%;
 }
 .box>.user{
@@ -88,15 +86,11 @@ button {
 	text-align: center;
 	font-size: 24px;
 	font-weight: 700;
-	margin-top: 40px;
+	margin: 20px 0;
 }
-.box>.form{
-	margin-top: 20px;
-}
-.box>.form>div{
-	border: 1px solid #0A6259;
-	border-radius: 30px;
-	display: flex;
+form{
+	border: 2px solid #0A6259;
+	border-radius: 50px;
 	height: 70px;
 	width: 500px;
 	align-items: center;
@@ -104,19 +98,39 @@ button {
 	padding: 20px;
 	margin: auto;
 }
-.box>.form>div>span{
+span{
 	font-size: 18px;
 	margin-right: 20px;
 }
-.box>.form>div>input{
+input{
 	width: 400px;
 	border: none;
 	background: none;
-	font-size: 18px;
+	display:block;
+	font-size: 28px;
+	position:relative;
+	top:-4px;
 }
-.box>button{
-	display: block;
-	width: 266px;
+.skip{
+	width: 200px;
+	height: 60px;
+	border-radius: 30px;
+	position:relative;
+	float:left;
+	background-color: #FFF;
+	border: 5px solid #0A6259;
+	color: #0A6259;
+	font-size: 26px;
+	font-weight: 700;
+	margin: 30px auto auto;
+	top:-16px;
+	right:-50px;
+}
+.start{
+	position:relative;
+	float:left;
+	left:10px;
+	width: 200px;
 	height: 60px;
 	border-radius: 30px;
 	border: none;
@@ -124,6 +138,5 @@ button {
 	color: #fff;
 	font-size: 26px;
 	font-weight: 700;
-	margin: auto;
-	margin-top: 30px;
+	margin: 30px auto auto;
 }

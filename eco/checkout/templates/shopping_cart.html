@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/page_reset.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/checkout/cart.css"/>
     <link rel="stylesheet" type="text/css" href="/static/checkout/shopping_cart.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    {#    <script src="/static/js/cart.js" crossorigin="anonymous"></script>#}
 </head>
+
 <body>
 <main class="box">
     <aside class="one">
@@ -17,17 +27,17 @@
             <p>Items</p>
         </div>
         <label>
-            <input type="text" class="barcode" placeholder="Enter item barcode">
+            <input type="text" id="id_barcode" class="barcode" placeholder="Enter item barcode">
         </label>
-        <button name="submit" class="barcode" value="START">Add</button>
+        <button id="id_add_button" name="submit" class="addButton" value="START">Add</button>
         {% if user.username %}
             <article class="welcome">
                 <p id="username">{{ user.username }}</p>
                 <p id="point">My point: {{ user.green_point }}</p>
             </article>
-{#            <a href="{% url 'logout' %}">LOG OUT</a>#}
-            <button id="id_logout" class="home_button" name="submit" value="HOME"
-                    onclick="location.href = {% url "start_page" %}">LOGOUT</button>
+            <button id="id_logout" class="home_button" name="submit" value="HOME" onclick="location.href =
+            {% url 'start_page' %}">LOG OUT
+            </button>
         {% else %}
             <form action="{% url 'start_page' %}" method="POST" enctype=multipart/form-data> {% csrf_token %}
                 {% for field in register_form %}
@@ -36,39 +46,190 @@
                 <button name="submit" class="phone" value="START">START</button>
             </form>
             <button id="id_home" class="home_button" name="submit" value="HOME"
-                    onclick="location.href = {% url "start_page" %}">BACK TO HOME</button>
+                    onclick="location.href = {% url "start_page" %}">BACK TO HOME
+            </button>
         {% endif %}
     </aside>
     <div class="two">
         <div class="h">
-            <p>Your Cart</p>
-            <img src="/media/checkout/cart2.jpg">
+            <p id="id_your_cart">Your Cart</p>
+            <div class="cart_container">
+                <img src="/media/checkout/cart2.jpg" alt="cart">
+                <div class="top-right amount-sum"><em style="color: #03372A;">0</em></div>
+            </div>
         </div>
         <div class="c">
             <div class="kong">
-                <img src="/media/checkout/y4.png">
+                <img src="/media/checkout/y4.png" alt=""/>
                 <p>Oops! Your Cart is empty</p>
             </div>
         </div>
         <div class="f">
             <div class="l">
-                <p>Total:</p>
-                <p>$ 70.00</p>
-            </div>
-            <div class="r">
-                <button type="button"><span>FINISH</span></button>
+                <p id="id_total">Total:</p>
+                <p id="id_total_price" class="price-sum"><em style="color: #fff;">$0</em></p>
+                <button class="finish-button" type="button"><span class="finish">FINISH</span></button>
             </div>
         </div>
     </div>
 </main>
 </body>
-{#FIXME: this script does not work after brower finish loaded and rendering webpage#}
-{#<script type="text/javascript">#}
-{#    document.getElementById("id_logout").onclick = function () {#}
-{#        location.href = {% url "start_page" %};#}
-{#    }#}
-{#    document.getElementById("id_home").onclick = function () {#}
-{#        location.href = {% url "start_page" %};#}
-{#    }#}
-{#</script>#}
+<script>
+    const id_item = $("#id_item")
+    $(document).ready(function () {
+        console.log(id_item.children().length);
+        if (id_item.children().length === 0) {
+            let temp = ""
+            temp += "<img id='id_cart_image' src='/media/checkout/y4.png' alt='art2'>";
+            temp += " <p id='id_cart_empty' class='empty-cart'>Oops! Your Cart is empty</p>";
+            id_item.append(temp);
+        }
+    });
+    $(function () {
+        $(".addButton").click(function () {
+            var barcode = $("#id_barcode").val();
+            console.log(barcode);
+            $.ajax({
+                type: "GET",
+                url: "{% url 'get_product' %}?barcode=" + barcode,
+                cache: false,
+                success: function (response) {
+                    $(".kong").hide();
+                    let temp = "<div id='id_item' class='cart-item-list' <!-- 购物车商品 --> </div>"
+                    $(".c").append(temp);
+                    addItemToCart(response.product[0].name, response.product[0].barcode, response.product[0].price, response.product[0].image);
+                    getSum();
+                    document.getElementById('id_barcode').value = ''; // clear input
+                },
+                error: function () {
+                    alert("Please enter a valid barcode")
+                }
+            })
+        });
+
+        function addItemToCart(name, barcode, price, img) {
+            var cartRow = document.createElement('div');
+            cartRow.classList.add('cart-item');
+            var cartItems = document.getElementsByClassName('cart-item-list')[0];
+            // 相同商品数量+1
+            var cartItemNames = cartItems.getElementsByClassName('p-barcode');
+            for (var j = 0; j < cartItemNames.length; j++) {
+                if (cartItemNames[j].innerText == barcode) {
+                    // console.log(cartItemNames[j]);
+                    // alert('This item in the cart');
+                    var block = $(cartItemNames[j]).siblings(".p-num").children(".itxt");
+                    // console.log(block);
+                    // console.log(block.val());
+                    var count = parseInt(block.val()) + 1;
+                    // console.log(count);
+                    block.val(count);
+                    return;
+                }
+            }
+            cartRow.innerHTML = `
+        <div class="cart-item">
+        <div class="p-img">
+          <img src="/media/${img}" alt="" />
+        </div>
+        <div class="p-goods">
+          <div class="p-msg">${name}</div>
+            <div class="p-barcode" style="opacity: 0; height: 0; width: 0">${barcode}</div>
+          <div class="p-num">
+            <a href="javascript:;" class="decrement"><span>-</span></a>
+            <input type="text" class="itxt" value="1" />
+            <a href="javascript:;" class="increment"><span>+</span></a>
+          </div>
+        </div>
+        <div class="p-price">$ ${price}</div>
+        <div class="eco-img">
+          <img src="/media/eco_logo_1.png" alt=""/>
+        </div>
+        <div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div>
+    </div>`;
+            cartItems.append(cartRow);
+        }
+
+        // plus+1数量
+        $(document).on("click", ".increment", function () {
+            var n = $(this).siblings(".itxt").val();
+            // console.log(n);
+            n++;
+            $(this).siblings(".itxt").val(n);
+            getSum();
+        });
+
+        // minus-1数量
+        // $(".decrement").click(function () {
+        $(document).on("click", ".decrement", function () {
+            var n = $(this).siblings(".itxt").val();
+            if (n == 1) {
+                return false;
+            }
+            // console.log(n);
+            n--;
+            $(this).siblings(".itxt").val(n);
+            getSum();
+        });
+
+        // 直接修改数量
+        // $(".itxt").change(function () {
+        $(document).on("change", ".itxt", function () {
+            var n = $(this).val();
+            // console.log($(this));
+            getSum();
+        })
+
+        // 删除商品
+        // $(".p-action a").click(function () {
+        $(document).on("click", ".p-action a", function () {
+            $(this).parents(".cart-item").fadeTo("fast", 0, function () {
+                $(this).slideUp("fast", function () {
+                    $(this).remove();
+                    // console.log($(".cart-item"));
+                    getSum();
+                    // empty cart or not
+                    if ($(".cart-item").length == 0) {
+                        $(".kong").show();
+                    }
+                });
+            });
+            // $(this).parents(".cart-item").remove();
+            // getSum();
+            // 检查购物车是否为空，如果空，要让kong回来
+            // if ($(".cart-item").length == 0) {
+            //     $(".kong").show();
+            // }
+        });
+
+        // 总商品数（numTotal）和总价 （moneyTotal）
+        function getSum() {
+            var money = 0;
+            var num = 0;
+            var priceArray = new Array();
+            var numArray = new Array();
+            var moneyTotal = 0;
+            var numTotal = 0;
+            $(".p-price").each(function (i, ele) {
+                money = parseFloat($(ele).text().substr(1));
+                priceArray.push(money);
+            });
+
+            $(".itxt").each(function (i, ele) {
+                num = parseInt($(ele).val());
+                numArray.push(num);
+                numTotal += parseInt($(ele).val());
+            });
+            // console.log(priceArray);
+            // console.log(priceArray[1]);
+            // console.log(numArray);
+            // console.log(sum(numArray));
+            for (var j = 0; j < numArray.length; j++) {
+                moneyTotal += numArray[j] * priceArray[j];
+            }
+            // console.log(moneyTotal);
+            $(".amount-sum em").text(numTotal);
+            $(".price-sum em").text("$" + moneyTotal.toFixed(2));
+        }
+    })
+</script>
 </html>
