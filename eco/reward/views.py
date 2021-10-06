@@ -91,3 +91,8 @@ def user_profile_view(request):
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
     return render(request, 'rewards/user_profile.html', {})
+
+
+#eco-rating page
+def eco_rating_view(request):
+    return render(request, "rewards/user-eco.html")
