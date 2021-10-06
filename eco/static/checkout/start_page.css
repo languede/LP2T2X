@@ -54,12 +54,10 @@ button {
 	margin: 0;
 }
 .box{
-	margin: auto;
-	margin-top: calc(50vh - 275px);
+	margin: calc(50vh - 275px) auto auto;
 	width: 970px;
 	height: 550px;
-	background-color: #fff;
-	background: url(/media/checkout/BG2.png) no-repeat;
+	background: #fff url(/media/checkout/BG2.png) no-repeat;
 	background-size: auto 100%;
 }
 .box>.user{
@@ -124,15 +122,14 @@ input{
 	color: #0A6259;
 	font-size: 26px;
 	font-weight: 700;
-	margin: auto;
-	margin-top: 30px;
+	margin: 30px auto auto;
 	top:-16px;
 	right:-50px;
 }
 .start{
-	positon:relative;
+	position:relative;
 	float:left;
-	left:100px;
+	left:10px;
 	width: 200px;
 	height: 60px;
 	border-radius: 30px;
@@ -141,6 +138,5 @@ input{
 	color: #fff;
 	font-size: 26px;
 	font-weight: 700;
-	margin: auto;
-	margin-top: 30px;
+	margin: 30px auto auto;
 }
