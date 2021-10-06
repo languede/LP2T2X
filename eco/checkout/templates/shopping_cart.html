@@ -68,7 +68,8 @@
             <div class="l">
                 <p id="id_total">Total:</p>
                 <p id="id_total_price" class="price-sum"><em style="color: #fff;">$0</em></p>
-                <button class="finish-button" type="button"><span class="finish">FINISH</span></button>
+                <button id="id_finish" class="finish-button" type="button"><span
+                        class="finish">FINISH</span></button>
             </div>
         </div>
     </div>
@@ -230,6 +231,16 @@
             $(".amount-sum em").text(numTotal);
             $(".price-sum em").text("$" + moneyTotal.toFixed(2));
         }
+
+        document.getElementById("id_finish").onclick = function () {
+            console.log($(".cart-item").length);
+            if ($(".cart-item").length == 0) {
+                alert("Your cart is empty");
+            } else {
+                location.href = "{% url 'payment_method'%}";
+            }
+
+        };
     })
 </script>
 </html>

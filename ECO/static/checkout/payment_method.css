@@ -54,12 +54,10 @@ button {
 	margin: 0;
 }
 .box{
-	margin: auto;
-	margin-top: calc(50vh - 275px);
+	margin: calc(50vh - 275px) auto auto;
 	width: 970px;
 	height: 550px;
-	background-color: #fff;
-	background: url(../images/BG2.png) no-repeat;
+	background: #fff url(/media/checkout/BG2.png) no-repeat;
 	background-size: auto 100%;
 	position: relative;
 }

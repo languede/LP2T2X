@@ -119,6 +119,9 @@ def get_product_view(request):
     context = [temp]
     return JsonResponse({"product": context})
 
+
+def payment_method_view(request, *args, **kwargs):
+    return render(request, "payment_method.html", {})
 # def get(request):
 #     barcode = request.GET.get("barcode")
 #     msg = {"status": 200, "result": None}
