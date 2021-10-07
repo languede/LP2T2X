@@ -140,3 +140,17 @@ input{
 	font-weight: 700;
 	margin: 30px auto auto;
 }
+.start:hover {
+	background-color:#0A8259;
+}
+.skip:hover{
+	border-color:#0A8259;
+	color:#0A8259;
+}
+.start:active{
+	background-color:#0A5050;
+}
+.skip:active{
+	border-color:#0A5050;
+	color:#0A5050;
+}
