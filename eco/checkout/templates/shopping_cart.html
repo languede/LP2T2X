@@ -67,7 +67,8 @@
         <div class="f">
             <div class="l">
                 <p id="id_total">Total:</p>
-                <p id="id_total_price" class="price-sum"><em style="color: #fff;">$0</em></p>
+                <p id="id_total_price" class="price-sum"><em style="color: #fff;">$ 0</em></p>
+                <p id="id_total_points" class="price-sum"><em style="color: #fff;">Green: 0</em></p>
                 <button id="id_finish" class="finish-button" type="button"><span
                         class="finish">FINISH</span></button>
             </div>
@@ -99,7 +100,8 @@
                     let temp = "<div id='id_item' class='cart-item-list' <!-- 购物车商品 --> </div>"
                     $(".c").append(temp);
                     addItemToCart(response.product[0].name, response.product[0].barcode,
-                        response.product[0].price, response.product[0].image, response.product[0].is_eco);
+                        response.product[0].price, response.product[0].image,
+                        response.product[0].is_eco, response.product[0].green_point);
                     getSum();
                     document.getElementById('id_barcode').value = ''; // clear input
                 },
@@ -109,7 +111,7 @@
             })
         });
 
-        function addItemToCart(name, barcode, price, img, is_eco) {
+        function addItemToCart(name, barcode, price, img, is_eco, green_point) {
             let cartRow = document.createElement('div');
             cartRow.classList.add('cart-item');
             let cartItems = document.getElementsByClassName('cart-item-list')[0];
@@ -124,7 +126,7 @@
                 }
             }
 
-            let start_html = `
+            let startHTML = `
             <div class="cart-item">
             <div class="p-img">
               <img src="/media/${img}" alt="" />
@@ -140,17 +142,24 @@
             </div>
             <div class="p-price">$ ${price}</div>`
 
-            let eco_condition_html = `
+            let isEco = `
             <div class="eco-img">
-                <span id="id_point"></span>
+                <span id="id_point" class="green-point">
+                    ${green_point}
+                </span>
                 <img id="id_eco_image" src="/media/eco_logo_1.png" alt=""/>
             </div>`
-
-            let end_html = `<div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div></div>`;
+            let notEco = `
+            <div class="eco-img">
+                <span id="id_point" class="green-point" style="opacity: 0">
+                    ${green_point}
+                </span>
+            </div>`
+            let endHTML = `<div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div></div>`;
             if (is_eco == false) {
-                cartRow.innerHTML = start_html + end_html
+                cartRow.innerHTML = startHTML + notEco +endHTML
             } else {
-                cartRow.innerHTML = start_html + eco_condition_html + end_html
+                cartRow.innerHTML = startHTML + isEco + endHTML
             }
             cartItems.append(cartRow);
         }
@@ -199,14 +208,22 @@
         // 总商品数（numTotal）和总价 （moneyTotal）
         function getSum() {
             let money = 0;
+            let point = 0;
             let num = 0;
-            let priceArray = new Array();
-            let numArray = new Array();
+            let priceArray = [];
+            let greenPointArray = [];
+            let numArray = [];
             let moneyTotal = 0;
             let numTotal = 0;
+            let pointTotal = 0;
+
             $(".p-price").each(function (i, ele) {
                 money = parseFloat($(ele).text().substr(1));
                 priceArray.push(money);
+            });
+            $(".green-point").each(function (i, ele) {
+                point = parseInt($(ele).text().substr(1));
+                greenPointArray.push(point);
             });
 
             $(".itxt").each(function (i, ele) {
@@ -214,11 +231,13 @@
                 numArray.push(num);
                 numTotal += parseInt($(ele).val());
             });
-            for (let j = 0; j < numArray.length; j++) {
-                moneyTotal += numArray[j] * priceArray[j];
+            for (let i = 0; i < numArray.length; i++) {
+                moneyTotal += numArray[i] * priceArray[i];
+                pointTotal += numArray[i] * greenPointArray[i];
             }
             $(".amount-sum em").text(numTotal);
-            $(".price-sum em").text("$" + moneyTotal.toFixed(2));
+            $("#id_total_price em").text("$ " + moneyTotal.toFixed(2));
+            $("#id_total_points em").text("Green: " + pointTotal);
         }
 
         document.getElementById("id_finish").onclick = function () {
