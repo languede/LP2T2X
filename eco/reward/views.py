@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 # from django.contrib.auth.models import User
 from django.contrib import messages
 from authentication.forms import RegistrationForm, LoginForm
 from authentication.models import User
+from django.contrib.auth.decorators import login_required
 
 
 # homepage
@@ -39,6 +40,15 @@ def login_signup_view(request):
                 return redirect("login-signup")
             else:
                 context['registration_form'] = register_form
+        else:
+            phone_number = request.POST.get('username')
+            raw_password = request.POST.get('password')
+            user = authenticate(request, phone_number=phone_number, password=raw_password)
+            if user is not None:
+                login(request, user)
+                return redirect('profile')
+            else:
+                messages.info(request, 'Phone number OR password is incorrect')
     return render(request, "rewards/login-signup.html", context)
 
 
@@ -52,8 +62,9 @@ description:
 """
 
 
-def sign_out(request):
-    pass
+def logoutUser(request):
+    logout(request)
+    return redirect('login-signup')
 
 
 """
@@ -66,28 +77,13 @@ description:
     if POST & submit request equal to sign_in => sign user in, authenticate form and refresh profile page
 """
 
-
+@login_required(login_url='login-signup')
 def user_profile_view(request):
-    if request.method == "POST":
-        # if request.POST.get('submit') == 'add_points':
-        #     user = User.objects.get(phone_number=request.POST.get("user_id"))
-        #     user.green_point += 10
-        #     user.save()
-        #     context = {
-        #         'object': user
-        #     }
-        #     return render(request, 'rewards/user_profile.html', context)
-        if request.POST.get('submit') == 'sign_in':
-            phone_number = request.POST.get('username')
-            raw_password = request.POST.get('password')
-            user = authenticate(request, phone_number=phone_number, password=raw_password)
-            if user is not None:
-                login(request, user)
-                obj = User.objects.get(phone_number=user.phone_number)
-                context = {
-                    'object': obj
-                }
-                return render(request, "rewards/user_profile.html", context)
-            else:
-                messages.info(request, 'Phone number OR password is incorrect')
-    return render(request, 'rewards/user_profile.html', {})
+    user_info = request.user
+    context = {'user': user_info}
+    return render(request, 'rewards/user_profile.html', context)
+
+
+#eco-rating page
+def eco_rating_view(request):
+    return render(request, "rewards/user-eco.html")
