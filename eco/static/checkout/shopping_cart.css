@@ -530,3 +530,10 @@ i {
     overflow-x: hidden;
     overflow-y:scroll;
 }
+#id_total_points {
+    font-weight:500;
+    float:right;
+    position:relative;
+    left:-100px;
+    bottom:21px;
+}

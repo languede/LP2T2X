@@ -11,9 +11,13 @@
     <header>
         <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/star/star5.png" width="80" height="80" alt=""></a>
           <ul>
-            <li><a href="#">ECO</a></li>
+            <li><a href="{% url 'rating' %}">ECO</a></li>
             <li><a href="#">Reward Redemption</a></li>
-            <li><a href="{% url 'login-signup' %}">My Account</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">My Account</a></li>
+            {% else %}
+            <li><a href="{% url 'login-signup' %}">Login/Register</a></li>
+            {% endif %}
           </ul>
     </header>
 
