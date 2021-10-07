@@ -10,13 +10,18 @@ That is:
          2.  bash >   // we are now using bash as our default shell   
          3.  bash > `pip3 install django-phonenumber-field[phonenumberslite]`   
          4.  bash > `pip3 install django-simple-history`  
-         5.  bash > `pip3 install pyzbar opencv-python`  
-         6.  bash > `exec zsh` // back to zsh shell  
+         5.  bash > `pip3 install pyzbar opencv-python` 
+         6.  bash > `pip3 install pillow`  
+         7.  bash > `exec zsh` // back to zsh shell 
+         8. to run the code: direct to manage.py , type: python3 manage.py runserver
 
 *Because `zsh` does not support  `django-phonenumber-field[phonenumberslite]`*
 
 
 ## To run this Django project, you need to install following pacakages
+
+### Pillow
+pip install pillow  
 
 ### django-phonenumber-field
 pip install django-phonenumber-field[phonenumberslite]
