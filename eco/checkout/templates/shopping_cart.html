@@ -236,8 +236,8 @@
                 pointTotal += numArray[i] * greenPointArray[i];
             }
             $(".amount-sum em").text(numTotal);
-            $("#id_total_price em").text("$" + moneyTotal.toFixed(2));
-            $("#id_total_points em").text("G" + pointTotal);
+            $("#id_total_price em").text("$ " + moneyTotal.toFixed(2));
+            $("#id_total_points em").text("Green: " + pointTotal);
         }
 
         document.getElementById("id_finish").onclick = function () {
