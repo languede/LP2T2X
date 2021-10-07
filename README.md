@@ -12,8 +12,9 @@ That is:
          4.  bash > `pip3 install django-simple-history`  
          5.  bash > `pip3 install pyzbar opencv-python` 
          6.  bash > `pip3 install pillow`  
-         7.  bash > `exec zsh` // back to zsh shell 
-         8. to run the code: direct to manage.py , type: python3 manage.py runserver
+         7.  bash > `exec zsh` // back to zsh shell    
+         8. to run the code:   
+                  direct to manage.py , type: python3 manage.py runserver  
 
 *Because `zsh` does not support  `django-phonenumber-field[phonenumberslite]`*
 
