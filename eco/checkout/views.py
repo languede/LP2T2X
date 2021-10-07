@@ -102,19 +102,16 @@ description:
 def get_product_view(request):
     barcode_html = request.GET.get("barcode")
     products = Product.objects.get(barcode=barcode_html)
-    flag = 0
-    if products.ecological:
-        flag = 1
-    green = products.price * flag
+    green_point = products.price * products.is_eco
     temp = {
         "name": products.name,
         "price": products.price,
         "image": str(products.image),
         "barcode": products.barcode,
-        "is_eco": products.ecological,
+        "is_eco": products.is_eco,
         "description": products.description,
         "summary": products.summary,
-        "green": green,
+        "green": green_point,
     }
     context = [temp]
     return JsonResponse({"product": context})
@@ -122,6 +119,8 @@ def get_product_view(request):
 
 def payment_method_view(request, *args, **kwargs):
     return render(request, "payment_method.html", {})
+
+
 # def get(request):
 #     barcode = request.GET.get("barcode")
 #     msg = {"status": 200, "result": None}

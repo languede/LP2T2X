@@ -88,7 +88,7 @@
     });
     $(function () {
         $(".addButton").click(function () {
-            var barcode = $("#id_barcode").val();
+            let barcode = $("#id_barcode").val();
             console.log(barcode);
             $.ajax({
                 type: "GET",
@@ -98,7 +98,8 @@
                     $(".kong").hide();
                     let temp = "<div id='id_item' class='cart-item-list' <!-- 购物车商品 --> </div>"
                     $(".c").append(temp);
-                    addItemToCart(response.product[0].name, response.product[0].barcode, response.product[0].price, response.product[0].image);
+                    addItemToCart(response.product[0].name, response.product[0].barcode,
+                        response.product[0].price, response.product[0].image, response.product[0].is_eco);
                     getSum();
                     document.getElementById('id_barcode').value = ''; // clear input
                 },
@@ -108,52 +109,55 @@
             })
         });
 
-        function addItemToCart(name, barcode, price, img) {
-            var cartRow = document.createElement('div');
+        function addItemToCart(name, barcode, price, img, is_eco) {
+            let cartRow = document.createElement('div');
             cartRow.classList.add('cart-item');
-            var cartItems = document.getElementsByClassName('cart-item-list')[0];
+            let cartItems = document.getElementsByClassName('cart-item-list')[0];
             // 相同商品数量+1
-            var cartItemNames = cartItems.getElementsByClassName('p-barcode');
-            for (var j = 0; j < cartItemNames.length; j++) {
+            let cartItemNames = cartItems.getElementsByClassName('p-barcode');
+            for (let j = 0; j < cartItemNames.length; j++) {
                 if (cartItemNames[j].innerText == barcode) {
-                    // console.log(cartItemNames[j]);
-                    // alert('This item in the cart');
-                    var block = $(cartItemNames[j]).siblings(".p-num").children(".itxt");
-                    // console.log(block);
-                    // console.log(block.val());
-                    var count = parseInt(block.val()) + 1;
-                    // console.log(count);
+                    let block = $(cartItemNames[j]).siblings(".p-num").children(".itxt");
+                    let count = parseInt(block.val()) + 1;
                     block.val(count);
                     return;
                 }
             }
-            cartRow.innerHTML = `
-        <div class="cart-item">
-        <div class="p-img">
-          <img src="/media/${img}" alt="" />
-        </div>
-        <div class="p-goods">
-          <div class="p-msg">${name}</div>
-            <div class="p-barcode" style="opacity: 0; height: 0; width: 0">${barcode}</div>
-          <div class="p-num">
-            <a href="javascript:;" class="decrement"><span>-</span></a>
-            <input type="text" class="itxt" value="1" />
-            <a href="javascript:;" class="increment"><span>+</span></a>
-          </div>
-        </div>
-        <div class="p-price">$ ${price}</div>
-        <div class="eco-img">
-          <img src="/media/eco_logo_1.png" alt=""/>
-        </div>
-        <div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div>
-    </div>`;
+
+            let start_html = `
+            <div class="cart-item">
+            <div class="p-img">
+              <img src="/media/${img}" alt="" />
+            </div>
+            <div class="p-goods">
+              <div class="p-msg">${name}</div>
+                <div class="p-barcode" style="opacity: 0; height: 0; width: 0">${barcode}</div>
+              <div class="p-num">
+                <a href="javascript:;" class="decrement"><span>-</span></a>
+                <input type="text" class="itxt" value="1" />
+                <a href="javascript:;" class="increment"><span>+</span></a>
+              </div>
+            </div>
+            <div class="p-price">$ ${price}</div>`
+
+            let eco_condition_html = `
+            <div class="eco-img">
+                <span id="id_point"></span>
+                <img id="id_eco_image" src="/media/eco_logo_1.png" alt=""/>
+            </div>`
+
+            let end_html = `<div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div></div>`;
+            if (is_eco == false) {
+                cartRow.innerHTML = start_html + end_html
+            } else {
+                cartRow.innerHTML = start_html + eco_condition_html + end_html
+            }
             cartItems.append(cartRow);
         }
 
         // plus+1数量
         $(document).on("click", ".increment", function () {
-            var n = $(this).siblings(".itxt").val();
-            // console.log(n);
+            let n = $(this).siblings(".itxt").val();
             n++;
             $(this).siblings(".itxt").val(n);
             getSum();
@@ -162,7 +166,7 @@
         // minus-1数量
         // $(".decrement").click(function () {
         $(document).on("click", ".decrement", function () {
-            var n = $(this).siblings(".itxt").val();
+            let n = $(this).siblings(".itxt").val();
             if (n == 1) {
                 return false;
             }
@@ -173,20 +177,16 @@
         });
 
         // 直接修改数量
-        // $(".itxt").change(function () {
         $(document).on("change", ".itxt", function () {
-            var n = $(this).val();
-            // console.log($(this));
+            let n = $(this).val();
             getSum();
         })
 
         // 删除商品
-        // $(".p-action a").click(function () {
         $(document).on("click", ".p-action a", function () {
             $(this).parents(".cart-item").fadeTo("fast", 0, function () {
                 $(this).slideUp("fast", function () {
                     $(this).remove();
-                    // console.log($(".cart-item"));
                     getSum();
                     // empty cart or not
                     if ($(".cart-item").length == 0) {
@@ -194,22 +194,16 @@
                     }
                 });
             });
-            // $(this).parents(".cart-item").remove();
-            // getSum();
-            // 检查购物车是否为空，如果空，要让kong回来
-            // if ($(".cart-item").length == 0) {
-            //     $(".kong").show();
-            // }
         });
 
         // 总商品数（numTotal）和总价 （moneyTotal）
         function getSum() {
-            var money = 0;
-            var num = 0;
-            var priceArray = new Array();
-            var numArray = new Array();
-            var moneyTotal = 0;
-            var numTotal = 0;
+            let money = 0;
+            let num = 0;
+            let priceArray = new Array();
+            let numArray = new Array();
+            let moneyTotal = 0;
+            let numTotal = 0;
             $(".p-price").each(function (i, ele) {
                 money = parseFloat($(ele).text().substr(1));
                 priceArray.push(money);
@@ -220,14 +214,9 @@
                 numArray.push(num);
                 numTotal += parseInt($(ele).val());
             });
-            // console.log(priceArray);
-            // console.log(priceArray[1]);
-            // console.log(numArray);
-            // console.log(sum(numArray));
-            for (var j = 0; j < numArray.length; j++) {
+            for (let j = 0; j < numArray.length; j++) {
                 moneyTotal += numArray[j] * priceArray[j];
             }
-            // console.log(moneyTotal);
             $(".amount-sum em").text(numTotal);
             $(".price-sum em").text("$" + moneyTotal.toFixed(2));
         }

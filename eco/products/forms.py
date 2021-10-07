@@ -10,7 +10,7 @@ class ProductForm(forms.ModelForm):
             'image',
             'description',
             'price',
-            'ecological'
+            'is_eco'
         ]
 
 
