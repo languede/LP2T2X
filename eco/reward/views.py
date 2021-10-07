@@ -84,6 +84,6 @@ def user_profile_view(request):
     return render(request, 'rewards/user_profile.html', context)
 
 
-#eco-rating page
+# eco-rating page
 def eco_rating_view(request):
     return render(request, "rewards/user-eco.html")
