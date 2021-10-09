@@ -81,6 +81,7 @@ button.addButton {
     left: 270px;
     top: -67px;
 }
+
 button.phone {
     width: 90px;
     height: 58px;
@@ -127,11 +128,13 @@ button.phone {
     top: -75px;
     right: -115px;
 }
-#id_logout{
+
+#id_logout {
     position: relative;
     top: -70px;
     right: -150px;
 }
+
 button.phone:hover, button.addButton:hover {
     background-color: #4CAF50; /* Green */
     color: white;
@@ -188,18 +191,15 @@ input.phone {
     margin-right: 20px;
 }
 
-.box > .two > .c {
-    height: 390px;
-    background: url(../../media/checkout/BG3.png) no-repeat center;
+#id_cart_list_element {
+    height: 380px;
+    background: url(/media/checkout/BG3.png) no-repeat center;
     background-size: auto 160%;
-    padding: 20px 25px 20px 0;
+    padding:0;
+    margin:0;
     box-sizing: border-box;
     overflow-y: hidden;
     overflow-x: hidden;
-}
-
-.box > .two > .c > ul {
-    display: block;
 }
 
 .box > .two > .c > ul > li {
@@ -214,55 +214,35 @@ input.phone {
     margin-bottom: 15px;
 }
 
-.box > .two > .c > ul > li:last-of-type {
-    margin-bottom: 0;
-}
 
-.box > .two > .c > ul > li > div:first-of-type {
-    display: flex;
-    height: 90%;
-    align-items: center;
-}
-
-.box > .two > .c > ul > li > div:last-of-type {
-    height: 90%;
-    font-size: 20px;
-    font-weight: 900;
-    color: #03372A;
-    display: flex;
-    align-items: flex-end;
-}
-
-.box > .two > .c > ul > li > div:first-of-type > img {
-    height: 60%;
-    margin-right: 35px;
-}
-
-.box > .two > .c > ul > li > div:first-of-type > div > p {
-    font-size: 16px;
-    font-weight: 900;
-    color: #03372A;
-}
-
-.box > .two > .f {
-    height: 88px;
+.bottom-finish-bar {
+    height: 28px;
     padding: 0;
+    margin:0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: initial;
+    flex-wrap: wrap;
+    float: bottom;
+    bottom: 207px;
+    right: 118px;
+    background-color: #000;
+    height: 100px;
+    width: 570px;
 }
-.l {
-    margin: 20px;
-}
-.box > .two > .f > .l > p {
+
+.box > .two > .bottom-finish-bar > p {
     color: #fff;
     font-weight: 900;
 }
 
-.box > .two > .f > .l > p:last-of-type {
+.box > .two > .bottom-finish-bar > p:last-of-type {
     font-size: 26px;
 }
-
+#id_empty_container{
+    margin-bottom:60px;
+}
 .box > .two > .c > .kong > img {
     display: block;
     margin: 60px auto auto;
@@ -356,7 +336,7 @@ article {
 
 ul {
     position: relative;
-    right:-10px;
+    right: -10px;
     background-color: #FFFFFF;
     border-radius: 25px;
     height: 100px;
@@ -382,10 +362,10 @@ ul > img {
 
 #id_item_name {
     margin: 0;
-    position: relative;
+    position: absolute;
     text-align: center;
     font-size: 17pt;
-    top: -50px;
+    top: -30px;
     right: -73px;
     color: #03372A;
 }
@@ -397,21 +377,24 @@ ul > img {
     color: #03372A;
     font-size: 18pt;
     font-weight: 400;
-    right: 70px;
+    right: 150px;
 }
 
 #id_item_price::after {
     margin: 0;
 }
 
-#id_delete_button {
-    background-color: #BC472D;
-    border: none;
-    border-radius: 20px;
+.delete-button {
     float: right;
     position: relative;
-    left: 20px;
-    top: -70px;
+/*     background-color: #BC472D; */
+    background-color: #555;
+    border: none;
+    height: 73px;
+    width: 44px;
+    border-radius: 10px;
+    left: 171px;
+    top: 0px;
 }
 
 #id_delete_button:hover {
@@ -436,15 +419,17 @@ ul > img {
     color: #FFFFFF;
     font-weight: bold;
     font-size: 19pt;
-    top: 35px;
+    top: -25px;
+    left: 15px;
 }
 
 #id_total_price {
     color: #FFFFFF;
     position: relative;
     font-weight: 500;
-    font-size: 18pt;
-    top: 35px;
+    font-size: 15pt;
+    top: 12px;
+    left: -83px;
 }
 
 .finish-button {
@@ -457,12 +442,9 @@ ul > img {
     font-weight: 700;
     transition: all 0.5s;
     cursor: pointer;
-}
-
-.finish-button {
     position: relative;
-    bottom: 45px;
-    right: -315px;
+    bottom: 0;
+    right: 15px;
 }
 
 .finish {
@@ -522,18 +504,43 @@ ul > img {
 i {
     color: #FFFFFF;
 }
-.cart-item-list{
-    position:relative;
-    right:-10px;
-    width:540px;
-    height:350px;
+.shopping-cart {
+    background:none;
+    padding:0;
+    margin: 10px 0 10px 10px;
+    position: initial;
+    right: -10px;
+    width: 550px;
+    height: 360px;
     overflow-x: hidden;
-    overflow-y:scroll;
+    overflow-y: scroll;
+}
+.ul{
+    padding:0;
+    margin: 0 0 31px;
+    position: relative;
+    right: -10px;
+    width: 540px;
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.cart-item {
+    position:relative;
+    width: 506px;
+    height: 80px;
+    background: #FFF;
+    border-radius: 10px;
+    padding: 0;
+    margin: 10px 0 0 5px;
+    display: flex;
+    align-items: center;
 }
 #id_total_points {
-    font-weight:500;
-    float:right;
-    position:relative;
-    left:-100px;
-    bottom:21px;
+    font-weight: 500;
+    font-size: 15pt;
+    float: right;
+    position: relative;
+    left: -201px;
+    top: 38px;
 }

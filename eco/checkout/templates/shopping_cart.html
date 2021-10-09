@@ -58,34 +58,36 @@
                 <div class="top-right amount-sum"><em style="color: #03372A;">0</em></div>
             </div>
         </div>
-        <div class="c">
-            <div class="kong">
-                <img src="/media/checkout/y4.png" alt=""/>
-                <p>Oops! Your Cart is empty</p>
+        <form id="id_cart_form" method="POST" action="{% url 'go_to_payment' %}"> {% csrf_token %}
+            <div id="id_cart_list_element" class="c">
+                <div class="kong" id="id_empty_container">
+                    {#                    <img src="/media/checkout/y4.png" alt=""/>#}
+                    {#                    <p>Oops! Your Cart is empty</p>#}
+                </div>
             </div>
-        </div>
-        <div class="f">
-            <div class="l">
+            <div class="bottom-finish-bar">
                 <p id="id_total">Total:</p>
-                <p id="id_total_price" class="price-sum"><em style="color: #fff;">$ 0</em></p>
-                <p id="id_total_points" class="price-sum"><em style="color: #fff;">Green: 0</em></p>
+                <p id="id_total_price" class="price-sum"><em style="color: #fff;">Price: $ 0</em></p>
+                <p id="id_total_points" class="price-sum"><em style="color: #fff;">Points: G 0</em></p>
                 <button id="id_finish" class="finish-button" type="button"><span
                         class="finish">FINISH</span></button>
             </div>
-        </div>
+        </form>
     </div>
 </main>
 </body>
 <script>
-    const id_item = $("#id_item")
+    const id_empty_container = $("#id_empty_container")
+
     $(document).ready(function () {
-        console.log(id_item.children().length);
-        if (id_item.children().length === 0) {
+        console.log("id_empty_container children",id_empty_container.children().length);
+        if (id_empty_container.children().length === 0) {
             let temp = ""
             temp += "<img id='id_cart_image' src='/media/checkout/y4.png' alt='art2'>";
             temp += " <p id='id_cart_empty' class='empty-cart'>Oops! Your Cart is empty</p>";
-            id_item.append(temp);
+            id_empty_container.append(temp);
         }
+        console.log("id_empty_container children",id_empty_container.children().length);
     });
     $(function () {
         $(".addButton").click(function () {
@@ -96,12 +98,20 @@
                 url: "{% url 'get_product' %}?barcode=" + barcode,
                 cache: false,
                 success: function (response) {
-                    $(".kong").hide();
-                    let temp = "<div id='id_item' class='cart-item-list' <!-- 购物车商品 --> </div>"
-                    $(".c").append(temp);
+                    console.log("succ:id_empty_container length",id_empty_container.length);
+                    console.log("succ:id_empty_container children length",id_empty_container.children().length);
+                    console.log("succ:id_item length",$("#id_item").length);
+                    if ($("#id_item").length === 0) {
+                        id_empty_container.hide();
+                        console.log("inside start:id_item length",$("#id_item").length);
+                        let temp = "<ul id='id_item' class='shopping-cart' <!-- 购物车商品 --> </ul>"
+                        const id_item = $("#id_item")
+                        $(".c").append(temp);
+                    }
                     addItemToCart(response.product[0].name, response.product[0].barcode,
                         response.product[0].price, response.product[0].image,
                         response.product[0].is_eco, response.product[0].green_point);
+                    console.log("inside end:id_item children length",$("#id_item").children().length);
                     getSum();
                     document.getElementById('id_barcode').value = ''; // clear input
                 },
@@ -112,9 +122,10 @@
         });
 
         function addItemToCart(name, barcode, price, img, is_eco, green_point) {
-            let cartRow = document.createElement('div');
-            cartRow.classList.add('cart-item');
-            let cartItems = document.getElementsByClassName('cart-item-list')[0];
+            let cartRow = document.createElement("li");
+            cartRow.setAttribute("id", "id_cart_item");
+            cartRow.setAttribute("class", "cart-item");
+            let cartItems = document.getElementsByClassName('shopping-cart')[0];
             // 相同商品数量+1
             let cartItemNames = cartItems.getElementsByClassName('p-barcode');
             for (let j = 0; j < cartItemNames.length; j++) {
@@ -127,7 +138,6 @@
             }
 
             let startHTML = `
-            <div class="cart-item">
             <div class="p-img">
               <img src="/media/${img}" alt="" />
             </div>
@@ -140,7 +150,7 @@
                 <a href="javascript:;" class="increment"><span>+</span></a>
               </div>
             </div>
-            <div class="p-price">$ ${price}</div>`
+            <div id="id_item_price" class="price">$ ${price}</div>`
 
             let isEco = `
             <div class="eco-img">
@@ -155,9 +165,14 @@
                     ${green_point}
                 </span>
             </div>`
-            let endHTML = `<div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div></div>`;
+            {#let endHTML = `<div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div></div>`;#}
+            let endHTML = `
+            <button type="button" id='id_delete_button' class='btn btn-outline-secondary delete-button'>
+                <i class='fa fa-close'></i>
+            </button>`
+
             if (is_eco == false) {
-                cartRow.innerHTML = startHTML + notEco +endHTML
+                cartRow.innerHTML = startHTML + notEco + endHTML
             } else {
                 cartRow.innerHTML = startHTML + isEco + endHTML
             }
@@ -192,17 +207,20 @@
         })
 
         // 删除商品
-        $(document).on("click", ".p-action a", function () {
+        $(document).on("click", ".delete-button", function (event) {
             $(this).parents(".cart-item").fadeTo("fast", 0, function () {
                 $(this).slideUp("fast", function () {
                     $(this).remove();
-                    getSum();
                     // empty cart or not
-                    if ($(".cart-item").length == 0) {
-                        $(".kong").show();
+                    if ($("#id_item").children().length === 0) {
+                        id_item.remove();
+                        id_empty_container.show();
                     }
+                    getSum();
                 });
             });
+
+
         });
 
         // 总商品数（numTotal）和总价 （moneyTotal）
@@ -217,7 +235,7 @@
             let numTotal = 0;
             let pointTotal = 0;
 
-            $(".p-price").each(function (i, ele) {
+            $(".price").each(function (i, ele) {
                 money = parseFloat($(ele).text().substr(1));
                 priceArray.push(money);
             });

@@ -117,6 +117,10 @@ def get_product_view(request):
     return JsonResponse({"product": context})
 
 
+def goto_payment_view(request):
+    return redirect("payment_method", {})
+
+
 def payment_method_view(request, *args, **kwargs):
     return render(request, "payment_method.html", {})
 
