@@ -203,11 +203,10 @@ input.phone {
 }
 
 .box > .two > .c > ul > li {
-    width: 100%;
     height: 72px;
     background-color: #fff;
     box-sizing: border-box;
-    padding: 0 20px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -386,12 +385,13 @@ ul > img {
 
 .delete-button {
     float: right;
-    position: relative;
+    position: initial;
 /*     background-color: #BC472D; */
     background-color: #555;
     border: none;
-    height: 73px;
+    height: 62px;
     width: 44px;
+    margin-right:6px;
     border-radius: 10px;
     left: 171px;
     top: 0px;
@@ -429,7 +429,7 @@ ul > img {
     font-weight: 500;
     font-size: 15pt;
     top: 12px;
-    left: -83px;
+    left: -90px;
 }
 
 .finish-button {
@@ -488,14 +488,10 @@ ul > img {
 }
 
 #id_cart_image {
-    position: relative;
-    right: -130px;
     transform: scale(0.75);
 }
 
 .empty-cart {
-    position: relative;
-    right: -100px;
     color: #FFFFFF;
     font-weight: bold;
     font-size: 22pt;
@@ -541,6 +537,6 @@ i {
     font-size: 15pt;
     float: right;
     position: relative;
-    left: -201px;
+    left: -215px;
     top: 38px;
 }

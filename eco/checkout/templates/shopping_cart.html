@@ -58,38 +58,58 @@
                 <div class="top-right amount-sum"><em style="color: #03372A;">0</em></div>
             </div>
         </div>
-        <form id="id_cart_form" method="POST" action="{% url 'go_to_payment' %}"> {% csrf_token %}
-            <div id="id_cart_list_element" class="c">
-                <div class="kong" id="id_empty_container">
-                    {#                    <img src="/media/checkout/y4.png" alt=""/>#}
-                    {#                    <p>Oops! Your Cart is empty</p>#}
-                </div>
+        <div id="id_cart_list_element" class="c">
+            <div class="kong" id="id_empty_container">
+                {#                    <img src="/media/checkout/y4.png" alt=""/>#}
+                {#                    <p>Oops! Your Cart is empty</p>#}
             </div>
-            <div class="bottom-finish-bar">
-                <p id="id_total">Total:</p>
-                <p id="id_total_price" class="price-sum"><em style="color: #fff;">Price: $ 0</em></p>
-                <p id="id_total_points" class="price-sum"><em style="color: #fff;">Points: G 0</em></p>
-                <button id="id_finish" class="finish-button" type="button"><span
-                        class="finish">FINISH</span></button>
-            </div>
-        </form>
+        </div>
+        <div class="bottom-finish-bar">
+            <p id="id_total">Total:</p>
+            <p id="id_total_price" class="price-sum"><em style="color: #fff;">Price: $ 0</em></p>
+            <p id="id_total_points" class="price-sum"><em style="color: #fff;">Points: 0</em></p>
+            <button id="id_finish" class="finish-button"><span
+                    class="finish" type="button">CHECK OUT</span></button>
+        </div>
     </div>
 </main>
 </body>
 <script>
-    const id_empty_container = $("#id_empty_container")
-
     $(document).ready(function () {
-        console.log("id_empty_container children",id_empty_container.children().length);
+        const id_empty_container = $("#id_empty_container")
+
         if (id_empty_container.children().length === 0) {
             let temp = ""
             temp += "<img id='id_cart_image' src='/media/checkout/y4.png' alt='art2'>";
             temp += " <p id='id_cart_empty' class='empty-cart'>Oops! Your Cart is empty</p>";
             id_empty_container.append(temp);
         }
-        console.log("id_empty_container children",id_empty_container.children().length);
-    });
-    $(function () {
+        // go to purchase
+        {#$('#id_cart_form').submit(function () {#}
+        {#    let priceElement = document.getElementsByClassName('price')[0]#}
+        {#    let elements = document.getElementById('id_item');#}
+        {#    for (let i=0, item; item === elements[i]; i++) {#}
+        {#      // Look no need to do list[i] in the body of the loop#}
+        {#      console.log("Looping: index ", i, "item" + item);#}
+        {#    }#}
+        {#    // create an AJAX call#}
+        {#    $.ajax({#}
+        {#        data: response, // get the form data#}
+        {#        type: $(this).attr('method'), // GET or POST#}
+        {#        url: "{% url 'go_to_payment' %}",#}
+        {#        // on success#}
+        {#        success: function (response) {#}
+        {#            alert("Thankyou for reaching us out " + response);#}
+        {#        },#}
+        {#        // on error#}
+        {#        error: function (response) {#}
+        {#            // alert the error if any error occured#}
+        {#            alert(response.Product[0].errors);#}
+        {#            console.log(response.Product[0].errors)#}
+        {#        }#}
+        {#    });#}
+        {#    return false;#}
+        {# }); #}
         $(".addButton").click(function () {
             let barcode = $("#id_barcode").val();
             console.log(barcode);
@@ -98,12 +118,9 @@
                 url: "{% url 'get_product' %}?barcode=" + barcode,
                 cache: false,
                 success: function (response) {
-                    console.log("succ:id_empty_container length",id_empty_container.length);
-                    console.log("succ:id_empty_container children length",id_empty_container.children().length);
-                    console.log("succ:id_item length",$("#id_item").length);
                     if ($("#id_item").length === 0) {
                         id_empty_container.hide();
-                        console.log("inside start:id_item length",$("#id_item").length);
+                        console.log("inside start:id_item length", $("#id_item").length);
                         let temp = "<ul id='id_item' class='shopping-cart' <!-- 购物车商品 --> </ul>"
                         const id_item = $("#id_item")
                         $(".c").append(temp);
@@ -111,7 +128,7 @@
                     addItemToCart(response.product[0].name, response.product[0].barcode,
                         response.product[0].price, response.product[0].image,
                         response.product[0].is_eco, response.product[0].green_point);
-                    console.log("inside end:id_item children length",$("#id_item").children().length);
+                    console.log("inside end:id_item children length", $("#id_item").children().length);
                     getSum();
                     document.getElementById('id_barcode').value = ''; // clear input
                 },
@@ -254,8 +271,8 @@
                 pointTotal += numArray[i] * greenPointArray[i];
             }
             $(".amount-sum em").text(numTotal);
-            $("#id_total_price em").text("$ " + moneyTotal.toFixed(2));
-            $("#id_total_points em").text("Green: " + pointTotal);
+            $("#id_total_price em").text("Price: $ " + moneyTotal.toFixed(2));
+            $("#id_total_points em").text("Points: " + pointTotal);
         }
 
         document.getElementById("id_finish").onclick = function () {
@@ -263,10 +280,9 @@
             if ($(".cart-item").length == 0) {
                 alert("Your cart is empty");
             } else {
-                location.href = "{% url 'payment_method'%}";
+                location.href = "{% url 'go_to_payment' %}"
             }
-
         };
-    })
+    });
 </script>
 </html>

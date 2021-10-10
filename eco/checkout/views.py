@@ -6,6 +6,7 @@ from .forms import StartForm
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from products.models import Product
+import math
 
 User = get_user_model()
 
@@ -102,7 +103,7 @@ description:
 def get_product_view(request):
     barcode_html = request.GET.get("barcode")
     products = Product.objects.get(barcode=barcode_html)
-    green_point = int(products.price * products.is_eco)
+    green_point = (float(products.price / 7 + 10) * math.e) * products.is_eco
     temp = {
         "name": products.name,
         "price": products.price,
@@ -111,18 +112,24 @@ def get_product_view(request):
         "is_eco": products.is_eco,
         "description": products.description,
         "summary": products.summary,
-        "green_point": green_point,
+        "green_point": int(green_point),
     }
+    request.session = temp
     context = [temp]
     return JsonResponse({"product": context})
 
 
 def goto_payment_view(request):
-    return redirect("payment_method", {})
+    context = {"object": request.POST}
+    print("here", context)
+    # return redirect("payment_method", context)
+    return render(request, "payment_method.html", context)
 
 
 def payment_method_view(request, *args, **kwargs):
-    return render(request, "payment_method.html", {})
+    context = {"object": request.POST}
+    context = {"object": request.GET}
+    return render(request, "payment_method.html", context)
 
 
 # def get(request):
