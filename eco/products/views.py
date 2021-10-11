@@ -4,9 +4,10 @@ from .forms import *
 
 # Create your views here.
 def product_detail_view(request):
-    obj = Product.objects.get(title=request.POST.get("name"))
+    barcode_html = request.GET.get("barcode")
+    products = Product.objects.get(barcode=barcode_html)
     context = {
-        'object': obj
+        'product': products
     }
     return render(request, "product/product_detail.html", context)
 

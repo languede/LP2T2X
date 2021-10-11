@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
+{%  block style %}
+    <link rel="stylesheet" type="text/css" href="/static/product/product_details.css"/>
+{%  endblock %}
 {% block content %}
-    <h1>{{ object.name }}</h1>
+    <h1>{{ product.name }}</h1>
+    <br>
+    <img src="{{ product.image.url }}" alt="img"/>
+    <br>
     <p>
-        {% if object.description %}
-            this "{{ object.description }}"
+        {% if product.description %}
+            this "{{ product.description }}"
         {% else %}
             Description Coming Soon
         {% endif %}
     </p>
-    {{ object.price }} $
-    <br><br>
-    <img src="{{ object.image.url }}" alt="img"/>
+    <span>{{ product.price }} $</span>
 {% endblock %}
