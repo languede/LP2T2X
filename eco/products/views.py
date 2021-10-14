@@ -26,13 +26,3 @@ def product_create_view(request):
         'form': my_form
     }
     return render(request, "product/product_create.html", context)
-
-
-# def product_create_view(request):
-#     my_form = ProductForm(request.POST or None)
-#     if my_form.is_valid():
-#         my_form.save()
-#         context = {
-#             'form': my_form
-#         }
-#     return render(request, "product/product_create.html", context)

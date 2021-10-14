@@ -193,28 +193,3 @@ def goto_payment_view(request):
     # return redirect("payment_method", context)
     return render(request, "celebrate.html", context)
 
-
-def payment_method_view(request, *args, **kwargs):
-    context = {"object": request.GET}
-    return render(request, "payment_method.html", context)
-
-#
-# def finish_payment_view(request):
-#     return render(request, "finish_payment.html")
-# def get(request):
-#     barcode = request.GET.get("barcode")
-#     msg = {"status": 200, "result": None}
-#     try:
-#         goods_obj = Product.objects.get(barcode=barcode)
-#         goods_info = {
-#             "barcode": goods_obj.barcode,
-#             "price": goods_obj.price,
-#             "img": f"media/{goods_obj.img}",
-#         }
-#         msg["result"] = goods_info
-#         return JsonResponse(msg)
-#     except:
-#         msg["status"] = 400
-#         msg["result"] = "Request error, please check whether the barcode is correct."
-#
-#         return JsonResponse(msg)
