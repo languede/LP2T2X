@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import ProfileForm
 from .forms import ResetPasswordForm
-from .models import Order
+from products.models import Order
 
 from django.db.models import Sum
 
@@ -134,7 +134,7 @@ def user_profile_view(request):
     user_info = request.user
     form = ProfileForm(instance=user_info)
     reset_password_form = ResetPasswordForm(instance=user_info)
-    orders = user_info.order_set.all()
+    # orders = user_info.order_set.all()
 
     if request.method == 'POST':
         # Update user information
@@ -150,7 +150,7 @@ def user_profile_view(request):
                 form.save()
                 return redirect('profile')
 
-    context = {'form': form, 'orders': orders, 'reset_form': reset_password_form}
+    context = {'form': form, 'reset_form': reset_password_form}
     return render(request, 'user_profile.html', context)
 
 

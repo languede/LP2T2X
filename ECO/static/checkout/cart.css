@@ -1,61 +1,62 @@
-.cart-item {
-    width: 480px;
-    height: 80px;
-    background: #FFF;
-    border-radius: 10px;
-    padding: 0;
-    margin: 15px;;
-    display: flex;
-    align-items: center;
-}
-
 .p-img > img {
     float: left;
     width: 65px;
     height: 65px;
+    margin: 10px;
 }
 
 .eco-img > img {
-    height: 20px;
+    height: 25px;
     margin: 0;
 }
 
 .eco-img {
     position: absolute;
-    right: 100px;
+    display:flex;
+    align-items: center;
+    flex-flow: column;
+    right: 30px;
     width: 20px;
     text-align: center;
     color:#4CAF50;
     height:70px;
     font-weight: 500;
     font-size: 18px;
+    bottom:-20px;
 }
 .eco-img>span {
     color:#4CAF50;
-    position: relative;
-    top:9px;
+}
+.eco-img>span:hover {
+    color:#4CAF50;
 }
 .p-goods {
-    display: block;
     margin: 0px;
-    width: 200px;
+    width: auto;
+    display:flex;
+    flex-flow:row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+    position:absolute;
+
 }
 
 .p-msg {
-    position: relative;
-    left: -10px;
+    position: absolute;
+    left: 0;
     width: auto;
     text-align: center;
-    margin-bottom: 10px;
-    font-size: 18px;
+    margin: 0 0 5px 10px;
+    font-size: 21px;
     font-weight: bold;
     color: #03372A;
+    left:90px;
 }
 
 .p-num {
-    display: block;
-    position: relative;
-    left: 50px;
+    position: absolute;
+    right: -310px;
 }
 
 .p-price {
@@ -111,7 +112,7 @@
     -webkit-appearance: none;
 }
 
-.p-action {
+/* .p-action {
     float: right;
     position: absolute;
     right: 10px;
@@ -119,18 +120,17 @@
     height: 80px;
     width: 56px;
     border-radius: 0 10px 10px 0;
-    background-color: tomato;
-    color: #fff;
+    background-color: #FFF;
     text-align: center;
-
 }
 
 .p-action:hover {
-    background-color: red;
+    background-color: #888;
+    color:#FFF;
 }
 
 .p-action:active {
-    background-color: tomato;
+    background-color: #555;
 }
 
 .p-action > a {
@@ -139,7 +139,7 @@
 
 .p-num > a {
     text-decoration: none;
-}
+} */
 
 .decrement:hover, .increment:hover {
     background-color: green;
@@ -159,7 +159,7 @@
     position: absolute;
     top: -5px;
     right: -10px;
-    font-weight: 200px;
+    font-weight: 200;
     width: 28px;
     height: 28px;
     background-color: #f7dea8;
@@ -171,10 +171,16 @@
 
 #close {
     position: relative;
-    top: -1px;
-    color: #FFFFFF;
-    font-size: 38pt;
+    top: 8px;
+    color: #888;
+    font-size: 28pt;
     font-weight: 500;
+}
+#close:hover{
+    color:#FFF;
+}
+span:hover{
+    color: #FFF;
 }
 
 span#id_point.eco-img {

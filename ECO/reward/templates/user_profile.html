@@ -54,7 +54,7 @@
             <div class="history tabShow">
                 <div class="history-items">
 
-                    {% for order in orders %}
+                    <!-- {% for order in orders %}
                     <div class="history-item">
                         <div class="history-dot"></div>
                         <div class="history-date">{{order.created_date}}</div>
@@ -63,7 +63,7 @@
                             <span>{{order.points}} Points</span>
                         </div>
                     </div>
-                    {% endfor %}
+                    {% endfor %} -->
 
                 </div>
             </div>
@@ -89,7 +89,6 @@
     <script>
         const tabBtn = document.querySelectorAll(".tab");
         const tab = document.querySelectorAll(".tabShow");
-        
         function tabs(panelIndex) {
             tab.forEach(function(node) {
                 node.style.display = "none";
