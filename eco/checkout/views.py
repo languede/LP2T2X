@@ -134,6 +134,29 @@ def append_order(order, new_order, price, green_point):
 
 """
 ---------------------
+create_order: 
+---------------------
+@input: an Object from Table Order
+@return: a list of dict which each dict is a item in shopping cart, 
+         for example, order_lists[
+                eco_item1{name: eco_item1,..., price: 5}
+                eco_item2{name: eco_item2,..., price: 2}
+                item1{name: item1,..., price: 500}
+                ]
+---------------------
+description:
+    load oder_lists JsonFields in a given entry of database Table Order
+    covert the json object to list of dictionaries
+    return this list
+"""
+
+
+def get_ordered_item_list(order):
+    return json.loads(order.order_items)  # convert order_items json to list[dic1, dic2, etc...]
+
+
+"""
+---------------------
 get_product_view: 
 ---------------------
 description:
