@@ -27,13 +27,12 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('home/', home_view, name='home'),
     path('login/', login_signup_view, name='login-signup'),
-    path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
-    path('details/', product_detail_view, name='details'),
-    path('product/', product_create_view, name='product'),
-    # checkout page
+    # product app
+    path('', include('products.urls')),
+    # checkout app
     path('', include('checkout.urls')),
-    #  reward system
+    # reward system app
     path('', include('reward.urls')),
     # admin
     path('admin/', admin.site.urls),

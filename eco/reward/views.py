@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 # homepage
 def reward_home_view(request):
-    return render(request, "rewards/index.html")
+    return render(request, "index.html")
 
 
 """
@@ -49,7 +49,7 @@ def login_signup_view(request):
                 return redirect('profile')
             else:
                 messages.info(request, 'Phone number OR password is incorrect')
-    return render(request, "rewards/login-signup.html", context)
+    return render(request, "login-signup.html", context)
 
 
 """
@@ -81,9 +81,9 @@ description:
 def user_profile_view(request):
     user_info = request.user
     context = {'user': user_info}
-    return render(request, 'rewards/user_profile.html', context)
+    return render(request, 'user_profile.html', context)
 
 
-# eco-rating page
+#eco-rating page
 def eco_rating_view(request):
-    return render(request, "rewards/user-eco.html")
+    return render(request, "user-eco.html")

@@ -7,8 +7,6 @@ from simple_history.models import HistoricalRecords
 # Create your models here.
 class User(AbstractUser):
     pass
-    # username = models.CharField(max_length=100)
-    # password = models.CharField(max_length=50)
     image = models.ImageField(blank=True)
     phone_number = PhoneNumberField(unique=True)
     green_point = models.IntegerField(blank=True, default=0)
