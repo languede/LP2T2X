@@ -6,7 +6,7 @@
 }
 
 .eco-img > img {
-    height: 30px;
+    height: 20px;
     margin: 0;
 }
 
@@ -19,9 +19,10 @@
     width: 20px;
     text-align: center;
     color:#4CAF50;
+    height:70px;
     font-weight: 500;
     font-size: 18px;
-    bottom:20px;
+    bottom:-5px;
 }
 .eco-img>span {
     color:#4CAF50;
@@ -37,7 +38,7 @@
     flex-flow:column;
     flex-wrap:wrap;
     position:relative;
-    left:-250px;
+    left:-100px;
 }
 
 .p-msg {

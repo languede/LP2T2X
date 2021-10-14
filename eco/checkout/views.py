@@ -114,7 +114,6 @@ def get_product_view(request):
         "summary": products.summary,
         "green_point": int(green_point),
     }
-
     request.session = temp
     context = [temp]
     return JsonResponse({"product": context})
@@ -133,8 +132,6 @@ def payment_method_view(request, *args, **kwargs):
     return render(request, "payment_method.html", context)
 
 
-def finish_payment_view(request):
-    return render(request, "finish_payment.html")
 # def get(request):
 #     barcode = request.GET.get("barcode")
 #     msg = {"status": 200, "result": None}

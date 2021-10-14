@@ -67,10 +67,10 @@
         <div class="bottom-finish-bar">
             <p id="id_total">Total:</p>
             <p id="id_total_price" class="price-sum"><em style="color: #fff;">Price: $ 0</em></p>
+            <p id="id_total_points" class="price-sum"><em style="color: #fff;">Points: 0</em></p>
             <button id="id_finish" class="finish-button"><span
                     class="finish" type="button">CHECK OUT</span></button>
         </div>
-        <
     </div>
 </main>
 </body>
@@ -88,15 +88,18 @@
         {#$('#id_cart_form').submit(function () {#}
         {#    let priceElement = document.getElementsByClassName('price')[0]#}
         {#    let elements = document.getElementById('id_item');#}
-        {##}
+        {#    for (let i=0, item; item === elements[i]; i++) {#}
+        {#      // Look no need to do list[i] in the body of the loop#}
+        {#      console.log("Looping: index ", i, "item" + item);#}
+        {#    }#}
         {#    // create an AJAX call#}
         {#    $.ajax({#}
         {#        data: response, // get the form data#}
         {#        type: $(this).attr('method'), // GET or POST#}
+        {#        url: "{% url 'go_to_payment' %}",#}
         {#        // on success#}
         {#        success: function (response) {#}
-        {#            priceElement.jsonpxu;#}
-        {#            priceElement.jsonpxu;#}
+        {#            alert("Thankyou for reaching us out " + response);#}
         {#        },#}
         {#        // on error#}
         {#        error: function (response) {#}
@@ -106,7 +109,7 @@
         {#        }#}
         {#    });#}
         {#    return false;#}
-        {# });#}
+        {# }); #}
         $(".addButton").click(function () {
             let barcode = $("#id_barcode").val();
             console.log(barcode);
@@ -168,16 +171,22 @@
 
             let isEco = `
             <div class="eco-img">
+                <span id="id_point" class="green-point">
+                    ${green_point}
+                </span>
                 <img id="id_eco_image" src="/media/eco_logo_1.png" alt=""/>
             </div>`
             let notEco = `
             <div class="eco-img">
+                <span id="id_point" class="green-point" style="opacity: 0">
+                    ${green_point}
+                </span>
             </div>`
             {#let endHTML = `<div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div></div>`;#}
-            let endHTML = ""
-{#            <button type="button" id='id_delete_button' class='btn btn-outline-secondary delete-button'>#}
-{#                <i class='fa fa-close'></i>#}
-{#            </button>#}
+            let endHTML = `
+            <button type="button" id='id_delete_button' class='btn btn-outline-secondary delete-button'>
+                <i class='fa fa-close'></i>
+            </button>`
 
             if (is_eco == false) {
                 cartRow.innerHTML = startHTML + notEco + endHTML
@@ -263,7 +272,7 @@
             }
             $(".amount-sum em").text(numTotal);
             $("#id_total_price em").text("Price: $ " + moneyTotal.toFixed(2));
-            {#$("#id_total_points em").text("Points: " + pointTotal);#}
+            $("#id_total_points em").text("Points: " + pointTotal);
         }
 
         document.getElementById("id_finish").onclick = function () {

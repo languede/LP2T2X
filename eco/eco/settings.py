@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rbfw&6pblf7!$)=g%$)42bt!17d8+d(f7^da1zoh#38mc4x-!v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'teamlp2t2x.uqcloud.net']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -94,12 +94,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'authentication.auth_backend.PasswordlessAuthBackend',
 )
-
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
