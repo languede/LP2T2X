@@ -12,9 +12,9 @@
     <header>
         <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/star/star5.png" width="80" height="80"></a>
         <ul>
-            <li><a href="#">ECO</a></li>
+            <li><a href="{% url 'rating' %}">My Green Point</a></li>
             <li><a href="#">Reward Redemption</a></li>
-            <li><a href="#">My Account</a></li>
+            <li><a href="{% url 'profile' %}">My Account</a></li>
         </ul>
     </header>
 
@@ -23,7 +23,7 @@
             <h1 class="section-title">AVERAGE RATING</h1>
             <div class="rating-star"><img src="/media/reward/star/star3.png" width="180" height="180"></div>
             <h2>GREEN POINTS</h2>
-            <h1 class="rating">3472</h1>
+            <h1 class="rating">{{points}}</h1>
         </div>
     </section>
 

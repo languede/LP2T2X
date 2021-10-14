@@ -1,16 +1,3 @@
-<!-- <h1>Welcome! {{ object.username }} </h1>
-<h3>Your Phone: {{ object.phone_number }}</h3>
-<h3>Green Points: {{ object.green_point }} </h3>
-<br><br>
-<p>
-    Last Login Time: {{ object.last_login }}
-</p>
-<br>
-<form method="POST" action="{% url 'profile' %}"> {% csrf_token %}
-    <input id="user" type="hidden" name="user_id" value="{{ object.phone_number }}">
-    <button name="submit" value="add_points">+Green</button>
-</form> -->
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -21,6 +8,7 @@
     <title>EcoRewards</title>
     <link rel="stylesheet" href="/static/page_reset.css">
     <link rel="stylesheet" href="/static/reward/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -42,20 +30,55 @@
 
         <div class="right-container">
             <div class="profile tabShow">
-                <form action="#" class="update-form"> {% csrf_token %}
-                    <div class="input-field"><input type="text" placeholder="{{ user.username }}"></div>
-                    <div class="input-field"><input type="text" placeholder="{{ user.phone_number }}"></div>
-                    <div class="input-field"><input type="text" placeholder="{{ user.email }}"></div>
-                    <input type="submit" class="btn" value="Update"/>
+
+                <form method="POST" action="{% url 'profile' %}" class="update-form" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="input-field">
+
+                        {% if field.name == 'username' %}
+                            <i class="fa fa-user"></i>
+                        {% elif field.name == 'phone_number' %}
+                            <i class="fa fa-phone"></i>
+                        {% elif field.name == 'email' %}
+                            <i class="fa fa-envelope"></i>
+                        {% endif %}
+
+                        {{field}}
+                    </div>
+
+                    {% endfor %}
+                    <input type="submit" class="btn" value="Update" name='submit'/>
                 </form>
             </div>
             <div class="history tabShow">
-                <h2>Shopping History</h2>
+                <div class="history-items">
+
+                    {% for order in orders %}
+                    <div class="history-item">
+                        <div class="history-dot"></div>
+                        <div class="history-date">{{order.created_date}}</div>
+                        <div class="history-content">
+                            <img src="/media/reward/star/star3.png" width="60" height="60">
+                            <span>{{order.points}} Points</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
             </div>
+
             <div class="Security tabShow">
-                <form action="#" class="update-form"> {% csrf_token %}
-                    <div class="input-field"><input type="password" placeholder="Password"></div>
-                    <input type="submit" class="btn" value="Change Password"/>
+                <form method="POST" action="{% url 'profile' %}" class="update-form" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    {% for field in reset_form %}
+                    <div class="input-field">
+                        <i class="fa fa-lock"></i>
+                        {{field}}
+                    </div>
+                    {% endfor %}
+
+                    <input type="submit" class="btn" value="Reset Password" name='submit'/>
                 </form>
             </div>
         </div>

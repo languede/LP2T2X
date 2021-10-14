@@ -15,11 +15,19 @@
             <li><a href="#">Reward Redemption</a></li>
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'profile' %}">My Account</a></li>
-            {% else %}
-            <li><a href="{% url 'login-signup' %}">Login/Register</a></li>
             {% endif %}
           </ul>
     </header>
+    {% if messages %}
+      {% for message in messages %}
+          {% if forloop.counter < 2 %}
+          <div class="alert alert--{{message.tags}}">
+            <p class="alert__massage">{{message}}</p>
+            <button class="alert__close">x</button>
+          </div>
+          {% endif %}
+      {% endfor %}
+    {% endif %}
 
     <section class="about" >
         <div class="about-title">
@@ -33,19 +41,74 @@
           <button id="learn_more">Learn more</button>
         </div>
 
-        <div class="modal-container" id="modal_container">
-          <div class="modal">
-            <h2>What is Eco Rewards</h2>
-            <p>Eco Rewards focus on individual awareness of climate change. The system aims at helping people
-              to make more environmentally-friendly purchases.
-              <br>A visual sign of green stars rating is designed for incentivizing customers to make green alternatives
-              to obtain rewards for their choices. The higher the rating of stars represents the higher level of environmentally-friendly
-              products. Even if the customer does not care about climate change on purpose, he would choose the
-              Eco-friendly products motivated by gaining rewards.The reward system potentially promotes users to change their customer behaviour.
-            </p>
-            <button id="close_modal"><i class="fa fa-close"></i></button>
-          </div>
+      <div class="modal-container" id="modal_container">
+        <div class="modal">
+          <h2>What is Eco Rewards</h2>
+          <button id="close_modal"><i class="fa fa-close"></i></button>
+          <p>Eco Rewards focus on individual awareness of climate change. The system aims at helping people
+            to make more environmentally-friendly purchases.
+            <br>A visual sign of green stars rating is designed for incentivizing customers to make green alternatives
+            to obtain rewards for their choices. The higher the rating of stars represents the higher level of environmentally-friendly
+            products. Even if the customer does not care about climate change on purpose, he would choose the
+            Eco-friendly products motivated by gaining rewards.The reward system potentially promotes users to change their customer behaviour.
+          </p>
         </div>
+      </div>
+
+      {% if not request.user.is_authenticated %}
+      <div class="form-container">
+
+        {% if page == 'register' %}
+        <form action="{% url 'register' %}" method="POST" class="register-form">
+          {% csrf_token %}
+          <h2 class="form-title">Register an Account</h2>
+          {% for field in form %}
+          <div class="input-field">
+            {% if field.name == 'username' %}
+                <i class="fa fa-user"></i>
+            {% elif field.name == 'phone_number' %}
+                <i class="fa fa-phone"></i>
+            {% elif field.name == 'password1' or field.name == 'password2'%}
+                <i class="fa fa-lock"></i>
+            {% endif %}
+            {{ field }}
+
+            {% for error in field.errors %}
+              {% if forloop.counter < 2 %}
+              <p style="color: red; font-size: small;">{{error}}</p>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+          {% endfor %}
+          <!-- <input class="input-field" type="text" placeholder="Name">
+          <input class="form-input" type="text" placeholder="Phone Number">
+          <input class="form-input" type="password" placeholder="Password"> -->
+          <button type='submit' class='submit-btn' name='submit' value='sign_in'>SIGN UP</button>
+          <a href="{% url 'login' %}">Have an Account?</a>
+        </form>
+
+        {% else %}
+        <form action="{% url 'login' %}" method="POST" class="login-form">
+          {% csrf_token %}
+          <h2 class="form-title">Login to Eco Reward</h2>
+          <div class="input-field">
+            <i class="fa fa-phone"></i>
+            <input class="form-input" type="text" placeholder="Phone Number" name="phone">
+          </div>
+          <div class="input-field">
+            <i class="fa fa-lock"></i>
+            <input class="form-input" type="password" placeholder="Password" name="password">
+          </div>
+          <button type='submit' class='submit-btn' name='submit' value='sign_in'>SIGN IN</button>
+          <a href="{% url 'register' %}">Create Your Account</a>
+        </form>
+
+        {% endif %}
+
+      </div>
+
+      {% endif %}
     </section>
 
     <script>
@@ -61,6 +124,22 @@
         modal_container.classList.remove('show');
       });
 
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        hljs.highlightAll();
+      });
+
+
+      let alertWrapper = document.querySelector('.alert')
+      let alertClose = document.querySelector('.alert__close')
+
+      if (alertWrapper) {
+        alertClose.addEventListener('click', () =>
+          alertWrapper.style.display = 'none'
+        )
+      }
     </script>
 
 </body>
