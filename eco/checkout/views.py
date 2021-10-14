@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
-from django.core import serializers
-from django.db.models import F
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import MultipleObjectsReturned
 from .forms import StartForm
@@ -105,12 +103,33 @@ description:
 
 
 def create_order(temp_order, context, user):
-    new_order = Order(
+    new_order_recipe = Order(
         user_id=user.id,
         order_items=json.dumps([temp_order]),
         total_price=temp_order["price"],
         total_point=temp_order["green_point"])
-    new_order.save()
+    new_order_recipe.save()
+
+
+"""
+---------------------
+create_order: 
+---------------------
+description:
+    add the new added item(dataType=dict) to database "oder_items" column/JsonField 
+    update total price and points at sametime
+"""
+
+
+def append_order(order, new_order, price, green_point):
+    order_list = json.loads(order.order_items)  # convert order_items json to list[dic1, dic2, etc...]
+    order_list.append(new_order)  # append order_items list with new dict(temp_order)
+    order_items = json.dumps(order_list)  # convert list back to json
+    # update field
+    order.total_price += price
+    order.total_point += green_point
+    order.order_items = order_items
+    order.save()
 
 
 """
@@ -119,7 +138,8 @@ get_product_view:
 ---------------------
 description:
     get product data from database Product model
-    send product objects as JsonResponse
+    update or add new entry into Table:Order if needed
+    return product objects as JsonResponse
 """
 
 
@@ -129,7 +149,8 @@ def get_product_view(request):
     barcode_html = request.GET.get("barcode")
     user = request.user
     products = Product.objects.get(barcode=barcode_html)
-    green_point = (float(products.price / 7 + 10) * math.e) * products.is_eco
+    # calculate points, if is_eco == false, green_points = 0
+    green_point = int((float(products.price / 3 + 1) * math.e) * products.is_eco)
     temp_order = {
         "name": products.name,
         "price": products.price,
@@ -138,31 +159,30 @@ def get_product_view(request):
         "is_eco": products.is_eco,
         "description": products.description,
         "summary": products.summary,
-        "green_point": int(green_point),
+        "green_point": green_point,
     }
-    context = [temp_order]
+
     if not user.is_anonymous:
         try:
+            order = Order.objects.get(user_id=user.id)  # get order by id
+            time_temp = now_time - order.created_date
+            if time_temp > timedelta(minutes=5):  # if order is edited before 5 minus ago, create new one
+                create_order(temp_order, [temp_order], user)
+            else:
+                append_order(order, temp_order, products.price, green_point)
+        except MultipleObjectsReturned:
             order = Order.objects.filter(user_id=user.id).order_by('-order_date').first()
             time_temp = now_time - order.created_date
-            if (time_temp) > timedelta(minutes=15):
-                raise TimeoutException()
+            if time_temp > timedelta(minutes=5):  # if order is edited before 5 minus ago, create new one
+                create_order(temp_order, [temp_order], user)
             else:
-                order = Order.objects.filter(user_id=user.id).order_by('-order_date').first()
-                order_list = json.loads(order.order_items)
-                order_list.append(temp_order)
-                order_items = json.dumps(order_list)
-                # update field
-                order.total_price += products.price
-                order.total_point += green_point
-                order.order_items = order_items
-                order.save()
+                append_order(order, temp_order, products.price, green_point)
         except ObjectDoesNotExist:
-            create_order(temp_order, context, user)
+            create_order(temp_order, [temp_order], user)
         except TimeoutException:
-            create_order(temp_order, context, user)
+            create_order(temp_order, [temp_order], user)
 
-    return JsonResponse({"product": context})
+    return JsonResponse({"product": [temp_order]})
 
 
 def goto_payment_view(request):
