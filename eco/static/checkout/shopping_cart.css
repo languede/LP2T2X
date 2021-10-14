@@ -131,7 +131,7 @@ button.phone {
 
 #id_logout {
     position: relative;
-    top: -70px;
+    top: -95px;
     right: -150px;
 }
 
@@ -226,7 +226,6 @@ input.phone {
     float: bottom;
     bottom: 207px;
     right: 118px;
-    background-color: #000;
     height: 100px;
     width: 570px;
 }
@@ -260,8 +259,8 @@ article {
     position: relative;
     margin: 0;
     font-size: 20px;
-    top: 40px;
-    height: 90px;
+    top: 24px;
+    height: 101px;
     background-color: #26433E;
     color: white;
 }
@@ -372,11 +371,11 @@ ul > img {
 #id_item_price {
     display: inline-flex;
     position: absolute;
-    top: 30px;
+    top: 16px;
     color: #03372A;
     font-size: 18pt;
-    font-weight: 400;
-    right: 150px;
+    font-weight: 500;
+    right: 80px;
 }
 
 #id_item_price::after {
@@ -425,11 +424,13 @@ ul > img {
 
 #id_total_price {
     color: #FFFFFF;
+    display:flex;
     position: relative;
+    flex:left;
     font-weight: 500;
     font-size: 15pt;
-    top: 12px;
-    left: -90px;
+    top: 10px;
+    left: -140px;;
 }
 
 .finish-button {
@@ -468,6 +469,7 @@ ul > img {
 
 .finish-button:hover span {
     padding-right: 35px;
+    color: #26433e;
 }
 
 .finish-button:hover span:after {

@@ -17,7 +17,7 @@
 					<img src="/media/checkout/y1.png" alt=""/>
 					<p>CARD</p>
 				</li>
-				<li onclick="tc()">
+				<li>
                     <img src="/media/checkout/y2.png" alt=""/>
                     <form method="POST" action="{% url 'payment_method' %}"> {% csrf_token %}
                         <button>CASH</button>

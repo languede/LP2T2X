@@ -3,7 +3,7 @@ from .models import Product, Order
 
 
 class OrderAdmin(admin.ModelAdmin):
-    readonly_fields = ('order_date',)
+    readonly_fields = ('order_date', 'created_date',)
 
 
 # Register your models here.

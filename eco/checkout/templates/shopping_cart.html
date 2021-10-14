@@ -67,7 +67,6 @@
         <div class="bottom-finish-bar">
             <p id="id_total">Total:</p>
             <p id="id_total_price" class="price-sum"><em style="color: #fff;">Price: $ 0</em></p>
-            <p id="id_total_points" class="price-sum"><em style="color: #fff;">Points: 0</em></p>
             <button id="id_finish" class="finish-button"><span
                     class="finish" type="button">CHECK OUT</span></button>
         </div>
@@ -84,32 +83,6 @@
             temp += " <p id='id_cart_empty' class='empty-cart'>Oops! Your Cart is empty</p>";
             id_empty_container.append(temp);
         }
-        // go to purchase
-        {#$('#id_cart_form').submit(function () {#}
-        {#    let priceElement = document.getElementsByClassName('price')[0]#}
-        {#    let elements = document.getElementById('id_item');#}
-        {#    for (let i=0, item; item === elements[i]; i++) {#}
-        {#      // Look no need to do list[i] in the body of the loop#}
-        {#      console.log("Looping: index ", i, "item" + item);#}
-        {#    }#}
-        {#    // create an AJAX call#}
-        {#    $.ajax({#}
-        {#        data: response, // get the form data#}
-        {#        type: $(this).attr('method'), // GET or POST#}
-        {#        url: "{% url 'go_to_payment' %}",#}
-        {#        // on success#}
-        {#        success: function (response) {#}
-        {#            alert("Thankyou for reaching us out " + response);#}
-        {#        },#}
-        {#        // on error#}
-        {#        error: function (response) {#}
-        {#            // alert the error if any error occured#}
-        {#            alert(response.Product[0].errors);#}
-        {#            console.log(response.Product[0].errors)#}
-        {#        }#}
-        {#    });#}
-        {#    return false;#}
-        {# }); #}
         $(".addButton").click(function () {
             let barcode = $("#id_barcode").val();
             console.log(barcode);
@@ -162,83 +135,26 @@
               <div class="p-msg">${name}</div>
                 <div class="p-barcode" style="opacity: 0; height: 0; width: 0">${barcode}</div>
               <div class="p-num">
-                <a href="javascript:;" class="decrement"><span>-</span></a>
-                <input type="text" class="itxt" value="1" />
-                <a href="javascript:;" class="increment"><span>+</span></a>
+                <input readonly="readonly" class="itxt" value="1" />
               </div>
             </div>
             <div id="id_item_price" class="price">$ ${price}</div>`
 
             let isEco = `
             <div class="eco-img">
-                <span id="id_point" class="green-point">
-                    ${green_point}
-                </span>
                 <img id="id_eco_image" src="/media/eco_logo_1.png" alt=""/>
             </div>`
             let notEco = `
             <div class="eco-img">
-                <span id="id_point" class="green-point" style="opacity: 0">
-                    ${green_point}
-                </span>
             </div>`
-            {#let endHTML = `<div class="p-action"><a href="javascript:;"><span id="close">×<span></a></div></div>`;#}
-            let endHTML = `
-            <button type="button" id='id_delete_button' class='btn btn-outline-secondary delete-button'>
-                <i class='fa fa-close'></i>
-            </button>`
 
             if (is_eco == false) {
-                cartRow.innerHTML = startHTML + notEco + endHTML
+                cartRow.innerHTML = startHTML + notEco
             } else {
-                cartRow.innerHTML = startHTML + isEco + endHTML
+                cartRow.innerHTML = startHTML + isEco
             }
             cartItems.append(cartRow);
         }
-
-        // plus+1数量
-        $(document).on("click", ".increment", function () {
-            let n = $(this).siblings(".itxt").val();
-            n++;
-            $(this).siblings(".itxt").val(n);
-            getSum();
-        });
-
-        // minus-1数量
-        // $(".decrement").click(function () {
-        $(document).on("click", ".decrement", function () {
-            let n = $(this).siblings(".itxt").val();
-            if (n == 1) {
-                return false;
-            }
-            // console.log(n);
-            n--;
-            $(this).siblings(".itxt").val(n);
-            getSum();
-        });
-
-        // 直接修改数量
-        $(document).on("change", ".itxt", function () {
-            let n = $(this).val();
-            getSum();
-        })
-
-        // 删除商品
-        $(document).on("click", ".delete-button", function (event) {
-            $(this).parents(".cart-item").fadeTo("fast", 0, function () {
-                $(this).slideUp("fast", function () {
-                    $(this).remove();
-                    // empty cart or not
-                    if ($("#id_item").children().length === 0) {
-                        id_item.remove();
-                        id_empty_container.show();
-                    }
-                    getSum();
-                });
-            });
-
-
-        });
 
         // 总商品数（numTotal）和总价 （moneyTotal）
         function getSum() {

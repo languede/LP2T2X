@@ -6,7 +6,7 @@
 }
 
 .eco-img > img {
-    height: 20px;
+    height: 25px;
     margin: 0;
 }
 
@@ -15,14 +15,14 @@
     display:flex;
     align-items: center;
     flex-flow: column;
-    right: 90px;
+    right: 30px;
     width: 20px;
     text-align: center;
     color:#4CAF50;
     height:70px;
     font-weight: 500;
     font-size: 18px;
-    bottom:-5px;
+    bottom:-20px;
 }
 .eco-img>span {
     color:#4CAF50;
@@ -31,31 +31,32 @@
     color:#4CAF50;
 }
 .p-goods {
-    display: block;
     margin: 0px;
-    width: 200px;
+    width: auto;
     display:flex;
-    flex-flow:column;
+    flex-flow:row;
+    align-items: center;
+    justify-content: center;
     flex-wrap:wrap;
-    position:relative;
-    left:-100px;
+    position:absolute;
+
 }
 
 .p-msg {
-    position: relative;
-    left: -10px;
+    position: absolute;
+    left: 0;
     width: auto;
     text-align: center;
-    margin-bottom: 10px;
-    font-size: 18px;
+    margin: 0 0 5px 10px;
+    font-size: 21px;
     font-weight: bold;
     color: #03372A;
+    left:90px;
 }
 
 .p-num {
-    display: block;
-    position: relative;
-    left: 50px;
+    position: absolute;
+    right: -310px;
 }
 
 .p-price {

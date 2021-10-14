@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/page_reset.css"/>
+    <link rel="stylesheet" href="../../static/checkout/celebrate.css"/>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+<div class="box">
+    <div class="earth-icon">
+        {% if points != 0 %}
+            {% if points > 0 and points <= 100 %}
+                <img src="../../media/checkout/start1.png" alt="start1.">
+                <div class="greeninfo">
+                    <p id="p1">Good Job !</p>
+                    <p id="p2">Your Green Rating is 1 ;)</p>
+                    <p id="p3">That earned you {{ points }} points!</p>
+                </div>
+            {% elif points > 100 and points <= 200 %}
+                <img src="../../media/checkout/start2.png" alt="start2">
+                <div class="greeninfo">
+                    <p id="p1">Good Job !</p>
+                    <p id="p2">Your Green Rating is 2 ;)</p>
+                    <p id="p3">That earned you {{ points }} points!</p>
+                </div>
+            {% elif points > 200 and points <= 300 %}
+                <img src="../../media/checkout/start3.png" alt="start3">
+                <div class="greeninfo">
+                    <p id="p1">Good Job !</p>
+                    <p id="p2">Your Green Rating is 3 ;)</p>
+                    <p id="p3">That earned you {{ points }} points!</p>
+                </div>
+            {% elif points > 300 and points <= 400 %}
+                <img src="../../media/checkout/start4.png" alt="start4">
+                <div class="greeninfo">
+                    <p id="p1">Good Job !</p>
+                    <p id="p2">Your Green Rating is 4 ;)</p>
+                    <p id="p3">That earned you {{ points }} points!</p>
+                </div>
+            {% elif points > 500 and points <= 600 %}
+                <img src="../../media/checkout/start5.png" alt="start5">
+                <div class="greeninfo">
+                    <p id="p1">Good Job !</p>
+                    <p id="p2">Your Green Rating is 5 ;)</p>
+                    <p id="p3">That earned you {{ points }} points!</p>
+                </div>
+            {% else %}
+                <img src="../../media/checkout/start0.png" alt="start0">
+                <div class="greeninfo">
+                    <p id="p1">Good Job !</p>
+                    <p id="p2">Your Green Rating is {{ rating }};)</p>
+                    <p id="p3">That earned you {{ points }} points!</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <img src="../../media/checkout/yes.png" alt="success">
+            <div class="greeninfo">
+                    <p id="p1">Good Job !</p>
+                    <p id="p2">Thanks for shopping</p>
+                    <p id="p3">This purchase worth {{ points }} points</p>
+                </div>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

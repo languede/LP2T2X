@@ -1,0 +1,39 @@
+* {
+    /* font-family: wending; */
+    color: #4d4d4d;
+}
+
+body {
+    margin: 0;
+    background-color: #1a1a1f;
+}
+
+.box {
+    margin: auto;
+    margin-top: calc(50vh - 275px);
+    width: 970px;
+    height: 550px;
+    display: block;
+    text-align: center;
+    background: #fff url(../../media/checkout/Celebrate.png) no-repeat;
+    background-size: auto 100%;
+}
+
+.earth-icon > img {
+    margin-top: 30px;
+    height: 290px;
+}
+
+.greeninfo {
+    margin-top: 35px;
+}
+
+.greeninfo > p {
+    color: #26433E;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+.greeninfo > p > span {
+    font-weight: bold;
+}

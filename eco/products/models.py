@@ -20,4 +20,5 @@ class Order(models.Model):
     order_items = models.JSONField()
     total_point = models.IntegerField()
     total_price = models.DecimalField(decimal_places=2, max_digits=4294967295)
-    order_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    order_date = models.DateTimeField(auto_now=True)
