@@ -20,7 +20,6 @@ from products.views import *
 from checkout.views import *
 from django.conf.urls.static import static
 from django.conf import settings
-from reward.views import reward_home_view, login_signup_view, user_profile_view
 
 urlpatterns = [
     path('shopping_cart/', shopping_cart_view, name='shopping_cart'),

@@ -6,12 +6,12 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width:fit-content;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 80px;
-    z-index: 9;
+    padding: 1.5rem 0;
+    padding-left: 5rem;
+    z-index: 10;
 }
 
 .container {
@@ -139,6 +139,16 @@ nav a.active {
     background-color: #f1f1f1;
     margin: 0.6em 0;
     border: #bbbbbb solid 1px;
+    display: grid;
+    grid-template-columns: 12% 85%;
+    position: relative;
+}
+
+.input-field i {
+    text-align: center;
+    color: #acacac;
+    font-size: 1.5rem;
+    line-height: 55px;
 }
 
 .input-field input {
@@ -148,8 +158,9 @@ nav a.active {
     width: 400px;
     height: 80%;
     background: none;
-    font-size: 22px;
-    margin-left: 8px;
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0.2rem;
 }
 
 .tabShow {
@@ -169,4 +180,61 @@ nav a.active {
     cursor: pointer;
     font-size: 20px;
     color: #fff;
+}
+
+.history-items {
+    box-sizing: border-box;
+    padding-left: 20px;
+    position: relative;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vh;
+}
+
+.history-items::before {
+    content: '';
+	position: absolute;
+	width: 2px;
+	height: 320%;
+	background-color: #619174;
+    overflow-y: visible;
+}
+
+.history-item {
+	margin: 50px 0px;
+	width: 100%;
+	position: relative;
+}
+
+.history-dot {
+	height: 14px;
+	width: 14px;
+	background-color: #619174;
+	position: absolute;
+	border-radius: 50%;
+	top: 0.3rem;
+    left: -0.4rem;
+}
+
+.history-date {
+    font-size: 1.8rem;
+    color: #959595;
+    margin: 0 2rem;
+}
+
+.history-content {
+    position: relative;
+    top: 1rem;
+}
+
+.history-content img{
+    width: 6.2rem;
+    height: 6.2rem;
+    margin: 1rem 4rem;
+}
+
+.history-content span{
+    font-size: 1.8rem;
+    position: relative;
+    top: -2rem;
 }
