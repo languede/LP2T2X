@@ -35,10 +35,10 @@ urlpatterns = [
     path('', include('checkout.urls')),
     # reward system app
     path('', include('reward.urls')),
-  # store app
-  path('', include('store.urls')),
-  # basket app
-  path('', include('basket.urls')),
+    # store app
+    path('', include('store.urls')),
+    # basket app
+    path('', include('basket.urls')),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
