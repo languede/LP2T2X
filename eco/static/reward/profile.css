@@ -195,13 +195,13 @@ nav a.active {
     content: '';
 	position: absolute;
 	width: 2px;
-	height: 160%;
+	height: 320%;
 	background-color: #619174;
     overflow-y: visible;
 }
 
 .history-item {
-	margin: 30px 0px;
+	margin: 50px 0px;
 	width: 100%;
 	position: relative;
 }

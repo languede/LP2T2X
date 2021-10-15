@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.forms import ModelForm
 from authentication.models import User
 
+from django.contrib.auth.forms import PasswordChangeForm
+
 class ProfileForm(ModelForm):
     class Meta:
         model = User
@@ -12,13 +14,13 @@ class ProfileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
 
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'placeholder': field.label})
 
-class ResetPasswordForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ['password']
 
+class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
-        super(ResetPasswordForm, self).__init__(*args, **kwargs)
-        self.fields['password'].widget = \
-            forms.PasswordInput(attrs={'placeholder': 'Password'})
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'placeholder': field.label})

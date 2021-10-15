@@ -18,7 +18,6 @@ class Product(models.Model):
 class Order(models.Model):
     # Order recoder Table: store all order information from customer each time
     user_id = models.CharField(max_length=120)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     order_items = models.JSONField()
     total_point = models.IntegerField()
     total_price = models.DecimalField(decimal_places=2, max_digits=4294967295)

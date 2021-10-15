@@ -54,16 +54,28 @@
             <div class="history tabShow">
                 <div class="history-items">
 
-                    <!-- {% for order in orders %}
+                    {% for order in orders %}
                     <div class="history-item">
                         <div class="history-dot"></div>
                         <div class="history-date">{{order.created_date}}</div>
                         <div class="history-content">
+                            
+                            {% if order.total_point >= 0 and order.total_point <= 100 %}
+                            <img src="/media/reward/star/star1.png" width="60" height="60">
+                            {% elif order.total_point > 100 and order.total_point <= 200 %}
+                            <img src="/media/reward/star/star2.png" width="60" height="60">
+                            {% elif order.total_point > 200 and order.total_point <= 300 %}
                             <img src="/media/reward/star/star3.png" width="60" height="60">
-                            <span>{{order.points}} Points</span>
+                            {% elif order.total_point > 300 and order.total_point <= 400 %}
+                            <img src="/media/reward/star/star4.png" width="60" height="60">
+                            {% else %}
+                            <img src="/media/reward/star/star5.png" width="60" height="60">
+                            {% endif %}
+
+                            <span>{{order.total_point}} Points</span>
                         </div>
                     </div>
-                    {% endfor %} -->
+                    {% endfor %}
 
                 </div>
             </div>

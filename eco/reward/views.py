@@ -8,16 +8,29 @@ from authentication.models import User
 from django.contrib.auth.decorators import login_required
 
 from .forms import ProfileForm
-from .forms import ResetPasswordForm
 from products.models import Order
 
 from django.db.models import Sum
+from django.db.models import Count
+
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import CustomPasswordChangeForm
 
 
 # homepage
 def reward_home_view(request):
     return render(request, "index.html")
 
+"""
+---------------------
+login_signup_view: 
+---------------------
+description:
+    login and signup page
+    if POST & sign up button has been clicked => save form into database and redirect to profile page.
+    if GET => Rendering webpage with LoginForm and RegistrationForm
+"""
 
 def loginUser(request):
     if request.user.is_authenticated:
@@ -67,45 +80,6 @@ def registerUser(request):
 
 """
 ---------------------
-login_signup_view: 
----------------------
-description:
-    login and signup page
-    if POST & sign up button has been clicked => save form into database and redirect to profile page.
-    if GET => Rendering webpage with LoginForm and RegistrationForm
-"""
-
-
-# def login_signup_view(request):
-#     context = {}
-#     register_form = RegistrationForm()
-#     login_form = LoginForm()
-#     context['registration_form'] = register_form
-#     context['login_form'] = login_form
-#     if request.method == "POST":
-#         if request.POST.get('submit') == 'sign_up':
-#             register_form = RegistrationForm(request.POST, request.FILES)
-#             if register_form.is_valid():
-#                 register_form.save()
-#                 user = register_form.cleaned_data.get('username')
-#                 messages.success(request, 'Account was created for' + user)
-#                 return redirect("login-signup")
-#             else:
-#                 context['registration_form'] = register_form
-#         else:
-#             phone_number = request.POST.get('username')
-#             raw_password = request.POST.get('password')
-#             user = authenticate(request, phone_number=phone_number, password=raw_password)
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect('profile')
-#             else:
-#                 messages.info(request, 'Phone number OR password is incorrect')
-#     return render(request, "login-signup.html", context)
-
-
-"""
----------------------
 sign_out: 
 ---------------------
 description:
@@ -133,8 +107,10 @@ description:
 def user_profile_view(request):
     user_info = request.user
     form = ProfileForm(instance=user_info)
-    reset_password_form = ResetPasswordForm(instance=user_info)
+    reset_password_form = CustomPasswordChangeForm(request.user)
     # orders = user_info.order_set.all()
+    user_id = request.user.id
+    orders = Order.objects.filter(user_id=user_id).order_by('order_date')
 
     if request.method == 'POST':
         # Update user information
@@ -145,40 +121,37 @@ def user_profile_view(request):
                 return redirect('profile')
 
         elif request.POST.get('submit') == 'Reset Password':
-            reset_password_form = ResetPasswordForm(request.POST, request.FILES, instance=user_info)
-            if form.is_valid():
-                form.save()
+            reset_password_form = CustomPasswordChangeForm(request.user, request.POST)
+            if reset_password_form.is_valid():
+                user = reset_password_form.save()
+                update_session_auth_hash(request, user)
                 return redirect('profile')
+            else:
+                messages.error(request, 'Failed to reset password')
 
-    context = {'form': form, 'reset_form': reset_password_form}
+    context = {'form': form, 'orders': orders, 'reset_form': reset_password_form,}
     return render(request, 'user_profile.html', context)
 
 
-@login_required(login_url='login')
-def reset_password_view(request):
-    user_info = request.user
-    form = ResetPasswordForm(instance=user_info)
-
-    if request.method == 'POST':
-        if request.POST.get('submit') == 'Reset Password':
-            form = ResetPasswordForm(request.POST, request.FILES, instance=user_info)
-            if form.is_valid():
-                form.save()
-                return redirect('profile')
-    
-    context = {'form': form,}
-    return render(request, 'user_profile.html', context)
 
 #eco-rating page
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def eco_rating_view(request):
+    user_id = request.user.id
+    orders = Order.objects.filter(user_id=user_id).all()
+
+    # the point for the last purchase
+    last_order = Order.objects.filter(user_id=user_id).order_by('order_date').last()
+    last_order_point = last_order.total_point
+
     if not request.user.is_authenticated:
         messages.error(request, 'Please sign in to Eco Rewards')
         return redirect('reward_home')
     else:
-        points = Order.objects.filter(user=request.user).all()
-        points_sum = points.aggregate(nums=Sum('points'))
-
-        context = {'points': points_sum['nums']}
+        points_sum = orders.aggregate(nums=Sum('total_point'))
+        orders_num = orders.aggregate(nums=Count('created_date'))
+        num = orders_num['nums']
+        avg_points = int(points_sum['nums'] / num)
+        context = {'points': points_sum['nums'], 'avg_points': avg_points, 'last_order_point': last_order_point}
 
     return render(request, "user-eco.html", context)
