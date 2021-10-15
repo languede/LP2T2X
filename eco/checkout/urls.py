@@ -23,8 +23,8 @@ from django.conf import settings
 from reward.views import reward_home_view, login_signup_view, user_profile_view
 
 urlpatterns = [
-    path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
     path('checkout/', start_page_view, name='start_page'),
+    path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
     path('logout', start_page_view, name='logout'),
     path('get_product/', get_product_view, name='get_product'),
     path('go_to_payment/', goto_payment_view, name='go_to_payment'),
