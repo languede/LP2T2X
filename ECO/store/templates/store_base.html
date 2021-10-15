@@ -1,0 +1,147 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}ECO REWARDS{% endblock %}</title>
+
+
+    <link href="{% static "style.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "basket.css" %}">
+    <link href="{% static "reward/store/bootstrap.min.css" %}" rel="stylesheet">
+
+
+    <script type="text/javascript" src="{% static "jquery-3.6.0.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/script.js" %}"></script>
+
+
+    <script type="text/javascript" src="{% static  "js/popper.min.js" %}"></script>
+    <script type="text/javascript" src="{% static  "js/bootstrap.min.js" %}"></script>
+
+
+</head>
+
+<body>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+<nav class="header">
+    <div class="left-icon">
+        <img class="star" src="../../media/reward/star/star3.png"/>
+        <h1>ECO REWARDS</h1>
+    </div>
+
+    <ul class="navbar-link">
+        <li class="nav-item">
+            <a href="#">ECO</a>
+        </li>
+        <li class="nav-item">
+            <a href="#">My Account</a>
+        </li>
+        <li class="nav-item">
+            <a href="#">Reward Redemption</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="next">
+    <div class="next-nav">
+        <ul class="next-navbar-link">
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
+                    CATEGROIES
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                    <a class="dropdown-item" href="{% url 'store:all_products' %}">All products</a>
+
+                    {% for c in categories %}
+                        <li>
+                            <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="next-navbar-link">
+            <li class="next-nav-items">
+                <a href="#">Green points</a>
+
+            </li>
+
+        </ul>
+
+        <div class="search-item">
+
+
+            <li class="row">
+                {% if user.is_authenticated %}
+                    <a type="button" role="button" href="{% url "logout" %}" class="btn btn-outline-secondary">
+
+                        <div>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                 class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                <path fill-rule="evenodd"
+                                      d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                            </svg>
+
+                        </div>
+
+                    </a>
+                {% else %}
+                    <a type="button" role="button" href="{% url "login-signup" %}" class="btn btn-outline-secondary">
+
+                        <div>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+
+                        </div>
+
+                    </a>
+                {% endif %}
+            </li>
+            <li>
+
+
+                <a type="button" role="button" href="{% url "basket:basket_summary" %}"
+                   class="btn btn-outline-secondary">
+                    {% with total_qty=basket|length %}
+                        <div id="basket-qty" class="number-basket">
+                            {% if total_qty > 0 %}
+                                {{ total_qty }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </div>
+
+                    {% endwith %}
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                </a>
+            </li>
+        </div>
+    </div>
+</div>
+
+
+<div id="content">{% block content %}{% endblock %}</div>
+</body>
+</html>

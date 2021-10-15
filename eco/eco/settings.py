@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'authentication',
     'simple_history',
+    'store',
+    'basket',
 ]
 
 MIDDLEWARE = [
