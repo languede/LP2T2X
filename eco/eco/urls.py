@@ -29,6 +29,7 @@ urlpatterns = [
     # path('login/', login_signup_view, name='login-signup'),
     path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
+    path('introduction/', about_us_view, name='intro'),
     # product app
     path('', include('products.urls')),
     # checkout app
@@ -40,9 +41,11 @@ urlpatterns = [
     # basket app
     path('', include('basket.urls')),
     # reward payment
-    path('payment/', include('payment.urls', namespace='payment')),
+    path('', include('payment.urls')),
     # reward order
-    path('orders/', include('orders.urls', namespace='orders')),
+    path('', include('orders.urls')),
+    # ecomm product details
+    path('', include('details.urls')),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
