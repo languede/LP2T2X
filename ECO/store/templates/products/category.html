@@ -1,0 +1,71 @@
+{% extends "../store_base.html" %}
+{% load static %}
+{% block title %}Eco Rewards{% endblock %}
+<!-- Section: Sidebar -->
+
+{% block content %}
+
+
+
+
+        <!-- Grid row -->
+        <div class="row ">
+
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+
+                    <!-- Card -->
+                    <div class="product-list" >
+
+                        <div class="view zoom overlay z-depth-2 rounded ml-3" >
+
+                            <a href="{{ product.get_absolute_url }}">
+                                <div class="mask">
+                                    <img class="w-auto" alt="images" height="200px" width="150px"
+                                         src="{{ product.image.url }}">
+                                    <div class="mask rgba-black-slight"></div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="text-center pt-4">
+
+                            <h5><a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}"> {{ product.title }} </a></h5>
+                            <p class="mb-2 text-muted text-uppercase small">{{ product.category }}</p>
+                            <p class="mb-2 text-muted text-uppercase small">FEATURES:</p>
+                            <p class="mb-2 text-muted small">{{ product.feature }}</p>
+
+                            <hr>
+                            <h6 class="mb-3">Green points: {{ product.greenpoint }}</h6>
+
+                            <div class="container mt-3 text-center">
+
+                                <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" data-toggle="popover" data-placement="right" title="Description" data-content="{{ product.description }}">
+                                    Details
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- Card -->
+
+                </div>
+            {% endfor %}
+
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
+
+
+
+
+{% endblock %}

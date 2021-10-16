@@ -1,0 +1,105 @@
+{% extends "../store_base.html" %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function () {
+            // MDB Lightbox Init
+            $(function () {
+                $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+            });
+        });
+    </script>
+
+    <!--Section: Block Content-->
+    <!--Section: Block Content-->
+    <section class="mb-5">
+
+        <div class="row">
+            <div class="col-md-5 col-lg-5 order-md-first bg-light">
+                <img class="img-fluid mx-auto d-block w-75" width="200px"  alt="images" src="{{ product.image.url }}">
+
+            </div>
+            <div class="col-md-6">
+
+                <h5>{{ product.title }}</h5>
+                <p class="mb-2 text-muted text-uppercase small">{{ product.category }}</p>
+
+                <p><span class="mr-1"><strong>{{ product.greenpoint }}</strong></span></p>
+                <p class="pt-1">{{ product.description|slice:"355" }}...</p>
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless mb-0">
+                        <tbody>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Company</strong></th>
+                            <td>{{ product.producer }}</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Feature</strong></th>
+                            <td>{{ product.feature }}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="table-responsive mb-2">
+                    <table class="table table-sm table-borderless">
+                        <tbody>
+                        <tr>
+                            <td class="pl-0 pb-0 w-25">Quantity</td>
+
+                        </tr>
+                        <tr>
+                            <td class="pl-0">
+                                <div class="col-6">
+                                    <select id="select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button type="button" class="btn btn-block btn-outline-dark mr-1 mb-2" id="add-button" value="{{ product.id }}"><i
+                        class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
+            </div>
+        </div>
+
+    </section>
+    <!--Section: Block Content-->
+    <script>
+        $(document).on('click', '#add-button', function (e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_add" %}',
+                data: {
+                    productid: $('#add-button').val(),
+                    productqty: $('#select option:selected').text(),
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: 'post'
+                },
+                success: function (json) {
+                    document.getElementById("basket-qty").innerHTML = json.qty
+
+
+                },
+                error: function (xhr, errmsg, err) {}
+            });
+        })
+    </script>
+
+
+
+{% endblock %}
+

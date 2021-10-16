@@ -22,6 +22,7 @@ from .forms import CustomPasswordChangeForm
 def reward_home_view(request):
     return render(request, "index.html")
 
+
 """
 ---------------------
 login_signup_view: 
@@ -31,6 +32,7 @@ description:
     if POST & sign up button has been clicked => save form into database and redirect to profile page.
     if GET => Rendering webpage with LoginForm and RegistrationForm
 """
+
 
 def loginUser(request):
     if request.user.is_authenticated:
@@ -52,7 +54,7 @@ def loginUser(request):
             return redirect('reward_home')
         else:
             messages.error(request, 'Username OR password is incorrect')
-        
+
     return render(request, 'index.html')
 
 
@@ -74,7 +76,7 @@ def registerUser(request):
         else:
             messages.error(request, 'Error occurred')
 
-    context = {'page': page, 'form':form}
+    context = {'page': page, 'form': form}
     return render(request, 'index.html', context)
 
 
@@ -103,6 +105,7 @@ description:
     if POST & submit request equal to sign_in => sign user in, authenticate form and refresh profile page
 """
 
+
 @login_required(login_url='login')
 def user_profile_view(request):
     user_info = request.user
@@ -129,12 +132,11 @@ def user_profile_view(request):
             else:
                 messages.error(request, 'Failed to reset password')
 
-    context = {'form': form, 'orders': orders, 'reset_form': reset_password_form,}
+    context = {'form': form, 'orders': orders, 'reset_form': reset_password_form, }
     return render(request, 'user_profile.html', context)
 
 
-
-#eco-rating page
+# eco-rating page
 @login_required(login_url='login')
 def eco_rating_view(request):
     user_id = request.user.id
