@@ -14,3 +14,8 @@ def product_detail_view(request, *args, **kwargs):
 
 def about_us_view(request, *args, **kwargs):
     return render(request, "about_us.html", {})
+
+
+def introduction_view(request, *args, **kwargs):
+    return render(request, "intro.html", {})
+
