@@ -142,7 +142,10 @@ def eco_rating_view(request):
 
     # the point for the last purchase
     last_order = Order.objects.filter(user_id=user_id).order_by('order_date').last()
-    last_order_point = last_order.total_point
+    if last_order is not None:
+        last_order_point = last_order.total_point
+    else:
+        last_order_point = 0
 
     if not request.user.is_authenticated:
         messages.error(request, 'Please sign in to Eco Rewards')
@@ -151,7 +154,11 @@ def eco_rating_view(request):
         points_sum = orders.aggregate(nums=Sum('total_point'))
         orders_num = orders.aggregate(nums=Count('created_date'))
         num = orders_num['nums']
-        avg_points = int(points_sum['nums'] / num)
+        if num == 0:
+            avg_points = 0
+            points_sum['nums'] = 0
+        else:
+            avg_points = int(points_sum['nums'] / num)
         context = {'points': points_sum['nums'], 'avg_points': avg_points, 'last_order_point': last_order_point}
 
     return render(request, "user-eco.html", context)
