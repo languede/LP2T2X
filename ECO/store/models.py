@@ -9,6 +9,7 @@ class ProductManager(models.Manager):
     def get_queryset(self):
         return super(ProductManager, self).get_queryset().filter(eco='yes')
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     slug = models.SlugField(max_length=255, unique=True)
@@ -23,8 +24,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='product_creator')
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     feature = models.TextField(blank=True)
     title = models.CharField(max_length=255)
@@ -34,17 +35,17 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255)
     greenpoint = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
-
-
+    ecoinfo = models.TextField(blank=True, null=True)
     eco = models.CharField(max_length=100, default='null')
     objects = models.Manager()
     products = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Products'
-        ordering = ('title', )
+        ordering = ('title',)
 
     def get_absolute_url(self):
+        temp = reverse('store:product_detail', args=[self.category, self.slug])
         return reverse('store:product_detail', args=[self.category, self.slug])
 
     def __str__(self):

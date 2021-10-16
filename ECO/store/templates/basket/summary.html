@@ -3,6 +3,7 @@
 {% block title %}basket{% endblock %}
 
 {% block content %}
+    <main>
     <div class="basket">
         {% if request.user.is_authenticated %}
             <h1>Existing Green Points:{{ green_points }}</h1>
@@ -11,7 +12,6 @@
         {% endif %}
         <div class="basket-module">
         </div>
-
         <div class="basket-labels">
             <ul>
                 <li class="item item-heading">Item</li>
@@ -38,9 +38,9 @@
                             <p>Producer: {{ product.producer }}</p>
                         </div>
                     </div>
-                    <div class="price pl-4">${{ product.price }}</div>
-                    <div class="quantity pl-4">
-                        <select id="select{{ product.id }}">
+                    <div class="price">${{ product.price }}</div>
+                    <div class="quantity">
+                        <label for="select{{ product.id }}"></label><select id="select{{ product.id }}">
                             <option selected>
                                 {{ item.qty }}
                             </option>
@@ -50,7 +50,7 @@
                             <option value="">4</option>
                         </select>
                     </div>
-                    <div class="price pl-4">{{ product.greenpoint }}</div>
+                    <div class="points">{{ product.greenpoint }}</div>
 
 
                     <div class="remove">
@@ -112,7 +112,7 @@
             </div>
         </div>
     </aside>
-
+    </main>
     <script>
         setTimeout(function () {
             let temp = document.getElementById("alert_flag")

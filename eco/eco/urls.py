@@ -44,7 +44,7 @@ urlpatterns = [
     path('', include('payment.urls')),
     # reward order
     path('', include('orders.urls')),
-    # ecomm product details
+    # details product details
     path('', include('details.urls')),
     # admin
     path('admin/', admin.site.urls),

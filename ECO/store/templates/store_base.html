@@ -7,17 +7,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}ECO REWARDS{% endblock %}</title>
-
-
+    <link rel="stylesheet" type="text/css" href="/static/page_reset.css"/>
+    <link href="{% static "reward/store/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "style.css" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static "basket.css" %}">
-    <link href="{% static "reward/store/bootstrap.min.css" %}" rel="stylesheet">
-
-
     <script type="text/javascript" src="{% static "jquery-3.6.0.js" %}"></script>
     <script type="text/javascript" src="{% static "js/script.js" %}"></script>
-
-
     <script type="text/javascript" src="{% static  "js/popper.min.js" %}"></script>
     <script type="text/javascript" src="{% static  "js/bootstrap.min.js" %}"></script>
 
@@ -34,7 +29,7 @@
 
 <nav class="header">
     <div class="left-icon">
-        <a href="{% url 'reward_home' %}"><img class="star" src="../../media/reward/star/star3.png"/></a>
+        <a href="{% url 'reward_home' %}"><img class="star" src="/media/reward/star/star3.png" alt="logo"/></a>
         <h1>ECO REWARDS</h1>
     </div>
 
@@ -46,7 +41,7 @@
             <a href="{% url 'profile' %}">My Account</a>
         </li>
         <li class="nav-item">
-            <a href="{% url 'store:all_products' %}">Reward Redemption</a>
+{#            <a href="{% url 'store:all_products' %}">Reward Redemption</a>#}
         </li>
     </ul>
 </nav>
@@ -60,7 +55,7 @@
                     CATEGROIES
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                    <a class="dropdown-item" href="{% url 'store:all_products' %}">All products</a>
+{#                    <a class="dropdown-item" href="{% url 'store:all_products' %}">All products</a>#}
 
                     {% for c in categories %}
                         <li>
@@ -132,7 +127,7 @@
                     {% endwith %}
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-cart" viewBox="0 0 16 16">
+                         class="bi bi-cart" id="id_first_svg" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                     </svg>
                 </a>

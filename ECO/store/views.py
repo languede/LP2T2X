@@ -19,7 +19,9 @@ def all_products(request):
 
 
 def product_detail(request, slug, category_slug):
-    category = get_object_or_404(Category, slug=category_slug)
+    temp = category_slug
+    temp2 = slug
+    category = get_object_or_404(Category, name=category_slug)
     product = get_object_or_404(Product, slug=slug)
 
     return render(request, 'products/detail.html', {'category': category, 'product': product})

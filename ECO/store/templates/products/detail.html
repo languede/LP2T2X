@@ -17,9 +17,8 @@
     <section class="mb-5">
 
         <div class="row">
-            <div class="col-md-5 col-lg-5 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block w-75" width="200px"  alt="images" src="{{ product.image.url }}">
-
+            <div class="product-detail-img col-md-5 col-lg-5 order-md-first bg-light">
+                <img class="img-fluid mx-auto d-block w-75" width="200px" alt="images" src="{{ product.image.url }}">
             </div>
             <div class="col-md-6">
 
@@ -54,6 +53,7 @@
                         <tr>
                             <td class="pl-0">
                                 <div class="col-6">
+                                    <label for="select"></label>
                                     <select id="select">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -70,15 +70,17 @@
                     </table>
                 </div>
 
-                <button type="button" class="btn btn-block btn-outline-dark mr-1 mb-2" id="add-button" value="{{ product.id }}"><i
-                        class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
+                <button type="button" class="add-to-cart-btn btn btn-block btn-outline-dark mr-1 mb-2" id="add-button"
+                        value="{{ product.id }}"><i
+                        class="add-to-cart fas fa-shopping-cart">Add to cart</i>
+                </button>
             </div>
         </div>
 
     </section>
     <!--Section: Block Content-->
     <script>
-        $(document).on('click', '#add-button', function (e){
+        $(document).on('click', '#add-button', function (e) {
             e.preventDefault();
             $.ajax({
                 type: 'POST',
@@ -94,7 +96,8 @@
 
 
                 },
-                error: function (xhr, errmsg, err) {}
+                error: function (xhr, errmsg, err) {
+                }
             });
         })
     </script>
