@@ -17,10 +17,12 @@ from django.contrib.sites.shortcuts import get_current_site
 
 User = get_user_model()
 
-@login_required
+
+@login_required(login_url='login')
 def dashboard(request):
     orders = user_orders(request)
     return render(request, 'user/dashboard.html')
+
 
 class TimeoutException(Exception):
     pass
@@ -36,7 +38,6 @@ description:
     if authentication fails: display error messages
     if GET: rendering page
 """
-
 
 
 def start_page_view(request):
@@ -244,4 +245,3 @@ def goto_payment_view(request):
 
     # return redirect("payment_method", context)
     return render(request, "celebrate.html", context)
-

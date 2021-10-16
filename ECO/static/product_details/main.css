@@ -1,0 +1,114 @@
+.header {
+    height: 86px;
+    width: 100%;
+    margin: 0px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 4px solid #EDEDED;
+    position: fixed;
+    top: 0px;
+    background-color: white;
+    z-index: 200;
+}
+.eco {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 12pt;
+    color: #26433E;
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+
+}
+
+.product {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #0A6259;
+    margin: 0px;
+    padding: 5px;
+    border-left: 2px solid #707070;
+}
+
+.content {
+    position: relative;
+    margin: 0px 40px;
+    margin-top: 86px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title {
+    height: 38px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #03372A;
+    font-size: 18pt;
+    font-weight: bold;
+}
+main.content {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:center;
+    box-sizing: border-box;
+    text-align: center;
+    flex-direction: row;
+}
+div.proimg {
+}
+
+/*.proimg >img {*/
+/*    height: 150px;*/
+/*    width: 150px;*/
+/*}*/
+
+.ecoinfo {
+   display: flex;
+}
+
+.ecoinfo >img {
+    width: 40px;
+    height: 40px;
+    margin-right: 2px;
+}
+
+.ecoinfo >p {
+    color: #0A6259;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.detail {
+    text-align: justify;
+    font-size: 12px;
+}
+
+/* all products page */
+main {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    text-align: center;
+    flex-direction: row;
+}
+
+.col-xs-4 >img {
+    width: auto;
+    height: 100px;
+    box-sizing:content-box;
+    border-radius: 15px;
+    box-shadow: 3px 2px 10px 1px rgb(214 214 214);
+    margin: 10px 0 5px 0;
+}
+
+.col-xs-4 >p {
+    box-shadow: hsl(0, 0%, 100%) 0 0 106px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight:bold;
+    color: #4B4B4B;
+}

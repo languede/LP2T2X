@@ -25,7 +25,7 @@ class Error(TemplateView):
 
 
 # before payment user be required login
-@login_required
+@login_required(login_url='login')
 def payByGreenView(request):
     basket = Basket(request)
     total_point_cost = int(basket.get_total_greenpoint())
@@ -45,7 +45,7 @@ def payByGreenView(request):
 
 
 # before payment user be required login
-@login_required
+@login_required(login_url='login')
 def BasketView(request):
     basket = Basket(request)
     total = str(basket.get_total_greenpoint())
