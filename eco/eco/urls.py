@@ -20,20 +20,24 @@ from products.views import *
 from checkout.views import *
 from django.conf.urls.static import static
 from django.conf import settings
-from reward.views import reward_home_view, login_signup_view, user_profile_view
+# from reward.views import reward_home_view, login_signup_view, user_profile_view
 
 urlpatterns = [
     # base templates
     path('', home_view, name='home'),
     path('home/', home_view, name='home'),
-    path('login/', login_signup_view, name='login-signup'),
+    # path('login/', login_signup_view, name='login-signup'),
+    path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
+    path('introduction/', about_us_view, name='intro'),
     # product app
     path('', include('products.urls')),
     # checkout app
     path('', include('checkout.urls')),
     # reward system app
     path('', include('reward.urls')),
+    # ecomm product details
+    path('', include('details.urls')),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
