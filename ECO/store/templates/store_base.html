@@ -34,19 +34,19 @@
 
 <nav class="header">
     <div class="left-icon">
-        <img class="star" src="../../media/reward/star/star3.png"/>
+        <a href="{% url 'reward_home' %}"><img class="star" src="../../media/reward/star/star3.png"/></a>
         <h1>ECO REWARDS</h1>
     </div>
 
     <ul class="navbar-link">
         <li class="nav-item">
-            <a href="#">ECO</a>
+            <a href="{% url 'rating' %}">My Green Rating</a>
         </li>
         <li class="nav-item">
-            <a href="#">My Account</a>
+            <a href="{% url 'profile' %}">My Account</a>
         </li>
         <li class="nav-item">
-            <a href="#">Reward Redemption</a>
+            <a href="{% url 'store:all_products' %}">Reward Redemption</a>
         </li>
     </ul>
 </nav>

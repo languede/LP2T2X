@@ -12,7 +12,7 @@
         <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/star/star5.png" width="80" height="80" alt=""></a>
           <ul>
             <li><a href="{% url 'rating' %}">My Green Point</a></li>
-            <li><a href="#">Reward Redemption</a></li>
+            <li><a href="{% url 'store:all_products' %}">Reward Redemption</a></li>
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'profile' %}">My Account</a></li>
             {% endif %}

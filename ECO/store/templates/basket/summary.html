@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="basket">
-        {% if green_points %}
+        {% if request.user.is_authenticated %}
             <h1>Existing Green Points:{{ green_points }}</h1>
         {% else %}
             <h1><a href="{% url 'login' %}">You are not logged in</a></h1>

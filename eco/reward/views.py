@@ -51,7 +51,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('reward_home')
+            return redirect('store:all_products')
         else:
             messages.error(request, 'Username OR password is incorrect')
 
