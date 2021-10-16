@@ -35,6 +35,8 @@ urlpatterns = [
     path('', include('checkout.urls')),
     # reward system app
     path('', include('reward.urls')),
+    # ecomm product details
+    path('', include('details.urls')),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \

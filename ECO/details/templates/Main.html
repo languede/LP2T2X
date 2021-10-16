@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Information</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'page.reset.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'product_details/main.css' %}">
+    <style>
+        body {
+            background-image: url(/media/details/BG1.png);
+            background-size: 100vw 100vh;
+        }
+    </style>
+
+</head>
+<body>
+<div class="row header">
+    <div class="col-xs-2">
+        <a href="{% url 'product_details' %}"><img style="width: 46px; height: 46px;" src="/media/details/start5.png"></a>
+    </div>
+    <div class="col-xs-4 eco">ECO REWARDS</div>
+    <div class="col-xs-6 product">Product Information</div>
+</div>
+<main class="content">
+    {% block content %}
+
+    {% endblock content %}
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
