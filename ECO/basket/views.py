@@ -4,11 +4,19 @@ from django.shortcuts import get_object_or_404
 
 from store.models import Product
 from .basket import Basket
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 def basket_summary(request):
     basket = Basket(request)
-    return render(request, 'basket/summary.html', {'basket': basket})
+    context = {'basket': basket}
+    if not request.user.is_anonymous:
+        user = User.objects.get(id=request.user.id)
+        context["green_points"] = user.green_point
+
+    return render(request, 'basket/summary.html',context)
 
 
 def basket_add(request):

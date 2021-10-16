@@ -13,9 +13,9 @@ class Basket():
 
     def __init__(self, request):
         self.session = request.session
-        basket = self.session.get('skey')
-        if 'skey' not in request.session:
-            basket = self.session['skey'] = {}
+        basket = self.session.get(settings.BASKET_SESSION_ID)
+        if settings.BASKET_SESSION_ID not in request.session:
+            basket = self.session[settings.BASKET_SESSION_ID] = {}
         self.basket = basket
 
     def add(self, product, qty):
@@ -44,7 +44,6 @@ class Basket():
             basket[str(product.id)]['product'] = product
 
         for item in basket.values():
-
             item['greenpoint'] = Decimal(item['greenpoint'])
             item['total_greenpoint'] = item['greenpoint'] * item['qty']
             yield item
@@ -63,20 +62,12 @@ class Basket():
         if product_id in self.basket:
             self.basket[product_id]['qty'] = qty
         self.save()
-        
-        
-
 
     def get_total_greenpoint(self):
         return sum(Decimal(item['greenpoint']) * item['qty'] for item in self.basket.values())
 
-
-
     def get_total_qty(self):
         return sum(item['qty'] for item in self.basket.values())
-
-
-
 
     def delete(self, product):
         """
@@ -89,7 +80,6 @@ class Basket():
             del self.basket[product_id]
         self.session.modified = True
 
-
     def save(self):
         self.session.modified = True
 
@@ -97,9 +87,3 @@ class Basket():
         # Remove basket from session
         del self.session[settings.BASKET_SESSION_ID]
         self.save()
-
-
-
-
-
-

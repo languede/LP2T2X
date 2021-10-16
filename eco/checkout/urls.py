@@ -21,6 +21,8 @@ from checkout.views import *
 from django.conf.urls.static import static
 from django.conf import settings
 
+
+
 urlpatterns = [
     path('shopping_cart/', shopping_cart_view, name='shopping_cart'),
     path('checkout/', start_page_view, name='start_page'),

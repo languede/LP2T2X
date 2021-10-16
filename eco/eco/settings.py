@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rbfw&6pblf7!$)=g%$)42bt!17d8+d(f7^da1zoh#38mc4x-!v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'simple_history',
     'store',
     'basket',
+    'payment',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.views.categories',
+                'basket.context_processors.basket',
             ],
         },
     },
@@ -148,3 +152,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PHONENUMBER_DEFAULT_REGION = "AU"
 PHONENUMBER_DB_FORMAT = "NATIONAL"
+
+# Basket session ID
+BASKET_SESSION_ID = 'basket'

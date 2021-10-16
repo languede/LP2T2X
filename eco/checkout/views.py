@@ -8,11 +8,19 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from products.models import Product, Order
 import simplejson as json
+from django.template.loader import render_to_string
 from datetime import datetime, timedelta, timezone
 import math
+from orders.views import user_orders
+from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
 
 User = get_user_model()
 
+@login_required
+def dashboard(request):
+    orders = user_orders(request)
+    return render(request, 'user/dashboard.html')
 
 class TimeoutException(Exception):
     pass
@@ -28,6 +36,7 @@ description:
     if authentication fails: display error messages
     if GET: rendering page
 """
+
 
 
 def start_page_view(request):
@@ -134,7 +143,7 @@ def append_order(order, new_order, price, green_point):
 
 """
 ---------------------
-create_order: 
+get_ordered_item_list: 
 ---------------------
 @input: an Object from Table Order
 @return: a list of dict which each dict is a item in shopping cart, 

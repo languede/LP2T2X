@@ -39,6 +39,10 @@ urlpatterns = [
     path('', include('store.urls')),
     # basket app
     path('', include('basket.urls')),
+    # reward payment
+    path('payment/', include('payment.urls', namespace='payment')),
+    # reward order
+    path('orders/', include('orders.urls', namespace='orders')),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
