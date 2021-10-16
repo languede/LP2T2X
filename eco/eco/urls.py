@@ -29,12 +29,15 @@ urlpatterns = [
     # path('login/', login_signup_view, name='login-signup'),
     path('create/', product_create_view, name='create'),
     path('about_us/', about_us_view, name='about_us'),
+    path('introduction/', about_us_view, name='intro'),
     # product app
     path('', include('products.urls')),
     # checkout app
     path('', include('checkout.urls')),
     # reward system app
     path('', include('reward.urls')),
+    # ecomm product details
+    path('', include('details.urls')),
     # admin
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \

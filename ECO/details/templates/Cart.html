@@ -1,0 +1,23 @@
+{% extends 'Main.html' %}
+{% load static %}
+{% block content %}
+{#    <h1>{{ product }}</h1>#}
+    <div class="title">
+            {{ product.name }}
+        </div>
+        <div class="proimg">
+            <img style="width: 150px; height: 150px;" src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="ecoinfo">
+            <img src="/media/details/Eco.png" alt="">
+            <p>
+                {{ product.ecoinfo }}
+            </p>
+        </div>
+        <div class="detail">
+            <p>
+                {{ product.description }}
+            </p>
+        </div>
+
+{% endblock content %}

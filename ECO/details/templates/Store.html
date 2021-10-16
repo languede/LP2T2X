@@ -1,0 +1,26 @@
+{% extends 'Main.html' %}
+{% load static %}
+{% block content %}
+    <div class="row box">
+        {% for product in products %}
+        <a href="{% url 'cart' product.id %}">
+            <div class="col-xs-4 box">
+                <img src="{{ product.image.url }}" alt="">
+                <p>{{product.name}}</p>
+            </div>
+        </a>
+        {% endfor %}
+{#        <a href="#">#}
+{#            <div class="col-xs-4 box">#}
+{#                <img src="{% static 'images/placeholder.png' %}" alt="">#}
+{#                <p>Landury Doing</p>#}
+{#            </div>#}
+{#        </a>#}
+{#        <a href="#">#}
+{#            <div class="col-xs-4 box">#}
+{#                <img src="{% static 'images/placeholder.png' %}" alt="">#}
+{#                <p>Serum aaa bbb ccc</p>#}
+{#            </div>#}
+{#        </a>#}
+        </div>
+{% endblock content %}
