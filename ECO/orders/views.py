@@ -1,15 +1,12 @@
 from django.http.response import JsonResponse
 from django.shortcuts import render
-
 from basket.basket import Basket
-
 from .models import Order, OrderItem
 
 
 def add(request):
     basket = Basket(request)
     if request.POST.get('action') == 'post':
-
         order_key = request.POST.get('order_key')
         user_id = request.user.id
         baskettotal = basket.get_total_greenpoint()

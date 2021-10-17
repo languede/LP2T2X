@@ -4,73 +4,80 @@
 
 {% block content %}
     <main>
-    <div class="basket">
-        {% if request.user.is_authenticated %}
-            <h1>Existing Green Points:{{ green_points }}</h1>
-        {% else %}
-            <h1><a href="{% url 'login' %}">You are not logged in</a></h1>
-        {% endif %}
-        <div class="basket-module">
-        </div>
-        <div class="basket-labels">
-            <ul>
-                <li class="item item-heading">Item</li>
-                <li class="price">Price</li>
-                <li class="quantity">Quantity</li>
-                <li class="price">Green points</li>
+        <div class="basket">
+            {% if request.user.is_authenticated %}
+                <h1>Existing Green Points:{{ green_points }}</h1>
+            {% else %}
+                <h1><a href="{% url 'login' %}">You are not logged in</a></h1>
+            {% endif %}
+            <div class="basket-module">
+            </div>
+            <div class="basket-labels">
+                <ul>
+                    <li class="item item-heading">Item</li>
+                    <li class="price">Price</li>
+                    <li class="quantity">Quantity</li>
+                    <li class="price">Green points</li>
 
-            </ul>
-        </div>
+                </ul>
+            </div>
+            <div id="alter_empty" style="text-align: center;">
+                {% if not basket %}
+                    <span id="alert_flag2" style="color:darkred;">error occurs!</span>
+                {% endif %}
+            </div>
+            {% if basket %}
+                {% for item in basket %}
+                    {% with product=item.product %}
 
-        {% for item in basket %}
-            {% with product=item.product %}
+                        <div data-index="{{ product.id }}" class="basket-product" id="product-item">
+                            <div class="item">
+                                <div class="product-image">
+                                    <img width="180px" height="200px" src="{{ product.image.url }}"
+                                         alt="Placholder Image 2"
+                                         class="product-frame">
+                                </div>
+                                <div class="product-details" data-index="{{ product.id }}">
 
-                <div data-index="{{ product.id }}" class="basket-product" id="product-item">
-                    <div class="item">
-                        <div class="product-image">
-                            <img width="180px" height="200px" src="{{ product.image.url }}" alt="Placholder Image 2"
-                                 class="product-frame">
+                                    <h1><strong> {{ product.title }}</strong></h1>
+                                    <p><strong>Category: {{ product.category }}</strong></p>
+                                    <p>Producer: {{ product.producer }}</p>
+                                </div>
+                            </div>
+                            <div class="price">${{ product.price }}</div>
+                            <div class="quantity">
+                                <label for="select{{ product.id }}"></label><select id="select{{ product.id }}">
+                                <option selected>
+                                    {{ item.qty }}
+                                </option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                            </select>
+                            </div>
+                            <div class="points">{{ product.greenpoint }}</div>
+
+
+                            <div class="remove">
+                                <button type="button" class="update-button" id="update-button"
+                                        data-index="{{ product.id }}">
+                                    Update
+                                </button>
+                                <button type="button" class="delete-button" id="delete-button"
+                                        data-index="{{ product.id }}">
+                                    Remove
+                                </button>
+                            </div>
                         </div>
-                        <div class="product-details" data-index="{{ product.id }}">
-
-                            <h1><strong> {{ product.title }}</strong></h1>
-                            <p><strong>Category: {{ product.category }}</strong></p>
-                            <p>Producer: {{ product.producer }}</p>
-                        </div>
-                    </div>
-                    <div class="price">${{ product.price }}</div>
-                    <div class="quantity">
-                        <label for="select{{ product.id }}"></label><select id="select{{ product.id }}">
-                            <option selected>
-                                {{ item.qty }}
-                            </option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                        </select>
-                    </div>
-                    <div class="points">{{ product.greenpoint }}</div>
 
 
-                    <div class="remove">
-                        <button type="button" class="update-button" id="update-button" data-index="{{ product.id }}">
-                            Update
-                        </button>
-                        <button type="button" class="delete-button" id="delete-button" data-index="{{ product.id }}">
-                            Remove
-                        </button>
-                    </div>
-                </div>
+                    {% endwith %}
+                {% endfor %}
+            {% endif %}
 
-
-            {% endwith %}
-        {% endfor %}
-
-
-    </div>
-    <aside>
-        <div class="summary">
+        </div>
+        <aside class="summary">
 
             <div id="basket-qty" class=class="summary-total-items">
 
@@ -89,15 +96,12 @@
             </div>
 
 
-
-
             <div class="summary-checkout">
-                <a class="checkout-cta font-weight-bold" role="button" href="{% url "payment:basket" %}">Go to Secure
+                <a id="pay_money" class="checkout-cta font-weight-bold" role="button" href="{% url "payment:basket" %}">Go to
+                    Secure
                     Checkout</a>
-            </div>
-
-            <div class="summary-checkout mt-3">
-                <a class="checkout-cta font-weight-bold" role="button" href="{% url "payment:pay_by_green" %}">pay by
+                <a id="pay_green" class="checkout-cta font-weight-bold" role="button" href="{% url "payment:pay_by_green" %}">pay
+                    by
                     Green
                     Point</a>
             </div>
@@ -106,15 +110,21 @@
                     <span id="alert_flag" style="color:darkred;">error occurs!</span>
                 {% endif %}
             </div>
-        </div>
-    </aside>
+
+        </aside>
+
     </main>
     <script>
         setTimeout(function () {
-            let temp = document.getElementById("alert_flag")
-            if (temp != null) {
+            let no_points = document.getElementById("alert_flag")
+            let is_empty = document.getElementById("alert_flag2")
+            if (no_points != null) {
                 alert("You have no enough green points to purchase, try again!")
                 document.getElementById("alert_flag").style.display = "none"
+            }
+            if (is_empty != null) {
+                alert("You have no item in the cart, please add some items!")
+                document.getElementById("alert_flag2").style.display = "none"
             }
         }, 1)
         $(document).on('click', '.delete-button', function (e) {

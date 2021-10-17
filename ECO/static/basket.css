@@ -17,3 +17,22 @@
     right: 95px;
     position: absolute;
 }
+
+@media screen and (max-width: 1350px) {
+    .number-basket {
+    position: absolute;
+    top: 290px;
+    right: 95px;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .number-basket {
+    position: relative;
+    top: 0;
+    right: 0;
+    background:none;
+    color:#0c5460;
+    font-size:18pt;
+    }
+}
