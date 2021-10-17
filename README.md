@@ -32,3 +32,7 @@ pip install django-simple-history
 
 ### pyzbar and opencv-python
 pip install pyzbar opencv-python
+
+###install stripes for payment
+pip install stripe3
+

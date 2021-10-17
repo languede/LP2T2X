@@ -36,7 +36,15 @@ urlpatterns = [
     path('', include('checkout.urls')),
     # reward system app
     path('', include('reward.urls')),
-    # ecomm product details
+    # store app
+    path('', include('store.urls')),
+    # basket app
+    path('', include('basket.urls')),
+    # reward payment
+    path('', include('payment.urls')),
+    # reward order
+    path('', include('orders.urls')),
+    # details product details
     path('', include('details.urls')),
     # admin
     path('admin/', admin.site.urls),

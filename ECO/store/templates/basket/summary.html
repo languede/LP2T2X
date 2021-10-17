@@ -1,0 +1,174 @@
+{% extends "../store_base.html" %}
+{% load static %}
+{% block title %}basket{% endblock %}
+
+{% block content %}
+    <main>
+    <div class="basket">
+        {% if request.user.is_authenticated %}
+            <h1>Existing Green Points:{{ green_points }}</h1>
+        {% else %}
+            <h1><a href="{% url 'login' %}">You are not logged in</a></h1>
+        {% endif %}
+        <div class="basket-module">
+        </div>
+        <div class="basket-labels">
+            <ul>
+                <li class="item item-heading">Item</li>
+                <li class="price">Price</li>
+                <li class="quantity">Quantity</li>
+                <li class="price">Green points</li>
+
+            </ul>
+        </div>
+
+        {% for item in basket %}
+            {% with product=item.product %}
+
+                <div data-index="{{ product.id }}" class="basket-product" id="product-item">
+                    <div class="item">
+                        <div class="product-image">
+                            <img width="180px" height="200px" src="{{ product.image.url }}" alt="Placholder Image 2"
+                                 class="product-frame">
+                        </div>
+                        <div class="product-details" data-index="{{ product.id }}">
+
+                            <h1><strong> {{ product.title }}</strong></h1>
+                            <p><strong>Category: {{ product.category }}</strong></p>
+                            <p>Producer: {{ product.producer }}</p>
+                        </div>
+                    </div>
+                    <div class="price">${{ product.price }}</div>
+                    <div class="quantity">
+                        <label for="select{{ product.id }}"></label><select id="select{{ product.id }}">
+                            <option selected>
+                                {{ item.qty }}
+                            </option>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                        </select>
+                    </div>
+                    <div class="points">{{ product.greenpoint }}</div>
+
+
+                    <div class="remove">
+                        <button type="button" class="update-button" id="update-button" data-index="{{ product.id }}">
+                            Update
+                        </button>
+                        <button type="button" class="delete-button" id="delete-button" data-index="{{ product.id }}">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+
+
+            {% endwith %}
+        {% endfor %}
+
+
+    </div>
+    <aside>
+        <div class="summary">
+
+            <div id="basket-qty" class=class="summary-total-items">
+
+                Items in your bag:
+
+            </div>
+
+
+            <div class="summary-subtotal">
+
+
+                <div class="subtotal-title">TotalGreenpoints:</div>
+
+                <div class="subtotal-value final-value" id="subtotal">{{ basket.get_total_greenpoint }}</div>
+
+            </div>
+
+            <div class="summary-subtotal">
+
+
+                <div class="subtotal-title">TotalGreenpoints:</div>
+
+                <div class="subtotal-value final-value" id="subtotal">{{ basket.get_total_greenpoint }}</div>
+
+            </div>
+
+
+            <div class="summary-checkout">
+                <a class="checkout-cta font-weight-bold" role="button" href="{% url "payment:basket" %}">Go to Secure
+                    Checkout</a>
+                <a class="checkout-cta font-weight-bold" role="button" href="{% url "payment:pay_by_green" %}">pay by
+                    Green
+                    Point</a>
+            </div>
+            <div id="alter_message" style="text-align: center;">
+                {% if no_points %}
+                    <span id="alert_flag" style="color:darkred;">error occurs!</span>
+                {% endif %}
+            </div>
+        </div>
+    </aside>
+    </main>
+    <script>
+        setTimeout(function () {
+            let temp = document.getElementById("alert_flag")
+            if (temp != null) {
+                alert("You have no enough green points to purchase, try again!")
+                document.getElementById("alert_flag").style.display = "none"
+            }
+        }, 1)
+        $(document).on('click', '.delete-button', function (e) {
+            e.preventDefault();
+            var prodid = $(this).data('index');
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_delete" %}',
+                data: {
+                    productid: $(this).data('index'),
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'
+                },
+                success: function (json) {
+
+                    $('#product-item[data-index="' + prodid + '"]').remove();
+                    document.getElementById("subtotal").innerHTML = json.subtotal;
+                    document.getElementById("basket-qty").innerHTML = json.qty;
+                    document.getElementById("subtotal-price").innerHTML = json.subtotal_price
+
+
+                },
+                error: function (xhr, errmsg, err) {
+                }
+            });
+        })
+        $(document).on('click', '.update-button', function (e) {
+            e.preventDefault();
+            var prodid = $(this).data('index');
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_update" %}',
+                data: {
+                    productid: $(this).data('index'),
+                    productqty: $('#select' + prodid + ' option:selected').text(),
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'
+                },
+                success: function (json) {
+                    document.getElementById("basket-qty").innerHTML = json.qty
+                    document.getElementById("subtotal").innerHTML = json.subtotal
+                    document.getElementById("subtotal-price").innerHTML = json.subtotal - price
+
+
+                },
+                error: function (xhr, errmsg, err) {
+                }
+            });
+        })
+
+    </script>
+{% endblock %}
+

@@ -10,14 +10,14 @@
 
 <body>
     <header>
-        <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/star/star5.png" width="80" height="80"></a>
+        <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/icon/logo.png" width="260" height="80"></a>
         <ul>
             <li><a href="{% url 'rating' %}">My Green Point</a></li>
-            <li><a href="#">Reward Redemption</a></li>
+            <li><a href="{% url 'store:all_products' %}">Reward Redemption</a></li>
             <li><a href="{% url 'profile' %}">My Account</a></li>
         </ul>
     </header>
-
+    <main>
     <section class="rating-section">
         <div class="section-content">
             <h1 class="section-title">AVERAGE RATING</h1>
@@ -57,10 +57,10 @@
                 <img src="/media/reward/star/star5.png" width="140" height="140">
                 {% endif %}
             </div>
-            <h1 class="rating">{{last_order_point}}</h1>
+            <h1 class="rating">{{last_order_point}} Points</h1>
         </div>
     </section>
-
+</main>
 
 </body>
 

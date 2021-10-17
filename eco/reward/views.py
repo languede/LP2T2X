@@ -22,6 +22,7 @@ from .forms import CustomPasswordChangeForm
 def reward_home_view(request):
     return render(request, "index.html")
 
+
 """
 ---------------------
 login_signup_view: 
@@ -31,6 +32,7 @@ description:
     if POST & sign up button has been clicked => save form into database and redirect to profile page.
     if GET => Rendering webpage with LoginForm and RegistrationForm
 """
+
 
 def loginUser(request):
     if request.user.is_authenticated:
@@ -49,10 +51,10 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('reward_home')
+            return redirect('store:all_products')
         else:
             messages.error(request, 'Username OR password is incorrect')
-        
+
     return render(request, 'index.html')
 
 
@@ -74,7 +76,7 @@ def registerUser(request):
         else:
             messages.error(request, 'Error occurred')
 
-    context = {'page': page, 'form':form}
+    context = {'page': page, 'form': form}
     return render(request, 'index.html', context)
 
 
@@ -103,6 +105,7 @@ description:
     if POST & submit request equal to sign_in => sign user in, authenticate form and refresh profile page
 """
 
+
 @login_required(login_url='login')
 def user_profile_view(request):
     user_info = request.user
@@ -129,12 +132,11 @@ def user_profile_view(request):
             else:
                 messages.error(request, 'Failed to reset password')
 
-    context = {'form': form, 'orders': orders, 'reset_form': reset_password_form,}
+    context = {'form': form, 'orders': orders, 'reset_form': reset_password_form, }
     return render(request, 'user_profile.html', context)
 
 
-
-#eco-rating page
+# eco-rating page
 @login_required(login_url='login')
 def eco_rating_view(request):
     user_id = request.user.id
@@ -142,7 +144,10 @@ def eco_rating_view(request):
 
     # the point for the last purchase
     last_order = Order.objects.filter(user_id=user_id).order_by('order_date').last()
-    last_order_point = last_order.total_point
+    if last_order is not None:
+        last_order_point = last_order.total_point
+    else:
+        last_order_point = 0
 
     if not request.user.is_authenticated:
         messages.error(request, 'Please sign in to Eco Rewards')
@@ -151,7 +156,11 @@ def eco_rating_view(request):
         points_sum = orders.aggregate(nums=Sum('total_point'))
         orders_num = orders.aggregate(nums=Count('created_date'))
         num = orders_num['nums']
-        avg_points = int(points_sum['nums'] / num)
-        context = {'points': points_sum['nums'], 'avg_points': avg_points, 'last_order_point': last_order_point}
+        if num == 0:
+            avg_points = 0
+            points_sum['nums'] = 0
+        else:
+            avg_points = int(points_sum['nums'] / num)
+        context = {'points': request.user.green_point, 'avg_points': avg_points, 'last_order_point': last_order_point}
 
     return render(request, "user-eco.html", context)
