@@ -161,6 +161,6 @@ def eco_rating_view(request):
             points_sum['nums'] = 0
         else:
             avg_points = int(points_sum['nums'] / num)
-        context = {'points': points_sum['nums'], 'avg_points': avg_points, 'last_order_point': last_order_point}
+        context = {'points': request.user.green_point, 'avg_points': avg_points, 'last_order_point': last_order_point}
 
     return render(request, "user-eco.html", context)
