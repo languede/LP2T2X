@@ -1,6 +1,6 @@
 import json
 
-# import stripe
+import stripe
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from django.shortcuts import render
