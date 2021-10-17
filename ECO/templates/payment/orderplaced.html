@@ -18,14 +18,34 @@
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-md-12">
-                <div class="login d-flex align-items-center py-5">
+                <div class="login d-flex align-items-center">
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-lg-6  mx-auto">
-                                <div class="p-4">
+                                <div class="recipe">
                                     <h3 class="mb-4">Order has been placed</h3>
 
-                                    <a href="">See orders</a>
+                                    {% if basket %}
+                                        {% for item in basket %}
+                                            {% with product=item.product %}
+
+                                                <div data-index="{{ product.id }}" class="basket-product"
+                                                     id="product-item">
+                                                    <div class="item">
+                                                        <div class="product-details" data-index="{{ product.id }}">
+                                                            <h1><strong> {{ product.title }}</strong></h1>
+                                                            <p><strong>Category: {{ product.category }}</strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="price">Green point costs: {{ product.greenpoint }}</div>
+                                                    <div class="quantity">
+                                                        <p>{{ item.qty }}</p>
+                                                    </div>
+                                                </div>
+                                            {% endwith %}
+                                        {% endfor %}
+                                    {% endif %}
+
                                 </div>
                             </div>
                         </div>

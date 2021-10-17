@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="27e6eed0-ffd2-4d2d-8c38-c9caa3ece0b9" name="uqzoon" url="http://s4609531@deco3801-teamlp2t2x.zones.eait.uq.edu.au">
+        <fileTransfer rootFolder="/var/www/uwsgi/ECO" accessType="SFTP" host="deco3801-teamlp2t2x.zones.eait.uq.edu.au" port="22" sshConfigId="9e978245-e47a-4db8-b863-693c33681cd2" sshConfig="s4609531@deco3801-teamlp2t2x.zones.eait.uq.edu.au:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -5,3 +5,5 @@ eco/products/__pycache__/views.cpython-39.pyc
 *.pyc
 eco/.idea/eco.iml
 eco/.idea/jsLibraryMappings.xml
+eco/.idea/eco.iml
+eco/.idea/misc.xml
