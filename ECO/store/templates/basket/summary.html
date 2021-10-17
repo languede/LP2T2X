@@ -6,7 +6,7 @@
     <main>
         <div class="basket">
             {% if request.user.is_authenticated %}
-                <h1>Existing Green Points:{{ green_points }}</h1>
+                <h1>Existing Green Points: {{ green_points }}</h1>
             {% else %}
                 <h1><a href="{% url 'login' %}">You are not logged in</a></h1>
             {% endif %}
@@ -44,9 +44,11 @@
                                     <p>Producer: {{ product.producer }}</p>
                                 </div>
                             </div>
-                            <div class="price">${{ product.price }}</div>
+                            <div class="price"><span style="font-weight: 800; color: #475f72;">
+                                $ {{ product.price }}</span></div>
                             <div class="quantity">
-                                <label for="select{{ product.id }}"></label><select id="select{{ product.id }}">
+                                <label for="select{{ product.id }}"></label>
+                                <select style="width: 100px;" id="select{{ product.id }}">
                                 <option selected>
                                     {{ item.qty }}
                                 </option>
@@ -56,7 +58,8 @@
                                 <option value="">4</option>
                             </select>
                             </div>
-                            <div class="points">{{ product.greenpoint }}</div>
+                            <div class="points"><span style="font-weight: 800; color: #477270;">
+                                point cost: {{ product.greenpoint }}</span></div>
 
 
                             <div class="remove">
