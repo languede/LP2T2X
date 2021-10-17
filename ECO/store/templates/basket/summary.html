@@ -88,19 +88,15 @@
 
             </div>
 
-            <div class="summary-subtotal">
 
-
-                <div class="subtotal-title">TotalGreenpoints:</div>
-
-                <div class="subtotal-value final-value" id="subtotal">{{ basket.get_total_greenpoint }}</div>
-
-            </div>
 
 
             <div class="summary-checkout">
                 <a class="checkout-cta font-weight-bold" role="button" href="{% url "payment:basket" %}">Go to Secure
                     Checkout</a>
+            </div>
+
+            <div class="summary-checkout mt-3">
                 <a class="checkout-cta font-weight-bold" role="button" href="{% url "payment:pay_by_green" %}">pay by
                     Green
                     Point</a>

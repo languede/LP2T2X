@@ -12,8 +12,6 @@
         });
     </script>
 
-    <!--Section: Block Content-->
-    <!--Section: Block Content-->
     <section class="mb-5">
 
         <div class="row">
@@ -22,21 +20,34 @@
             </div>
             <div class="col-md-6">
 
-                <h5>{{ product.title }}</h5>
-                <p class="mb-2 text-muted text-uppercase small">{{ product.category }}</p>
+                <h4 class="col-form-label-lg"><strong>{{ product.title }}</strong></h4>
 
-                <p><span class="mr-1"><strong>{{ product.greenpoint }}</strong></span></p>
-                <p class="pt-1">{{ product.description|slice:"355" }}...</p>
                 <div class="table-responsive">
                     <table class="table table-sm table-borderless mb-0">
                         <tbody>
                         <tr>
-                            <th class="pl-0 w-25" scope="row"><strong>Company</strong></th>
-                            <td>{{ product.producer }}</td>
+                            <th class="pl-0 w-25 pt-3" scope="row"><h6><strong>Category</strong></h6></th>
+                            <td class="pt-3"><h6>{{ product.category }}</h6></td>
                         </tr>
                         <tr>
-                            <th class="pl-0 w-25" scope="row"><strong>Feature</strong></th>
-                            <td>{{ product.feature }}</td>
+                            <th class="pl-0 w-25 pt-3" scope="row"><h6><strong>Company</strong></h6></th>
+                            <td class="pt-3"><h6>{{ product.producer }}</h6></td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25 pt-3" scope="row"><h6><strong>Feature</strong></h6></th>
+                            <td class="pt-3"><h7>{{ product.feature }}</h7></td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25 pt-3" scope="row"><h6><strong>Description</strong></h6></th>
+                            <td class="pt-3"><h7>{{ product.description|slice:"355" }}...</h7></td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25 pt-3" scope="row"><h6><strong>Green points</strong></h6></th>
+                            <td class="pt-3"><h6>{{ product.greenpoint }}</h6></td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25 pt-3" scope="row"><h6><strong>Price</strong></h6></th>
+                            <td class="pt-3"><h6>${{ product.price }}</h6></td>
                         </tr>
 
                         </tbody>
@@ -47,12 +58,12 @@
                     <table class="table table-sm table-borderless">
                         <tbody>
                         <tr>
-                            <td class="pl-0 pb-0 w-25">Quantity</td>
+                            <td class="pl-0 pb-0 w-25"><h6><strong>Quantity</strong></h6></td>
 
                         </tr>
                         <tr>
                             <td class="pl-0">
-                                <div class="col-6">
+                                <div class="col-10">
                                     <label for="select"></label>
                                     <select id="select">
                                         <option value="1">1</option>
@@ -78,7 +89,6 @@
         </div>
 
     </section>
-    <!--Section: Block Content-->
     <script>
         $(document).on('click', '#add-button', function (e) {
             e.preventDefault();
