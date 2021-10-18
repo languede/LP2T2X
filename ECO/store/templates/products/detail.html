@@ -16,11 +16,12 @@
 
         <div class="row">
             <div class="product-detail-img col-md-5 col-lg-5 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block w-75" width="200px" alt="images" src="{{ product.image.url }}">
+                <img class="img-fluid mx-auto d-block w-75" width="200px" alt="images" src="{{ product.image.url }}" style="margin: 50px;">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="
+    padding: 20px 50px;>
 
-                <h4 class="col-form-label-lg"><strong>{{ product.title }}</strong></h4>
+                <h4 class="col-form-label-lg"><strong style="font-size: 20pt;">{{ product.title }}</strong></h4>
 
                 <div class="table-responsive">
                     <table class="table table-sm table-borderless mb-0">
@@ -65,7 +66,7 @@
                             <td class="pl-0">
                                 <div class="col-10">
                                     <label for="select"></label>
-                                    <select id="select">
+                                    <select id="select" style="width: 50px;">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -103,8 +104,6 @@
                 },
                 success: function (json) {
                     document.getElementById("basket-qty").innerHTML = json.qty
-
-
                 },
                 error: function (xhr, errmsg, err) {
                 }

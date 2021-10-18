@@ -4,71 +4,96 @@
 
 {% block content %}
 
-    <!--Section: Block Content-->
-    <section>
+<!--Section: Block Content-->
+<section>
 
-        <!-- Grid row -->
-        <div class="row">
+    <!-- Grid row -->
+    <div class="row">
 
-            {% for product in products %}
-                {% if product %}
-                {% endif %}
-            <div class="col-md-4 mb-4" width="500px" height="700px">
+        {% for product in products %}
+        {% if product %}
+        {% endif %}
+        <div class="col-md-4 mb-4" width="500px" height="700px">
 
-                <!-- Card -->
-                <div class="product-list" >
+            <!-- Card -->
+            <div class="product-list">
 
-                    <div class="view zoom overlay z-depth-2 rounded" >
+                <div class="view zoom overlay z-depth-2 rounded">
 
-                             <a href="{{ product.get_absolute_url }}">
-                            <div class="mask">
-                                <img class="w-auto" alt="images" height="200px" width="150px"
-                                     src="{{ product.image.url }}">
-                                <div class="mask rgba-black-slight"></div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="text-center pt-4">
-
-                        <h5><a class="text-dark text-decoration-none font-weight-bold" href="{{ product.get_absolute_url }}"> {{ product.title }} </a></h5>
-                        <h6 class="mb-3 mt-3 text-muted text-dark"><strong>{{ product.category }}</strong></h6>
-                        <h7 class="mb-3 mt-3 text-muted text-dark"><strong>FEATURES</strong></h7>
-                        <p class="mb-2 text-muted font-weight-normal">{{ product.feature }}</p>
-
-                        <hr>
-                        <h6 class="mb-3"><strong>Green points: {{ product.greenpoint }}</strong></h6>
-                        <h6 class="mb-3"><strong>Price: ${{ product.price }}</strong></h6>
-
-                        <div class="container mt-3 text-center">
-
-                            <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" data-toggle="popover" data-placement="right" title="Description" data-content="{{ product.description }}">
-                                Details
-                            </button>
+                    <a href="{{ product.get_absolute_url }}">
+                        <div class="mask">
+                            <img class="w-auto" alt="images" height="200px" width="150px"
+                                 src="{{ product.image.url }}">
+                            <div class="mask rgba-black-slight"></div>
                         </div>
+                    </a>
+                </div>
 
+                <div class="text-center pt-4">
+
+                    <h5><a class="text-dark text-decoration-none font-weight-bold"
+                           href="{{ product.get_absolute_url }}"> {{ product.title }} </a></h5>
+                    <h6 class="mb-3 mt-3 text-muted text-dark"><strong>{{ product.category }}</strong></h6>
+                    <h7 class="mb-3 mt-3 text-muted text-dark"><strong>FEATURES</strong></h7>
+                    <p class="mb-2 text-muted font-weight-normal">{{ product.feature }}</p>
+
+                    <hr>
+                    <h6 class="mb-3"><strong>Green points: {{ product.greenpoint }}</strong></h6>
+                    <h6 class="mb-3"><strong>Price: ${{ product.price }}</strong></h6>
+
+                    <div class="container mt-3 text-center">
+                        <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" data-trigger="click"
+                                data-toggle="popover" data-placement="bottom" title="Description"
+                                data-content="{{ product.description }}">
+                            More
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm mr-1 mb-2"
+                                id="add-button"
+                                value="{{ product.id }}">
+                            Add
+                        </button>
                     </div>
 
                 </div>
-                <!-- Card -->
 
             </div>
-            {% endfor %}
-
-            <!-- Grid column -->
+            <!-- Card -->
 
         </div>
-        <!-- Grid row -->
+        {% endfor %}
 
-    </section>
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();
-        });
-    </script>
+        <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+</section>
 
 
+<script>
 
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+        $(document).on('click', '#add-button', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_add" %}',
+                data: {
+                    productid: $('#add-button').val(),
+                    productqty: '1',
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: 'post'
+                },
+                success: function (json) {
+                    document.getElementById("basket-qty").innerHTML = json.qty
+                },
+                error: function (xhr, errmsg, err) {
+                }
+            });
+        })
+    });
+</script>
 
 
 {% endblock %}
