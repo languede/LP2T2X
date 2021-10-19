@@ -61,6 +61,7 @@ header ul li {
     align-content: center;
     justify-content: center;
     align-items: center;
+    border-radius: 25px 25px 0px 0px;
 }
 
 header ul li a {
@@ -68,7 +69,7 @@ header ul li a {
     margin: 0;
     height: 100%;
     text-decoration: none;
-    color: black;
+    color: #fff;;
     letter-spacing: 1.5px;
     display: flex;
     font-weight: 500;
@@ -80,10 +81,11 @@ header ul li a {
     text-align: center;
     width: 100%;
     font-weight: 600;
+
 }
 
 #my_point {
-    border-radius: 25px 0 0 25px;
+    border-radius: 25px 25px 0 0;
     color: #fff;
 }
 
@@ -93,9 +95,13 @@ header ul li a {
 
 
 #store {
-    border-radius: 0 25px 25px 0;
+    border-radius: 25px 25px 0 0;
     color: #619174;
     background-color: #fff;
+}
+
+#store a {
+    color: #000;
 }
 
 #store:hover {
@@ -723,5 +729,9 @@ form {
 
     #store a {
         color: #fff;
+    }
+
+    header ul li {
+        border-radius: 0;
     }
 }
