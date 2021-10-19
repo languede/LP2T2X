@@ -1,143 +1,167 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoRewards</title>
-    <link rel="stylesheet" href="/static/reward/index.css">
+    <link rel="stylesheet" href="/static/page_reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/reward/index.css">
+    <script type="text/javascript" src="{% static 'jquery-3.6.0.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static  'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static  'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-    <header>
-        <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/icon/logo.png" width="260" height="80" alt=""></a>
-          <ul>
-            <li><a href="{% url 'rating' %}">My Green Point</a></li>
-            <li><a href="{% url 'store:all_products' %}">Reward Redemption</a></li>
-            {% if request.user.is_authenticated %}
+<header>
+    <a href="{% url 'reward_home' %}" class="logo"><img src="/media/reward/icon/logo.png" width="260" height="80"
+                                                        alt=""></a>
+    <ul>
+        <li id="my_point"><a href="{% url 'rating' %}">My Green Point</a></li>
+        <li id="store"><a href="{% url 'store:all_products' %}">eStore</a></li>
+        {% if request.user.is_authenticated %}
             <li><a href="{% url 'profile' %}">My Account</a></li>
-            {% endif %}
-          </ul>
-    </header>
-    {% if messages %}
-      {% for message in messages %}
-          {% if forloop.counter < 2 %}
-          <div class="alert alert--{{message.tags}}">
-            <p class="alert__massage">{{message}}</p>
-            <button class="alert__close">x</button>
-          </div>
-          {% endif %}
-      {% endfor %}
-    {% endif %}
+        {% endif %}
+    </ul>
+</header>
+{% if messages %}
+    {% for message in messages %}
+        {% if forloop.counter < 2 %}
+            <div class="alert alert--{{ message.tags }}">
+                <p class="alert__massage">{{ message }}</p>
+                <button class="alert__close">x</button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
-    <section class="about" >
+<main>
+    <section class="about">
         <div class="about-title">
-          <h1>IT'S TIME TO CHANGE THE WAY WE SHOP</h1>
+            <h1>IT'S TIME TO CHANGE THE WAY WE SHOP</h1>
         </div>
         <div class="about-info">
-          <p>When you shop with Eco Rewards, you contribute to a better future for us all. Discover a better way to shop, and join the movement below!</p>
+            <p>When you shop with Eco Rewards, you contribute to a better future for us all. Discover a better way to
+                shop, and join the movement below!</p>
+            <button class="about-button" id="learn_more" style="display:none">Learn more</button>
         </div>
 
-        <div class="about-button">
-          <button id="learn_more">Learn more</button>
-        </div>
+        <div class="modal-container" id="modal_container">
+            <div class="modal">
+                <h2>What is Eco Rewards</h2>
+                <button id="close_modal"><i class="fa fa-close"></i></button>
 
-      <div class="modal-container" id="modal_container">
-        <div class="modal">
-          <h2>What is Eco Rewards</h2>
-          <button id="close_modal"><i class="fa fa-close"></i></button>
-          <p>Eco Rewards focus on individual awareness of climate change. The system aims at helping people
+                <p>Eco Rewards focus on individual awareness of climate change. The system aims at helping people
+                    to make more environmentally-friendly purchases.
+                    <br>A visual sign of green stars rating is designed for incentivizing customers to make green
+                    alternatives
+                    to obtain rewards for their choices. The higher the rating of stars represents the higher level of
+                    environmentally-friendly
+                    products. Even if the customer does not care about climate change on purpose, he would choose the
+                    Eco-friendly products motivated by gaining rewards.The reward system potentially promotes users to
+                    change their customer behaviour.
+                </p>
+            </div>
+        </div>
+        <button type="button" class="about-button btn btn-primary btn-sm mr-1 mb-2" data-trigger="click"
+                data-toggle="popover" data-placement="bottom" title="What is Eco Rewards"
+                data-content="Eco Rewards focus on individual awareness of climate change. The system aims at helping people
             to make more environmentally-friendly purchases.
-            <br>A visual sign of green stars rating is designed for incentivizing customers to make green alternatives
-            to obtain rewards for their choices. The higher the rating of stars represents the higher level of environmentally-friendly
+            A visual sign of green stars rating is designed for incentivizing customers to make green alternatives
+            to obtain rewards for their choices.
+            The higher the rating of stars represents the higher level of
+            environmentally-friendly
             products. Even if the customer does not care about climate change on purpose, he would choose the
-            Eco-friendly products motivated by gaining rewards.The reward system potentially promotes users to change their customer behaviour.
-          </p>
-        </div>
-      </div>
-
-      {% if not request.user.is_authenticated %}
-      <div class="form-container">
-
-        {% if page == 'register' %}
-        <form action="{% url 'register' %}" method="POST" class="register-form">
-          {% csrf_token %}
-          <h2 class="form-title">Register an Account</h2>
-          {% for field in form %}
-          <div class="input-field">
-            {% if field.name == 'username' %}
-                <i class="fa fa-user"></i>
-            {% elif field.name == 'phone_number' %}
-                <i class="fa fa-phone"></i>
-            {% elif field.name == 'password1' or field.name == 'password2'%}
-                <i class="fa fa-lock"></i>
-            {% endif %}
-            {{ field }}
-
-            {% for error in field.errors %}
-              {% if forloop.counter < 2 %}
-              <p style="color: red; font-size: small;">{{error}}</p>
-              {% endif %}
-            {% endfor %}
-
-          </div>
-          {% endfor %}
-
-          <button type='submit' class='submit-btn' name='submit' value='sign_in'>SIGN UP</button>
-          <a href="{% url 'login' %}">Have an Account?</a>
-        </form>
-
-        {% else %}
-        <form action="{% url 'login' %}" method="POST" class="login-form">
-          {% csrf_token %}
-          <h2 class="form-title">Login to Eco Reward</h2>
-          <div class="input-field">
-            <i class="fa fa-phone"></i>
-            <input class="form-input" type="text" placeholder="Phone Number" name="phone">
-          </div>
-          <div class="input-field">
-            <i class="fa fa-lock"></i>
-            <input class="form-input" type="password" placeholder="Password" name="password">
-          </div>
-          <button type='submit' class='submit-btn' name='submit' value='sign_in'>SIGN IN</button>
-          <a href="{% url 'register' %}">Create Your Account</a>
-        </form>
-
-        {% endif %}
-
-      </div>
-
-      {% endif %}
+            Eco-friendly products motivated by gaining rewards.The reward system potentially promotes users to
+            change their customer behaviour.">
+            Learn More
+        </button>
     </section>
 
-    <script>
-      const learn_more = document.getElementById('learn_more');
-      const modal_container = document.getElementById('modal_container');
-      const close_modal = document.getElementById('close_modal');
+    {% if not request.user.is_authenticated %}
+        <div class="form-container">
 
-      learn_more.addEventListener('click', () => {
+            {% if page == 'register' %}
+                <form action="{% url 'register' %}" method="POST" class="register-form">
+                    {% csrf_token %}
+                    <h2 class="form-title">Register an Account</h2>
+                    {% for field in form %}
+                        <div class="input-field">
+                            {% if field.name == 'username' %}
+                                <i class="fa fa-user"></i>
+                            {% elif field.name == 'phone_number' %}
+                                <i class="fa fa-phone"></i>
+                            {% elif field.name == 'password1' or field.name == 'password2' %}
+                                <i class="fa fa-lock"></i>
+                            {% endif %}
+                            {{ field }}
+
+                            {% for error in field.errors %}
+                                {% if forloop.counter < 2 %}
+                                    <p style="color: red; font-size: small;">{{ error }}</p>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    {% endfor %}
+
+                    <button type='submit' class='submit-btn' name='submit' value='sign_in'>SIGN UP</button>
+                    <a href="{% url 'login' %}">Have an Account?</a>
+                </form>
+
+            {% else %}
+                <form action="{% url 'login' %}" method="POST" class="login-form">
+                    {% csrf_token %}
+                    <h2 class="form-title">Login to Eco Reward</h2>
+                    <div class="input-field">
+                        <i class="fa fa-phone"></i>
+                        <input class="form-input" type="text" placeholder="Phone Number" name="phone">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa fa-lock"></i>
+                        <input class="form-input" type="password" placeholder="Password" name="password">
+                    </div>
+                    <button type='submit' class='submit-btn' name='submit' value='sign_in'>SIGN IN</button>
+                    <a href="{% url 'register' %}">Create Your Account</a>
+                </form>
+
+            {% endif %}
+
+        </div>
+
+    {% endif %}
+</main>
+
+<script>
+    const learn_more = document.getElementById('learn_more');
+    const modal_container = document.getElementById('modal_container');
+    const close_modal = document.getElementById('close_modal');
+
+    learn_more.addEventListener('click', () => {
         modal_container.classList.add('show');
-      });
+    });
 
-      close_modal.addEventListener('click', () => {
+    close_modal.addEventListener('click', () => {
         modal_container.classList.remove('show');
-      });
+    });
+    $('[data-toggle="popover"]').popover();
+</script>
 
-    </script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
         hljs.highlightAll();
-      });
+    });
 
 
-      let alertWrapper = document.querySelector('.alert')
-      let alertClose = document.querySelector('.alert__close')
+    let alertWrapper = document.querySelector('.alert')
+    let alertClose = document.querySelector('.alert__close')
 
-      if (alertWrapper) {
+    if (alertWrapper) {
         alertClose.addEventListener('click', () =>
-          alertWrapper.style.display = 'none'
+            alertWrapper.style.display = 'none'
         )
-      }
-    </script>
+    }
+</script>
 
 </body>
