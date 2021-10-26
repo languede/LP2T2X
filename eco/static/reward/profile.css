@@ -3,36 +3,59 @@
 }
 
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 1.5rem 0;
-    padding-left: 5rem;
     z-index: 10;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    width: 100%;
+}
+
+a.logo {
+    padding: 10px 0;
+    display: flex;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     position: relative;
+    display:flex;
     width: 100%;
     background-color: #fff;
+    height: 100%;
+/*     min-height: 20vh; */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    overflow: hidden;
 }
 
 .left-container {
+    padding:50px 0;
     float: left;
-    position: fixed;
+    display:flex;
     top: 0px;
     left: 0px;
-    width: 500px;
+    width: 100%;
     height: 100%;
+    min-height: 100vh;
     background-image: url('/media/reward/background/BG3.png');
     background-size: 200%;
     z-index: 5;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
+
 .user-image, .user-name, .tab, .btn {
     display: block;
     position: relative;
@@ -40,39 +63,47 @@ header {
 }
 
 .user-image {
+    margin: 20px;
     height: 200px;
     width: 200px;
     background-color: #fff;
     border-radius: 500px;
     display: flex;
     justify-content: center;
-    top: 18%;
-    left: 33%;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
 }
-.user-image>img{
-    position:relative;
-    top:20px;
+
+.user-image > img {
+    position: relative;
 }
+
 .user-name {
     width: 100%;
     font-size: 2.5em;
     color: #fff;
-    top: 20%;
 }
 
 .profile-tabs {
+    display: flex;
     position: relative;
-    top: 23%;
     width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 nav a {
+    width:100%;
     list-style: none;
     padding: 10px 0;
     color: #fff;
     font-size: 1.2em;
     position: absolute;
-    top: 20%;
     cursor: pointer;
 }
 
@@ -87,7 +118,7 @@ nav a.active {
 }
 
 .btn-logout {
-/*     margin-top: 6em;
+    /*     margin-top: 6em;
     margin-left: 180px; */
     text-decoration: none;
     border: #fff solid 2px;
@@ -95,26 +126,25 @@ nav a.active {
     width: 200px;
     display: flex;
     justify-content: center;
-    position:relative;
-    top:20px;
-    left:145px;
+    position: relative;
+    margin-top: 20px;
 }
-
 
 
 .right-container {
-    position:fixed;
-    top: 0px;
-    right: 0px;
-    width: 60%;
+    margin-top:30px;
+    width: 100%;
     height: 100%;
     z-index: 5;
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .tabShow {
-    position: absolute;
-    left: 20%;
     display: flex;
     align-self: center;
     width: fit-content;
@@ -122,29 +152,42 @@ nav a.active {
 }
 
 .update-form {
+    width: 100%;
+    height:auto;
     display: flex;
-    float:right;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 5rem;
+    align-content: flex-start;
+    flex-wrap: wrap;
 }
-.update-form>button{
-    border-style:none;
-}
-.input-field {
-    max-width: 400px;
+
+#id_old_password, #id_new_password1, #id_new_password2 {
     width: 100%;
-    height: 60px;
+}
+
+> button {
+    border-style: none;
+}
+
+.input-field {
+    /* padding-left:20px; */
+    width: 100%;
+    /* height: 100%; */
     background-color: #f1f1f1;
-    margin: 0.6em 0;
+    margin: 0.4em 0;
     border: #bbbbbb solid 1px;
-    display: grid;
+    display: flex;
     grid-template-columns: 12% 85%;
-    position: relative;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-field i {
+    margin-left:10px;
     text-align: center;
     color: #acacac;
     font-size: 1.5rem;
@@ -155,8 +198,8 @@ nav a.active {
     background: none;
     outline: none;
     border: none;
-    width: 400px;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     background: none;
     font-size: 1.5rem;
     line-height: 1;
@@ -168,52 +211,59 @@ nav a.active {
 }
 
 .btn {
-    margin-top: 3em;
+    margin:20px;
+    padding:20px;
     text-decoration: none;
     border: #fff solid 2px;
     background-color: #619174;
     border-radius: 40px;
-    width: 200px;
-    height: 50px;
+    width: fit-content;
+    height:fit-content;
     display: flex;
     justify-content: center;
     cursor: pointer;
     font-size: 20px;
     color: #fff;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 .history-items {
+    height:fit-content;
+    display:flex;
     box-sizing: border-box;
     padding-left: 20px;
-    position: relative;
-    overflow-y: scroll;
-    height: 100vh;
-    width: 100vh;
+    overflow:hidden;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .history-items::before {
     content: '';
-	position: absolute;
-	width: 2px;
-	height: 320%;
-	background-color: #619174;
+    position: absolute;
+    width: 2px;
+    height: 320%;
+    background-color: #619174;
     overflow-y: visible;
 }
 
 .history-item {
-	margin: 50px 0px;
-	width: 100%;
-	position: relative;
+    margin: 50px 0px;
+    width: 100%;
+    position: relative;
 }
 
 .history-dot {
-	height: 14px;
-	width: 14px;
-	background-color: #619174;
-	position: absolute;
-	border-radius: 50%;
-	top: 0.3rem;
-    left: -0.4rem;
+    height: 14px;
+    width: 14px;
+    background-color: #619174;
+    position: absolute;
+    border-radius: 50%;
 }
 
 .history-date {
@@ -223,18 +273,88 @@ nav a.active {
 }
 
 .history-content {
-    position: relative;
-    top: 1rem;
+ display:flex;
+ flex-direction: column;
+ flex-wrap: wrap;
+ align-content: center;
+ justify-content: center;
+ align-items: center;
 }
 
-.history-content img{
+.history-content img {
     width: 6.2rem;
     height: 6.2rem;
     margin: 1rem 4rem;
 }
 
-.history-content span{
+.history-content span {
     font-size: 1.8rem;
     position: relative;
-    top: -2rem;
+}
+
+@media screen and (max-width: 999px) {
+    div, a {
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    form, .btn, input, header, .right-container, .left-container, .container {
+        float: initial;
+        width: 100%;
+        position: initial;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        /* flex-grow: 1; */
+        /* flex-shrink: 1; */
+        /* flex-basis: 1px; */
+    }
+
+    body {
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height:fit-content;
+    }
+
+
+    .container {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-container {
+        padding: 50px 0;
+        display: flex;
+        height: auto;
+        width: 100%;
+        flex-grow: 5;
+        flex-shrink: 2;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-image {
+        margin-top: 180px;
+    }
+    .btn {
+        width:fit-content;
+       padding:20px;
+    }
 }

@@ -41,9 +41,9 @@ urlpatterns = [
     # basket app
     path('', include('basket.urls')),
     # reward payment
-    path('', include('payment.urls')),
+    path('payment/', include('payment.urls')),
     # reward order
-    path('', include('orders.urls')),
+    path('orders/', include('orders.urls')),
     # details product details
     path('', include('details.urls')),
     # admin
