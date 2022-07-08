@@ -1,5 +1,5 @@
 # LP2T2X
-ECO system project file
+ECO system project repository
 
 
 ## Note:
