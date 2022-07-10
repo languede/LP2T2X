@@ -51,7 +51,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('store:all_products')
+            return redirect('rating')
         else:
             messages.error(request, 'Username OR password is incorrect')
 
@@ -70,7 +70,7 @@ def registerUser(request):
 
             messages.success(request, 'User account was created!')
 
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            # login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('reward_home')
 
         else:

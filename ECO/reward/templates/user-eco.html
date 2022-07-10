@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 {% block head %}
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>EcoRewards</title>
-        <link rel="stylesheet" href="/static/page_reset.css">
-        <link rel="stylesheet" href="/static/reward/index.css">
-        <link rel="stylesheet" href="/static/reward/user-eco.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRewards</title>
+    <link rel="stylesheet" href="/static/page_reset.css">
+    <link rel="stylesheet" href="/static/reward/index.css">
+    <link rel="stylesheet" href="/static/reward/user-eco.css">
+</head>
 {% endblock %}
 <body>
 <header>
@@ -21,50 +21,50 @@
     </ul>
 </header>
 {% block content %}
-    <main>
-        <section class="rating-section">
-            <div id="id_average" class="section-content">
-                <h1 class="section-title">AVERAGE RATING</h1>
-                <div class="rating-star">
+<main>
+    <section class="rating-section">
+        <div id="id_average" class="section-content">
+            <h1 class="section-title">AVERAGE RATING</h1>
+            <div class="rating-star">
 
-                    {% if avg_points >= 0 and avg_points <= 100 %}
-                        <img src="/media/reward/star/star1.png" width="180" height="180">
-                    {% elif avg_points > 100 and avg_points <= 200 %}
-                        <img src="/media/reward/star/star2.png" width="180" height="180">
-                    {% elif avg_points > 200 and avg_points <= 300 %}
-                        <img src="/media/reward/star/star3.png" width="180" height="180">
-                    {% elif avg_points > 300 and avg_points <= 400 %}
-                        <img src="/media/reward/star/star4.png" width="180" height="180">
-                    {% else %}
-                        <img src="/media/reward/star/star5.png" width="180" height="180">
-                    {% endif %}
+                {% if avg_points >= 0 and avg_points <= 100 %}
+                <img src="/media/reward/star/star1.png" width="180" height="180">
+                {% elif avg_points > 100 and avg_points <= 200 %}
+                <img src="/media/reward/star/star2.png" width="180" height="180">
+                {% elif avg_points > 200 and avg_points <= 300 %}
+                <img src="/media/reward/star/star3.png" width="180" height="180">
+                {% elif avg_points > 300 and avg_points <= 400 %}
+                <img src="/media/reward/star/star4.png" width="180" height="180">
+                {% else %}
+                <img src="/media/reward/star/star5.png" width="180" height="180">
+                {% endif %}
 
-                </div>
-                <h2>GREEN POINTS</h2>
-                <h1 class="rating">{{ points }}</h1>
             </div>
-        </section>
+            <h2>GREEN POINTS</h2>
+            <h1 class="rating">{{ points }}</h1>
+        </div>
+    </section>
 
-        <section class="last-purchase-section">
-            <div id="id_last" class="section-content">
-                <h1 class="section-title">LAST PURCHASE</h1>
-                <div class="rating-star">
-                    {% if last_order_point >= 0 and last_order_point <= 100 %}
-                        <img src="/media/reward/star/star1.png" width="140" height="140">
-                    {% elif last_order_point > 100 and last_order_point <= 200 %}
-                        <img src="/media/reward/star/star2.png" width="140" height="140">
-                    {% elif last_order_point > 200 and last_order_point <= 300 %}
-                        <img src="/media/reward/star/star3.png" width="140" height="140">
-                    {% elif last_order_point > 300 and last_order_point <= 400 %}
-                        <img src="/media/reward/star/star4.png" width="140" height="140">
-                    {% else %}
-                        <img src="/media/reward/star/star5.png" width="140" height="140">
-                    {% endif %}
-                </div>
-                <h1 class="rating">{{ last_order_point }} Points</h1>
+    <section class="last-purchase-section">
+        <div id="id_last" class="section-content">
+            <h1 class="section-title">LAST PURCHASE</h1>
+            <div class="rating-star">
+                {% if last_order_point >= 0 and last_order_point <= 100 %}
+                <img src="/media/reward/star/star1.png" width="140" height="140">
+                {% elif last_order_point > 100 and last_order_point <= 200 %}
+                <img src="/media/reward/star/star2.png" width="140" height="140">
+                {% elif last_order_point > 200 and last_order_point <= 300 %}
+                <img src="/media/reward/star/star3.png" width="140" height="140">
+                {% elif last_order_point > 300 and last_order_point <= 400 %}
+                <img src="/media/reward/star/star4.png" width="140" height="140">
+                {% else %}
+                <img src="/media/reward/star/star5.png" width="140" height="140">
+                {% endif %}
             </div>
-        </section>
-    </main>
+            <h1 class="rating">{{ last_order_point }} Points</h1>
+        </div>
+    </section>
+</main>
 {% endblock %}
 </body>
 

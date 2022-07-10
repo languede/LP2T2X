@@ -1,0 +1,189 @@
+.p-img > img {
+    float: left;
+    width: 65px;
+    height: 65px;
+    margin: 10px;
+}
+
+.eco-img > img {
+    height: 25px;
+    margin: 0;
+}
+
+.eco-img {
+    position: absolute;
+    display:flex;
+    align-items: center;
+    flex-flow: column;
+    right: 30px;
+    width: 20px;
+    text-align: center;
+    color:#4CAF50;
+    height:70px;
+    font-weight: 500;
+    font-size: 18px;
+    bottom:-20px;
+}
+.eco-img>span {
+    color:#4CAF50;
+}
+.eco-img>span:hover {
+    color:#4CAF50;
+}
+.p-goods {
+    margin: 0px;
+    width: auto;
+    display:flex;
+    flex-flow:row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+    position:absolute;
+
+}
+
+.p-msg {
+    position: absolute;
+    left: 0;
+    width: auto;
+    text-align: center;
+    margin: 0 0 5px 10px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #03372A;
+    left:90px;
+}
+
+.p-num {
+    position: absolute;
+    right: -310px;
+}
+
+.p-price {
+    width: auto;
+    margin-left: 0px;
+    font-size: 16px;
+    font-weight: 900;
+    color: #03372A;
+
+}
+
+.decrement,
+.increment {
+    float: left;
+    border: 1px solid #619174;
+    background-color: #619174;
+    border-radius: 10px 0 0 10px;
+    height: 18px;
+    line-height: 18px;
+    padding: 1px 0;
+    width: 18px;
+    text-align: center;
+    margin: 0;
+    margin-left: -1px;
+    color: #fff;
+}
+
+.increment {
+    border-radius: 0 10px 10px 0;
+}
+
+.decrement > span,
+.increment > span {
+    position: relative;
+    top: -4px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.itxt {
+    float: left;
+    border: 1px solid #619174;
+    width: 42px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    padding: 1px;
+    margin: 0;
+    margin-left: -1px;
+    font-size: 12px;
+    font-family: verdana;
+    color: #03372a;
+    -webkit-appearance: none;
+}
+
+/* .p-action {
+    float: right;
+    position: absolute;
+    right: 10px;
+    border: tomato;
+    height: 80px;
+    width: 56px;
+    border-radius: 0 10px 10px 0;
+    background-color: #FFF;
+    text-align: center;
+}
+
+.p-action:hover {
+    background-color: #888;
+    color:#FFF;
+}
+
+.p-action:active {
+    background-color: #555;
+}
+
+.p-action > a {
+    text-decoration: none;
+}
+
+.p-num > a {
+    text-decoration: none;
+} */
+
+.decrement:hover, .increment:hover {
+    background-color: green;
+}
+
+.decrement:active, .increment:active {
+    background-color: #619174;
+}
+
+.cart_container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.top-right {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-weight: 200;
+    width: 28px;
+    height: 28px;
+    background-color: #f7dea8;
+    border-radius: 50%;
+    color: #03372a;
+    padding: 2px;
+
+}
+
+#close {
+    position: relative;
+    top: 8px;
+    color: #888;
+    font-size: 28pt;
+    font-weight: 500;
+}
+#close:hover{
+    color:#FFF;
+}
+span:hover{
+    color: #FFF;
+}
+
+span#id_point.eco-img {
+    font-size: 20px;
+    color: green;
+}

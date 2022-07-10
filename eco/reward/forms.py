@@ -6,6 +6,7 @@ from authentication.models import User
 
 from django.contrib.auth.forms import PasswordChangeForm
 
+
 class ProfileForm(ModelForm):
     class Meta:
         model = User
