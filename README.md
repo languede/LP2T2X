@@ -1,6 +1,13 @@
-# LP2T2X
-ECO system project repository
+# ECO system project repository (by LP2T2X)
+## The concept
+Eco Rewards is a reward system focusing on increasing consumers’ awareness of environment protection during their daily activities. The system aims at helping people to make more eco-friendly purchases.
 
+## Target audience
+Consumers who want to contribute their efforts on protecting environment. 
+Consumers who are lacking awareness of environment protection
+
+## Overview
+![image](/product flow.png)
 
 ## Note:
 **For MacOS user:**  
