@@ -66,4 +66,5 @@ def order_placed(request):
     basket = Basket(request)
     content = {'basket': basket}
     basket.clear()
+
     return render(request, 'payment/orderplaced.html', content)

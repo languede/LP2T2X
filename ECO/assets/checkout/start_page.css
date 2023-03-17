@@ -1,0 +1,156 @@
+@font-face {
+	/* font-family: wending;
+	src: url("../font/SourceHanSansCN-Normal.ttf"); */
+}
+
+* {
+	/* font-family: wending; */
+	color: #4d4d4d;
+}
+
+body {
+	margin: 0;
+	background-color: #1a1a1f;
+}
+
+input,
+textarea {
+	padding: 0;
+	margin: 0;
+	background: none;
+	outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	padding: 0;
+	margin: 0;
+	font-weight: 500;
+}
+
+ul,
+ol,
+dl,
+li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+p {
+	margin: 0;
+}
+
+button {
+	padding: 0;
+	margin: 0;
+}
+.box{
+	margin: calc(50vh - 275px) auto auto;
+	width: 970px;
+	height: 550px;
+	background: #fff url(/media/checkout/BG2.png) no-repeat;
+	background-size: auto 100%;
+}
+.box>.user{
+	width: 100%;
+	height: 125px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 60px;
+}
+.box>.user>img{
+	height: 100%;
+	margin-right: 24px;
+}
+.box>.user>div>p{
+	color: #26433E;
+	font-size: 25px;
+	font-weight: 900;
+	margin-bottom: 10px;
+}
+.box>.user>div>div>p{
+	color: #26433E;
+}
+.box>.b{
+	color: #0A6259;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 700;
+	margin: 20px 0;
+}
+form{
+	border: 2px solid #0A6259;
+	border-radius: 50px;
+	height: 70px;
+	width: 500px;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 20px;
+	margin: auto;
+}
+span{
+	font-size: 18px;
+	margin-right: 20px;
+}
+input{
+	width: 400px;
+	border: none;
+	background: none;
+	display:block;
+	font-size: 28px;
+	position:relative;
+	top:-4px;
+}
+.skip{
+	width: 200px;
+	height: 60px;
+	border-radius: 30px;
+	position:relative;
+	float:left;
+	background-color: #FFF;
+	border: 5px solid #0A6259;
+	color: #0A6259;
+	font-size: 26px;
+	font-weight: 700;
+	margin: 30px auto auto;
+	top:-16px;
+	right:-50px;
+}
+.start{
+	position:relative;
+	float:left;
+	left:10px;
+	width: 200px;
+	height: 60px;
+	border-radius: 30px;
+	border: none;
+	background-color: #0A6259;
+	color: #fff;
+	font-size: 26px;
+	font-weight: 700;
+	margin: 30px auto auto;
+}
+.start:hover {
+	background-color:#0A8259;
+}
+.skip:hover{
+	border-color:#0A8259;
+	color:#0A8259;
+}
+.start:active{
+	background-color:#0A5050;
+}
+.skip:active{
+	border-color:#0A5050;
+	color:#0A5050;
+}

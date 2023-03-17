@@ -16,6 +16,11 @@
 </header>
 <div class="container">
     <div class="left-container">
+        <div id="logo" class="logo">
+            <a href="{% url 'reward_home' %}" class="logo">
+                <img src="/media/reward/icon/logo.png" width="260" height="80">
+            </a>
+        </div>
         <a href="#" class="user-image"><img src="/media/reward/icon/user.png" width="150" height="150"></a>
         <div class="user-name">{{ user.username }}</div>
         <nav class="profile-tabs">
@@ -26,28 +31,23 @@
         </nav>
     </div>
     <div class="right-container">
-    <div id="logo" class="logo">
-            <a href="{% url 'reward_home' %}" class="logo">
-                <img src="/media/reward/icon/logo.png" width="260" height="80">
-            </a>
-        </div>
         <div class="profile tabShow">
 
             <form method="POST" action="{% url 'profile' %}" class="update-form" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                    <div class="input-field">
+                <div class="input-field">
 
-                        {% if field.name == 'username' %}
-                            <i class="fa fa-user"></i>
-                        {% elif field.name == 'phone_number' %}
-                            <i class="fa fa-phone"></i>
-                        {% elif field.name == 'email' %}
-                            <i class="fa fa-envelope"></i>
-                        {% endif %}
+                    {% if field.name == 'username' %}
+                    <i class="fa fa-user"></i>
+                    {% elif field.name == 'phone_number' %}
+                    <i class="fa fa-phone"></i>
+                    {% elif field.name == 'email' %}
+                    <i class="fa fa-envelope"></i>
+                    {% endif %}
 
-                        {{ field }}
-                    </div>
+                    {{ field }}
+                </div>
 
                 {% endfor %}
                 <input type="submit" class="btn" value="Update" name='submit'/>
@@ -57,26 +57,26 @@
             <div class="history-items">
 
                 {% for order in orders %}
-                    <div class="history-item">
-                        <div class="history-dot"></div>
-                        <div class="history-date">{{ order.created_date }}</div>
-                        <div class="history-content">
+                <div class="history-item">
+                    <div class="history-dot"></div>
+                    <div class="history-date">{{ order.created_date }}</div>
+                    <div class="history-content">
 
-                            {% if order.total_point >= 0 and order.total_point <= 100 %}
-                                <img src="/media/reward/star/star1.png" width="60" height="60">
-                            {% elif order.total_point > 100 and order.total_point <= 200 %}
-                                <img src="/media/reward/star/star2.png" width="60" height="60">
-                            {% elif order.total_point > 200 and order.total_point <= 300 %}
-                                <img src="/media/reward/star/star3.png" width="60" height="60">
-                            {% elif order.total_point > 300 and order.total_point <= 400 %}
-                                <img src="/media/reward/star/star4.png" width="60" height="60">
-                            {% else %}
-                                <img src="/media/reward/star/star5.png" width="60" height="60">
-                            {% endif %}
+                        {% if order.total_point >= 0 and order.total_point <= 100 %}
+                        <img src="/media/reward/star/star1.png" width="60" height="60">
+                        {% elif order.total_point > 100 and order.total_point <= 200 %}
+                        <img src="/media/reward/star/star2.png" width="60" height="60">
+                        {% elif order.total_point > 200 and order.total_point <= 300 %}
+                        <img src="/media/reward/star/star3.png" width="60" height="60">
+                        {% elif order.total_point > 300 and order.total_point <= 400 %}
+                        <img src="/media/reward/star/star4.png" width="60" height="60">
+                        {% else %}
+                        <img src="/media/reward/star/star5.png" width="60" height="60">
+                        {% endif %}
 
-                            <span>{{ order.total_point }} Points</span>
-                        </div>
+                        <span>{{ order.total_point }} Points</span>
                     </div>
+                </div>
                 {% endfor %}
 
             </div>
@@ -86,10 +86,10 @@
             <form method="POST" action="{% url 'profile' %}" class="update-form" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in reset_form %}
-                    <div class="input-field">
-                        <i class="fa fa-lock"></i>
-                        {{ field }}
-                    </div>
+                <div class="input-field">
+                    <i class="fa fa-lock"></i>
+                    {{ field }}
+                </div>
                 {% endfor %}
 
                 <button class="btn" value="Reset Password" name='submit'>Change Password</button>
