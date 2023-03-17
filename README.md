@@ -8,7 +8,7 @@ Consumers who want to contribute their efforts on protecting environment.
 Consumers who are lacking awareness of environment protection
 
 ## Overview
-![image](/product flow.png)
+![image](/product%20flow.png)
 https://drive.google.com/file/d/1RXOT-DT5sB8NG5My6jmeXHQK9m78LEOr/view?usp=sharing
 
 ## Note for team:
