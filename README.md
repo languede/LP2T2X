@@ -11,7 +11,17 @@ Consumers who are lacking awareness of environment protection
 ![image](/product%20flow.png)
 https://drive.google.com/file/d/1RXOT-DT5sB8NG5My6jmeXHQK9m78LEOr/view?usp=sharing
 
-## Note for team:
+## Usage
+1. Create a virtual environment through Anaconda or Python venv
+2. Find setting.py under the path 'eco/eco/'
+3. Edit the list variable ALLOWED_HOSTS by append/adding 'localhost' or anyother ip you want.
+4. Back to the root directory which contain the manage.py file
+5. In the terminal, type `python manage.py runserver` to run Django project
+
+
+p.s. If there were missing pacakages, try `pip install <missing pacakage>` to fix this error
+
+## Note for the team:
 **For MacOS user:**  
 Please type `exec bash` in mac's terminal to switch default shall to `bash`,  
 That is:   
@@ -44,4 +54,3 @@ pip install pyzbar opencv-python
 
 ### install stripes for payment
 pip install stripe3
-
