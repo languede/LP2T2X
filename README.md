@@ -19,8 +19,8 @@ https://outline.touryx.com:9443/s/49999f0e-d491-4c2e-b02c-9cb3ae08aa84
 #### About installing Anaconda please refer to their official documents: https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
 
 ### Step-by-step guide
-*If using pythin env, refer to the package list in environment.yml, then use `pip install [package name]`*
-
+*If not useing anaconda, refer to the root path `LP2T2X/`*
+*use the **requirements2.txt** to create a python virtual environment*
 1. Clone this repo by run 
 ```git clone https://github.com/languede/LP2T2X.git```
 3. Go to the project directory 
