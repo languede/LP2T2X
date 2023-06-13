@@ -20,7 +20,7 @@ https://outline.touryx.com:9443/s/49999f0e-d491-4c2e-b02c-9cb3ae08aa84
 
 ### Step-by-step guide
 *If not useing anaconda, refer to the root path `LP2T2X/`*
-*use the **requirements2.txt** to create a python virtual environment*
+*use the **requirements.txt** to create a python virtual environment*
 1. Clone this repo by run 
 ```git clone https://github.com/languede/LP2T2X.git```
 3. Go to the project directory 
