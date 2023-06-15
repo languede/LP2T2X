@@ -14,7 +14,26 @@ https://drive.google.com/file/d/1RXOT-DT5sB8NG5My6jmeXHQK9m78LEOr/view?usp=shari
 ## The Wiki
 https://outline.touryx.com:9443/s/49999f0e-d491-4c2e-b02c-9cb3ae08aa84
 
-## Install
+## Using Docker (Recommand)
+*Assume you have docker & docker-compose installed*
+
+*By default, the container will listen on 127.0.0.1:8000*
+
+1. Clone this repo then go to directory *docker-eco*
+2. Edit environment variable in the *docker-compose.yml* as needed.
+3. run `docker compose up -d` or `docker-compose up -d` depands how you install docker-compose.
+
+
+You may copy and paste following command to simply deploy it.
+```
+git clone https://github.com/languede/LP2T2X.git && \
+cd LP2T2X/docker-eco && \
+sudo docker compose up -d
+```
+Done!
+
+
+## Menual Install
 #### I am using anaconda to manage all the packages, it is strongly recommand to install Miniconda/Anaconda on your local system before you depoly this Django project.
 #### About installing Anaconda please refer to their official documents: https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
 
