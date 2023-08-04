@@ -14,11 +14,11 @@ WORKDIR /app
 # switch shell to bash 
 # SHELL ["/bin/bash", "-c"]
 
-COPY requirements.txt .
+COPY ./requirements.txt .
 # Install pip requirements
 RUN pip install -r requirements.txt
 
-COPY ECO .
+COPY ./ECO .
 
 # Creates a non-root user with an explicit UID and adds permission to 
 # access the /app folder
