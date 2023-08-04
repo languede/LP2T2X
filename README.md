@@ -19,15 +19,16 @@ https://outline.touryx.com:9443/s/49999f0e-d491-4c2e-b02c-9cb3ae08aa84
 
 *By default, the container will listen on 127.0.0.1:8000*
 
-1. Clone this repo then go to directory *docker-eco*
+1. Clone this repo then go to directory *LP2T2X*
 2. Edit environment variable in the *docker-compose.yml* as needed.
-3. run `docker compose up -d` or `docker-compose up -d` depands how you install docker-compose.
+3. run `docker compose up -d` or `docker-compose up -d` depands how you installed docker-compose.
 
 
 You may copy and paste following command to simply deploy it.
 ```
+mkdir -p ~/git && \
 git clone https://github.com/languede/LP2T2X.git && \
-cd LP2T2X/docker-eco && \
+cd LP2T2X && \
 sudo docker compose up -d
 ```
 Done!
